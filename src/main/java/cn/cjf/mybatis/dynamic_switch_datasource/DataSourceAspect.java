@@ -18,7 +18,7 @@ public class DataSourceAspect {
 
     @Before(value = "pointCut()")
     public void before(JoinPoint joinPoint) {
-        ContextHolder.setConsumerType("");
+        CustomerContextHolder.setCustomerType("");
 
     }
 }
