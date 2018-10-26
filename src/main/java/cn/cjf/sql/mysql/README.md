@@ -122,3 +122,36 @@ insert into Employee (Id, Name, Salary, ManagerId) values ('4', 'Max', '90000', 
 select a.Name  as "Employee" from Employee a left join Employee b on a.ManagerId = b.id 
 where a.Salary > b.Salary and a.ManagerId is not null
 ~~~
+
+## 查找重复的电子邮箱
+编写一个 SQL 查询，查找 Person 表中所有重复的电子邮箱。
+~~~SQL
+Create table If Not Exists Person (Id int, Email varchar(255))
+Truncate table Person
+insert into Person (Id, Email) values ('1', 'a@b.com')
+insert into Person (Id, Email) values ('2', 'c@d.com')
+insert into Person (Id, Email) values ('3', 'a@b.com')
+~~~
+
+~~~SQL
+select Email from Person group by Email having count(Email) > 1
+~~~
+
+## 从不订购的客户
+某网站包含两个表，Customers 表和 Orders 表。编写一个 SQL 查询，找出所有从不订购任何东西的客户。
+~~~sql
+Create table If Not Exists Customers (Id int, Name varchar(255))
+Create table If Not Exists Orders (Id int, CustomerId int)
+Truncate table Customers
+insert into Customers (Id, Name) values ('1', 'Joe')
+insert into Customers (Id, Name) values ('2', 'Henry')
+insert into Customers (Id, Name) values ('3', 'Sam')
+insert into Customers (Id, Name) values ('4', 'Max')
+Truncate table Orders
+insert into Orders (Id, CustomerId) values ('1', '3')
+insert into Orders (Id, CustomerId) values ('2', '1')
+~~~
+
+~~~SQL
+select Name as Customers from Customers a where a.id not in (select Distinct CustomerId from Orders)
+~~~
