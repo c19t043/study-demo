@@ -13,13 +13,17 @@ public class BubbleSort {
             System.out.print(num + " ");
         }
         System.out.println();
-        BubbleSort.sortFromRight(scores);
+        sort(scores);
         for (int num : scores) {
             System.out.print(num + " ");
         }
     }
 
-    public static void sortFromLeft(int[] arr) {
+    public static void sort(int[] arr) {
+        sortFromRight(arr);
+    }
+
+    private static void sortFromLeft(int[] arr) {
         for (int i = 0; i <= arr.length - 1; i++) {
             //从左开始比较
             for (int j = 0; j <= arr.length - 2 - i; j++) {
@@ -30,7 +34,7 @@ public class BubbleSort {
         }
     }
 
-    public static void sortFromRight(int[] arr) {
+    private static void sortFromRight(int[] arr) {
         for (int i = 0; i <= arr.length - 1; i++) {
             //从右边开始排
             for (int j = arr.length - 2; j >= i; j--) {

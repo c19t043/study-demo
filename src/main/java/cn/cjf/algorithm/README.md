@@ -11,3 +11,9 @@
 每一趟排序前都保障，前一趟比较过的元素都是有序的
 + 时间复杂度O(N^2)
 + [《排序算法总结之插入排序》](https://www.cnblogs.com/hapjin/p/5517667.html)
+## 快速排序(QuickSort)
+利用二分的思想，定一个基准数，使这个基准数左边的数都小于基准数，右边的都大于基准数
++ 时间复杂度O(NlogN)
++ [《坐在马桶上看算法：快速排序》](http://developer.51cto.com/art/201403/430986.htm)
+## 归并排序()
++ [《图解排序算法(四)之归并排序》](http://www.cnblogs.com/chengxiao/p/6194356.html)

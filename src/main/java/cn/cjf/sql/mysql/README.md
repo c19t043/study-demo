@@ -89,7 +89,7 @@ select NUM AS ConsecutiveNums,
 		when @r1 = NUM then @count := @count+1 
 		WHEN (@r1 := NUM) IS NOT NULL then @count := 1
 	end cnt
-from Logs a
+from Logs a,(select @r1:= NULL) b
 ) a where a.cnt >= 3 
 ~~~
 
@@ -154,4 +154,54 @@ insert into Orders (Id, CustomerId) values ('2', '1')
 
 ~~~SQL
 select Name as Customers from Customers a where a.id not in (select Distinct CustomerId from Orders)
+~~~
+
+## 部门工资最高的员工
+Employee 表包含所有员工信息，每个员工有其对应的 Id, salary 和 department Id。
+Department 表包含公司所有部门的信息。
+
+~~~SQL
+Create table If Not Exists Employee (Id int, Name varchar(255), Salary int, DepartmentId int)
+Create table If Not Exists Department (Id int, Name varchar(255))
+Truncate table Employee
+insert into Employee (Id, Name, Salary, DepartmentId) values ('1', 'Joe', '70000', '1')
+insert into Employee (Id, Name, Salary, DepartmentId) values ('2', 'Henry', '80000', '2')
+insert into Employee (Id, Name, Salary, DepartmentId) values ('3', 'Sam', '60000', '2')
+insert into Employee (Id, Name, Salary, DepartmentId) values ('4', 'Max', '90000', '1')
+Truncate table Department
+insert into Department (Id, Name) values ('1', 'IT')
+insert into Department (Id, Name) values ('2', 'Sales')
+~~~
+
+~~~SQL
+select d.Name as Department,e.Name as Employee,e.Salary
+from Department d,Employee e
+where e.DepartmentId=d.Id and e.Salary=(Select max(Salary) from Employee where DepartmentId=d.Id)
+~~~
+
+~~~SQL
+select d.Name as Department,e.Name as Employee,Salary 
+from Employee e join Department d on e.DepartmentId=d.Id 
+where (e.Salary,e.DepartmentId) in (select max(Salary),DepartmentId from Employee group by DepartmentId) 
+~~~
+
+## 部门工资前三高的员工
+
+~~~SQL
+Select d.Name as Department, e.Name as Employee, e.Salary 
+from Department d, Employee e 
+where b.DepartmentId = d.Id and (
+    Select count(distinct Salary) From Employee where DepartmentId=d.Id and Salary > e.Salary
+)<3
+~~~
+
+~~~SQL
+SELECT D1.Name Department, E1.Name Employee,  E1.Salary
+FROM Employee E1, Employee E2, Department D1
+WHERE E1.DepartmentID = E2.DepartmentID
+AND E2.Salary >= E1.Salary 
+AND E1.DepartmentID = D1.ID      
+GROUP BY E1.Name
+HAVING COUNT(DISTINCT E2.Salary) <= 3
+ORDER BY D1.Name, E1.Salary DESC;
 ~~~
