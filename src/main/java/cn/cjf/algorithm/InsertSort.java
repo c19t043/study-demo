@@ -11,7 +11,7 @@ package cn.cjf.algorithm;
  */
 public class InsertSort {
 
-    public static <T extends Comparable<? super T>> void sort(T[] a) {
+    public static <T extends Comparable<? super T>> void sort1(T[] a) {
         for (int p = 1; p < a.length; p++) {
             //保存当前位置p的元素，其中[0,p-1]已经有序
             T tmp = a[p];
@@ -22,6 +22,35 @@ public class InsertSort {
             }
             //插入到合适的位置
             a[j] = tmp;
+        }
+    }
+
+    public static void sort1(int[] arr, int initValue, int incrBy) {
+        for (int i = initValue; i < arr.length; i++) {
+            for (int j = i; j - incrBy >= 0 && arr[j - incrBy] > arr[j]; j -= incrBy) {
+                Util.swap(arr, j, j - incrBy);
+            }
+        }
+    }
+
+    public static void sort(int[] arr, int initValue, int incrBy) {
+        for (int i = initValue; i < arr.length; i++) {
+            int temp = arr[i];
+            int j;
+            for (j = i; j - incrBy >= 0 && arr[j - incrBy] > temp; j -= incrBy) {
+                arr[j] = arr[j - incrBy];
+            }
+            arr[j] = temp;
+        }
+    }
+
+    public static <T extends Comparable<? super T>> void sort(T[] a) {
+        for (int p = 1; p < a.length; p++) {
+            //保存当前位置p的元素，其中[0,p-1]已经有序
+            for (int j = p; j >= 1 && a[j].compareTo(a[j - 1]) < 0; j--) {
+                //后移一位
+                Util.swap(a, j, j - 1);
+            }
         }
     }
 
