@@ -54,20 +54,6 @@ package cn.cjf.algorithm;
  * @author cjf
  */
 public class SelectionSort {
-    public static void main(String[] args) {
-        int[] arr = {1, 3, 2, 45, 65, 33, 12};
-        System.out.println("交换之前：");
-        for (int num : arr) {
-            System.out.print(num + " ");
-        }
-        SelectionSort.sort(arr);
-        System.out.println();
-        System.out.println("交换后：");
-        for (int num : arr) {
-            System.out.print(num + " ");
-        }
-    }
-
     public static void sort(int[] arr) {
         if (arr != null && arr.length > 1) {
             for (int i = 0; i <= arr.length - 1; i++) {

@@ -7,14 +7,6 @@ import java.util.Arrays;
  * 从最后一个非叶节点开始调整，构建大顶堆,然后首尾节点交换，排除尾节点，剩余节点重复交换，构建，直到整个有序
  */
 public class HeapSort {
-    public static void main(String[] args) {
-        int[] arr = {10, 9, 8, 7, 8, 5, 4, 3, 2, 1};
-//        int[] arr = {1,2,3,4,5,6,7,8,9};
-        System.out.println(Arrays.toString(arr));
-        sort(arr);
-        System.out.println(Arrays.toString(arr));
-    }
-
     public static void sort(int[] arr) {
         //1.构建大顶堆
         for (int i = arr.length / 2 - 1; i >= 0; i--) {

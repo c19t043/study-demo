@@ -53,12 +53,4 @@ public class InsertSort {
             }
         }
     }
-
-    public static void main(String[] args) {
-        Integer[] arr = {34, 8, 64, 51, 32, 21};
-        sort(arr);
-        for (Integer i : arr) {
-            System.out.print(i + " ");
-        }
-    }
 }

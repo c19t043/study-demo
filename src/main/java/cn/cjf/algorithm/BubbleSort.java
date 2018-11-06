@@ -7,18 +7,6 @@ package cn.cjf.algorithm;
  * @author CJF
  */
 public class BubbleSort {
-    public static void main(String[] args) {
-        int scores[] = {67, 69, 44, 75, 88, 33};
-        for (int num : scores) {
-            System.out.print(num + " ");
-        }
-        System.out.println();
-        sort(scores);
-        for (int num : scores) {
-            System.out.print(num + " ");
-        }
-    }
-
     public static void sort(int[] arr) {
         sortFromRight(arr);
     }

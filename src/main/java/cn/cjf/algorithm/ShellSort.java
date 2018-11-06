@@ -9,12 +9,6 @@ import java.util.Arrays;
  * @author cjf
  */
 public class ShellSort {
-    public static void main(String[] args) {
-        int[] arr = {1, 4, 2, 7, 9, 8, 3, 6};
-        sort(arr);
-        System.out.println(Arrays.toString(arr));
-    }
-
     /**
      * 希尔排序 针对有序序列在插入时采用交换法
      */
