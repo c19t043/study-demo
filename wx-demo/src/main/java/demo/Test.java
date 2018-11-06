@@ -48,10 +48,12 @@ public class Test extends HttpServlet {
         String timestamp = request.getParameter("timestamp");
         String nonce = request.getParameter("nonce");
         String echostr = request.getParameter("echostr");
-        String token = "hello2018";//这里填基本配置中的token
+        //这里填基本配置中的token
+        String token = "hello2018";
         String jiami = "";
         try {
-            jiami = SHA1.getSHA1(token, timestamp, nonce, "");//这里是对三个参数进行加密
+            //这里是对三个参数进行加密
+            jiami = SHA1.getSHA1(token, timestamp, nonce, "");
         } catch (AesException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
