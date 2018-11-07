@@ -1,6 +1,18 @@
 package cn.cjf.wx.utils;
 
+import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.servlet.ServletInputStream;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
+
 public class MyStringUtil {
+    private final static Logger LOG = LoggerFactory.getLogger("wx_MyStringUtil");
+
     public final static String STRING_CDATA_START = "<![CDATA[";
     public final static String STRING_CDATA_END = "]]>";
 
@@ -14,6 +26,18 @@ public class MyStringUtil {
                     data.lastIndexOf(STRING_CDATA_END));
         }
         return result;
+    }
+
+    /**
+     * 解析流中的消息为字符串
+     */
+    public static String parseFromIO_In(HttpServletRequest request) {
+        try (InputStream inputStream = request.getInputStream()){
+            return IOUtils.toString(inputStream, Charset.defaultCharset());
+        } catch (IOException e) {
+            LOG.error("从IO流中获取数据转为字符串失败");
+        }
+        return null;
     }
 
     /**

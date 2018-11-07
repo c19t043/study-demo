@@ -11,4 +11,18 @@
     <packaging>war</packaging>
 
     <artifactId>wx-demo</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>cn.cjf</groupId>
+            <artifactId>common</artifactId>
+            <version>0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-mp</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+    </dependencies>
 </project>
