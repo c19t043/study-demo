@@ -49,7 +49,6 @@ public class WxAuth extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestXml = MyStringUtil.parseFromIO_In(request);
         LOG.info("调用用于验证是否是微信服务器发来的消息：{}", requestXml);
-
         String signature = request.getParameter("signature");
         String timestamp = request.getParameter("timestamp");
         String nonce = request.getParameter("nonce");
