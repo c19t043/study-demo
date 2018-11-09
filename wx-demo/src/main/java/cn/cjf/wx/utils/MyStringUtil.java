@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.util.UUID;
 
 public class MyStringUtil {
     private final static Logger LOG = LoggerFactory.getLogger("wx_MyStringUtil");
@@ -32,7 +33,7 @@ public class MyStringUtil {
      * 解析流中的消息为字符串
      */
     public static String parseFromIO_In(HttpServletRequest request) {
-        try (InputStream inputStream = request.getInputStream()){
+        try (InputStream inputStream = request.getInputStream()) {
             return IOUtils.toString(inputStream, Charset.defaultCharset());
         } catch (IOException e) {
             LOG.error("从IO流中获取数据转为字符串失败");

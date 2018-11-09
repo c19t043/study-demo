@@ -1,21 +1,11 @@
 package cn.cjf.wx.servlet;
 
-import cn.cjf.wx.config.WxConfig;
 import cn.cjf.wx.constant.MessageType;
-import cn.cjf.wx.domain.ResponseDomain;
 import cn.cjf.wx.utils.MyStringUtil;
 import cn.cjf.wx.utils.WxServiceUtil;
-import cn.cjf.wx.utils.XmlUtil;
-import com.sun.net.httpserver.Authenticator;
-import me.chanjar.weixin.common.api.WxConsts;
-import me.chanjar.weixin.common.bean.result.WxMediaUploadResult;
-import me.chanjar.weixin.common.error.WxErrorException;
-import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpService;
-import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutImageMessage;
-import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMusicMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutTextMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +15,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
