@@ -45,6 +45,10 @@ public class WXBizMsgCrypt {
 	String token;
 	String appId;
 
+	public static void main(String[] args) {
+		new WXBizMsgCrypt().encrypt("123","test");
+	}
+
 	/**
 	 * 构造函数
 	 * @param token 公众平台上，开发者设置的token
