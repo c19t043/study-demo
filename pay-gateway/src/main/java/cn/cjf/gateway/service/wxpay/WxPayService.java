@@ -1,7 +1,6 @@
 package cn.cjf.gateway.service.wxpay;
 
 import cn.cjf.gateway.domain.param.weixin.WeiXinPayCallbackRequest;
-import cn.cjf.gateway.domain.param.weixin.WeiXinPayCallbackResponse;
 
 public interface WxPayService {
     /**
@@ -21,5 +20,5 @@ public interface WxPayService {
      * </scene>
      * 微信通知支付结果处理
      */
-    WeiXinPayCallbackResponse wxCallback(String requestXml);
+    WeiXinPayCallbackRequest wxCallback(String requestXml);
 }

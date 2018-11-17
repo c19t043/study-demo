@@ -34,7 +34,7 @@ import java.util.UUID;
 public class CommonUtil {
 
     private static Logger log = LoggerFactory.getLogger(CommonUtil.class);
-    public static String create_nonce_str() {
+    public static String createNonceStr() {
         return UUID.randomUUID().toString().replace("-", "");
     }
 
@@ -198,7 +198,7 @@ public class CommonUtil {
         return buffer;
     }
 
-    public static String create_timestamp() {
+    public static String createTimestamp() {
         return null;
     }
 }
