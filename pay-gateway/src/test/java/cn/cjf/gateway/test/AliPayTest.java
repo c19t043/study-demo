@@ -9,6 +9,14 @@ import org.junit.Test;
 
 public class AliPayTest {
     /**
+     * 支付宝统一预下单接口调试
+     */
+    @Test
+    public void test1(){
+    }
+
+
+    /**
      * alipay.trade.page.pay(统一收单下单并支付页面接口)
      * PC场景下单并支付
      * @throws AlipayApiException

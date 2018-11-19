@@ -13,7 +13,7 @@
 + 当内存不足时，垃圾回收机制将回收软引用使用的内存
 ### 1.3 弱引用
 使用java.lang.ref.WeakReference关联的对象
-> `WeakReference<String> ref = new WeakRefence<String>("123");`
+> `WeakReference<String> ref = new WeakReference<String>("123");`
 + 当执行垃圾回收时，将被回收
 ### 1.4 虚引用
 使用java.lang.ref.PhantomReference关联的对象

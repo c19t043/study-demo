@@ -4,4 +4,8 @@ public interface AliPayService {
     /**
      * 支付宝移动支付后台通知响应
      */
+    /**
+     * 支付宝统一预下单接口
+     */
+
 }

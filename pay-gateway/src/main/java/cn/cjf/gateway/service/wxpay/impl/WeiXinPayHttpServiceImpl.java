@@ -42,4 +42,18 @@ public class WeiXinPayHttpServiceImpl implements WeiXinPayHttpService {
         String responseStr = HttpUtil.doPost(WeiXinConfig.QUERY_REFUND_URL, requestXml);
         return ConverterUtil.convertXml2Object(responseStr, WeiXinQueryRefundResponse.class);
     }
+
+    @Override
+    public WeiXinMicroPayResponse microPay(WeiXinMicroPayRequest request) {
+        String requestXml = ConverterUtil.convertObject2Xml(request);
+        String responseStr = HttpUtil.doPost(WeiXinConfig.MICRO_PAY_URL, requestXml);
+        return ConverterUtil.convertXml2Object(responseStr, WeiXinMicroPayResponse.class);
+    }
+
+    @Override
+    public WeiXinReverseResponse reverse(WeiXinReverseRequest request) {
+        String requestXml = ConverterUtil.convertObject2Xml(request);
+        String responseStr = HttpUtil.doPost(WeiXinConfig.REVERSE_URL, requestXml);
+        return ConverterUtil.convertXml2Object(responseStr, WeiXinReverseResponse.class);
+    }
 }

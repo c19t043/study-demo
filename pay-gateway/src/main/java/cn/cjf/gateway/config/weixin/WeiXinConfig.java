@@ -10,7 +10,7 @@ public interface WeiXinConfig {
      */
     String QUERY_ORDER_URL = "https://api.mch.weixin.qq.com/pay/orderquery";
     /**
-     *关闭订单
+     * 关闭订单
      */
     String CLOSE_ORDER_URL = "https://api.mch.weixin.qq.com/pay/closeorder";
     /**
@@ -21,4 +21,12 @@ public interface WeiXinConfig {
      * 查询退款
      */
     String QUERY_REFUND_URL = "https://api.mch.weixin.qq.com/pay/refundquery";
+    /**
+     * 提交付款码支付
+     */
+    String MICRO_PAY_URL = "https://api.mch.weixin.qq.com/pay/micropay";
+    /**
+     * 撤销订单
+     */
+    String REVERSE_URL = "https://api.mch.weixin.qq.com/secapi/pay/reverse";
 }
