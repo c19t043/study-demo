@@ -14,8 +14,8 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.UUID;
 
-public class WeixinUtil {
-    private static Logger log = LoggerFactory.getLogger(WeixinUtil.class);
+public class WeiXinUtil {
+    private static Logger log = LoggerFactory.getLogger(WeiXinUtil.class);
 
     public static String create_nonce_str() {
         return UUID.randomUUID().toString().replace("-", "");
