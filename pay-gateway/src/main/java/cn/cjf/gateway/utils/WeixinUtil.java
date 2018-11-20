@@ -24,30 +24,26 @@ public class WeiXinUtil {
     /**
      * 将字节数组转换为十六进制字符串
      *
-     * @param byteArray
-     * @return
      */
-    public static String byteToStr(byte[] byteArray) {
-        String strDigest = "";
+    public static String byteArrayToHexStr(byte[] byteArray) {
+        StringBuilder strDigest = new StringBuilder();
         for (int i = 0; i < byteArray.length; i++) {
-            strDigest += byteToHexStr(byteArray[i]);
+            strDigest.append(byteToHexStr(byteArray[i]));
         }
-        return strDigest;
+        return strDigest.toString();
     }
 
     /**
      * 将字节转换为十六进制字符串
      *
-     * @return
      */
     public static String byteToHexStr(byte bytes) {
-        char[] Digit = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+        char[] digit = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
         char[] tempArr = new char[2];
-        tempArr[0] = Digit[(bytes >>> 4) & 0X0F];
-        tempArr[1] = Digit[bytes & 0X0F];
+        tempArr[0] = digit[(bytes >>> 4) & 0X0F];
+        tempArr[1] = digit[bytes & 0X0F];
 
-        String s = new String(tempArr);
-        return s;
+        return new String(tempArr);
     }
 
     /**
