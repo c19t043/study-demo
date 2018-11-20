@@ -72,25 +72,20 @@ public class PayCommonUtil {
 	 * @return boolean
 	 */
 	public static boolean isTenpaySign(String characterEncoding, SortedMap<Object, Object> packageParams, String API_KEY) {
-		StringBuffer sb = new StringBuffer();
-		Set es = packageParams.entrySet();
-		Iterator it = es.iterator();
-		while(it.hasNext()) {
-			Map.Entry entry = (Map.Entry)it.next();
-			String k = (String)entry.getKey();
-			String v = (String)entry.getValue();
-			if(!"sign".equals(k) && null != v && !"".equals(v)) {
-				sb.append(k + "=" + v + "&");
-			}
-		}
-		
+		StringBuilder sb = new StringBuilder();
+		for(Map.Entry<Object, Object> entry : packageParams.entrySet()){
+            String k = (String)entry.getKey();
+            String v = (String)entry.getValue();
+            if(!"sign".equals(k) && null != v && !"".equals(v)) {
+                sb.append(k + "=" + v + "&");
+            }
+        }
 		sb.append("key=" + API_KEY);
 		
 		//算出摘要
 		String mysign = MD5Util.MD5Encode(sb.toString(), characterEncoding).toLowerCase();
 		String tenpaySign = ((String)packageParams.get("sign")).toLowerCase();
 		
-		//System.out.println(tenpaySign + "    " + mysign);
 		return tenpaySign.equals(mysign);
 	}
  
