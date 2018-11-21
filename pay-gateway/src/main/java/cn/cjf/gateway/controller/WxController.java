@@ -20,19 +20,8 @@ public class WxController {
     private Logger logger = LoggerFactory.getLogger(WxPayServlet.class);
 
     public void wxNotify(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        //读取参数
-        StringBuffer sb = new StringBuffer();
-        try (InputStream inputStream = request.getInputStream();
-             BufferedReader in = new BufferedReader(new InputStreamReader(inputStream, CharEncoding.UTF_8))) {
-            String s;
-            while ((s = in.readLine()) != null) {
-                sb.append(s);
-            }
-        }
-
-
         //解析xml成map
-        Map<String, String> m = XMLUtil.doXMLParse(sb.toString());
+        Map<String, String> m = XMLUtil.parseXml(request);
 
         //过滤空串 设置 TreeMap
         SortedMap<Object, Object> packageParams = new TreeMap<>();
