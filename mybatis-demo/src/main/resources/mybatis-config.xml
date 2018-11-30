@@ -3,18 +3,26 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+    <typeAliases>
+        <package name="cn.cjf.mybatis.model"/>
+    </typeAliases>
+    
     <environments default="development">
         <environment id="development">
-            <transactionManager type="JDBC"/>
-            <dataSource type="POOLED">
-                <property name="driver" value="${driver}"/>
-                <property name="url" value="${url}"/>
-                <property name="username" value="${username}"/>
-                <property name="password" value="${password}"/>
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="unpooled">
+                <property name="driver" value="com.mysql.jdbc.Driver"></property>
+                <property name="url" value="jdbc:mysql://47.107.59.16:3306/mybatis"></property>
+                <property name="username" value="mybatis"></property>
+                <property name="password" value="mybatis"></property>
             </dataSource>
         </environment>
     </environments>
+
     <mappers>
-        <mapper resource="org/mybatis/example/BlogMapper.xml"/>
+        <mapper resource="mybatis/mapper/CountryMapper.xml"/>
     </mappers>
 </configuration>

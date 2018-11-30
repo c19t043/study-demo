@@ -1,5 +1,7 @@
 package cn.cjf.websocket;
 
+import com.alibaba.fastjson.JSON;
+
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
@@ -62,26 +64,17 @@ public class WebSocketServer {
     @OnMessage
     public void onMessage(String message, Session fromSession) {
         System.out.println("来自客户端的消息:" + message);
+        Map map = JSON.parseObject(message, Map.class);
         //发送指定消息
-        String toUser = "";
-        String toMessage = "";
-        WebSocketServer webSocketServer = map.get(toUser);
+        String toUser = (String) map.get("toUser");
+        String toMessage = (String) map.get("toMessage");
+        WebSocketServer webSocketServer = WebSocketServer.map.get(toUser);
         if(webSocketServer == null){
             fromSession.getAsyncRemote().sendText(toUser+"不在线");
         }else{
             Session toSession = webSocketServer.getSession();
             toSession.getAsyncRemote().sendText(toMessage);
         }
-
-        //群发消息
-//        for (WebSocketServer item : webSocketSet) {
-//            try {
-//                item.sendMessage(message);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                continue;
-//            }
-//        }
     }
 
     @OnClose

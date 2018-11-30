@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cjf.mybatis.mapper.CountryMapper">
+    <resultMap id="countryMap" type="cn.cjf.mybatis.model.Country">
+        <result column="id" property="id"  javaType="java.lang.Long" />
+        <result column="country_name" property="countryName"  javaType="java.lang.String" />
+        <result column="country_code" property="countryCode"  javaType="java.lang.String" />
+    </resultMap>
+    <select id="selectAll" resultMap="countryMap">
+        SELECT id,country_name,country_code from country
+    </select>
+</mapper>

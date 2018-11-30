@@ -16,6 +16,8 @@
         <module>mybatis-demo</module>
         <module>thread-demo</module>
         <module>websocket-demo</module>
+        <module>springboot-demo</module>
+        <module>redis-demo</module>
     </modules>
 
     <properties>
