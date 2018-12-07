@@ -1,4 +1,4 @@
-package cn.cjf.chat.client.commandhandle;
+package cn.cjf.netty.client.commandhandle;
 
 import io.netty.channel.Channel;
 /**

@@ -1,4 +1,4 @@
-package cn.cjf.chat.utils;
+package cn.cjf.netty.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

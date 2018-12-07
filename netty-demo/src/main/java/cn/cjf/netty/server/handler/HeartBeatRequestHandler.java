@@ -1,7 +1,7 @@
-package cn.cjf.chat.server.handler;
+package cn.cjf.netty.server.handler;
 
-import cn.cjf.chat.domain.HeartBeatRequestPacket;
-import cn.cjf.chat.domain.HeartBeatResponsePacket;
+import cn.cjf.netty.domain.HeartBeatRequestPacket;
+import cn.cjf.netty.domain.HeartBeatResponsePacket;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

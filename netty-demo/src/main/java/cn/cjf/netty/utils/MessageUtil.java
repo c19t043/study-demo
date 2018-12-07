@@ -1,9 +1,9 @@
-package cn.cjf.chat.utils;
+package cn.cjf.netty.utils;
 
-import cn.cjf.chat.client.handler.SimpleClientHandler;
-import cn.cjf.chat.domain.Packet;
-import cn.cjf.chat.server.session.SessionGroupManager;
-import cn.cjf.chat.server.session.SessionManager;
+import cn.cjf.netty.client.handler.SimpleClientHandler;
+import cn.cjf.netty.domain.Packet;
+import cn.cjf.netty.server.session.SessionGroupManager;
+import cn.cjf.netty.server.session.SessionManager;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 

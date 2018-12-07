@@ -1,4 +1,4 @@
-package cn.cjf.chat.config;
+package cn.cjf.netty.config;
 
 /**
  * netty命令

@@ -1,7 +1,7 @@
-package cn.cjf.chat.server.handler;
+package cn.cjf.netty.server.handler;
 
-import cn.cjf.chat.config.PacketType;
-import cn.cjf.chat.domain.Packet;
+import cn.cjf.netty.config.PacketType;
+import cn.cjf.netty.domain.Packet;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

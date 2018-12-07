@@ -1,7 +1,7 @@
-package cn.cjf.chat.serializable;
+package cn.cjf.netty.serializable;
 
-import cn.cjf.chat.config.SerializableType;
-import cn.cjf.chat.domain.Packet;
+import cn.cjf.netty.config.SerializableType;
+import cn.cjf.netty.domain.Packet;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 

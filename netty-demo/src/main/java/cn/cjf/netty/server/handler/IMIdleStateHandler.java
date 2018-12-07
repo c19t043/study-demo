@@ -1,4 +1,4 @@
-package cn.cjf.chat.server.handler;
+package cn.cjf.netty.server.handler;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -20,6 +20,6 @@ public class IMIdleStateHandler extends IdleStateHandler {
     @Override
     protected void channelIdle(ChannelHandlerContext ctx, IdleStateEvent evt) {
         System.out.println(READER_IDLE_TIME + "秒内未读到数据，关闭连接");
-        ctx.channel().close();
+//        ctx.channel().close();
     }
 }

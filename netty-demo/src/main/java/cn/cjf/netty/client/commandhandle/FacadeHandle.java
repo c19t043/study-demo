@@ -1,7 +1,7 @@
-package cn.cjf.chat.client.commandhandle;
+package cn.cjf.netty.client.commandhandle;
 
-import cn.cjf.chat.config.CommandEnum;
-import cn.cjf.chat.config.ConstantConfig;
+import cn.cjf.netty.config.CommandEnum;
+import cn.cjf.netty.config.ConstantConfig;
 import io.netty.channel.Channel;
 
 import java.util.HashMap;

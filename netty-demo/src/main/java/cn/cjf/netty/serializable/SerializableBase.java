@@ -1,6 +1,6 @@
-package cn.cjf.chat.serializable;
+package cn.cjf.netty.serializable;
 
-import cn.cjf.chat.domain.Packet;
+import cn.cjf.netty.domain.Packet;
 
 /**
  * @author CJF

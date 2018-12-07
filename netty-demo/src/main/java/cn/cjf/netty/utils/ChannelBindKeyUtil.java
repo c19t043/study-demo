@@ -1,6 +1,6 @@
-package cn.cjf.chat.utils;
+package cn.cjf.netty.utils;
 
-import cn.cjf.chat.config.Attributes;
+import cn.cjf.netty.config.Attributes;
 import io.netty.channel.Channel;
 import io.netty.util.AttributeKey;
 

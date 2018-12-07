@@ -1,10 +1,10 @@
-package cn.cjf.chat.utils;
+package cn.cjf.netty.utils;
 
-import cn.cjf.chat.config.CommandEnum;
+import cn.cjf.netty.config.CommandEnum;
 
 import java.util.Scanner;
 
-import static cn.cjf.chat.config.MessagePattern.REQUEST_MESSAGE_PRE;
+import static cn.cjf.netty.config.MessagePattern.REQUEST_MESSAGE_PRE;
 
 /**
  * @author CJF

@@ -1,11 +1,11 @@
-package cn.cjf.chat.domain;
+package cn.cjf.netty.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import static cn.cjf.chat.config.PacketType.HEART_BEAT_PACKET;
+import static cn.cjf.netty.config.PacketType.HEART_BEAT_PACKET;
 
 @Data
 @AllArgsConstructor

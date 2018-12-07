@@ -1,6 +1,6 @@
-package cn.cjf.chat.server.handler;
+package cn.cjf.netty.server.handler;
 
-import cn.cjf.chat.utils.ChannelBindKeyUtil;
+import cn.cjf.netty.utils.ChannelBindKeyUtil;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

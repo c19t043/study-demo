@@ -1,4 +1,4 @@
-package cn.cjf.chat.server;
+package cn.cjf.netty.server;
 
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;

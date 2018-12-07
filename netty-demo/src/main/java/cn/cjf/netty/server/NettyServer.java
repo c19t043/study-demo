@@ -1,11 +1,11 @@
-package cn.cjf.chat.server;
+package cn.cjf.netty.server;
 
-import cn.cjf.chat.handle.FilterHandle;
-import cn.cjf.chat.handle.PacketCodecHandler;
-import cn.cjf.chat.server.handler.AuthHandler;
-import cn.cjf.chat.server.handler.IMIdleStateHandler;
-import cn.cjf.chat.server.handler.LoginRequestHandler;
-import cn.cjf.chat.server.handler.SimpleServerHandler;
+import cn.cjf.netty.handle.FilterHandle;
+import cn.cjf.netty.handle.PacketCodecHandler;
+import cn.cjf.netty.server.handler.AuthHandler;
+import cn.cjf.netty.server.handler.IMIdleStateHandler;
+import cn.cjf.netty.server.handler.LoginRequestHandler;
+import cn.cjf.netty.server.handler.SimpleServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -42,15 +42,15 @@ public class NettyServer {
                         ch.pipeline().addLast(new FilterHandle());
                         ch.pipeline().addLast(PacketCodecHandler.INSTANCE);
                         ch.pipeline().addLast(LoginRequestHandler.INSTANCE);
-                        ch.pipeline().addLast(AuthHandler.INSTANCE);
+//                        ch.pipeline().addLast(AuthHandler.INSTANCE);
                         ch.pipeline().addLast(SimpleServerHandler.INSTANCE);
                     }
                 });
         try {
             bind(bootstrap, PORT);
         } finally {
-            boss.shutdownGracefully();
-            worker.shutdownGracefully();
+//            boss.shutdownGracefully();
+//            worker.shutdownGracefully();
         }
     }
 

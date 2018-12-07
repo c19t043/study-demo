@@ -1,9 +1,9 @@
-package cn.cjf.chat.server.handler;
+package cn.cjf.netty.server.handler;
 
-import cn.cjf.chat.config.MessagePattern;
-import cn.cjf.chat.domain.MessagePacket;
-import cn.cjf.chat.utils.ChannelBindKeyUtil;
-import cn.cjf.chat.utils.MessageUtil;
+import cn.cjf.netty.config.MessagePattern;
+import cn.cjf.netty.domain.MessagePacket;
+import cn.cjf.netty.utils.ChannelBindKeyUtil;
+import cn.cjf.netty.utils.MessageUtil;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

@@ -1,11 +1,11 @@
-package cn.cjf.chat.client.commandhandle;
+package cn.cjf.netty.client.commandhandle;
 
-import cn.cjf.chat.domain.LoginPacket;
-import cn.cjf.chat.domain.MessagePacket;
-import cn.cjf.chat.domain.Packet;
-import cn.cjf.chat.utils.ChannelBindKeyUtil;
-import cn.cjf.chat.utils.ConsoleUtil;
-import cn.cjf.chat.utils.MessageUtil;
+import cn.cjf.netty.domain.LoginPacket;
+import cn.cjf.netty.domain.MessagePacket;
+import cn.cjf.netty.domain.Packet;
+import cn.cjf.netty.utils.ChannelBindKeyUtil;
+import cn.cjf.netty.utils.ConsoleUtil;
+import cn.cjf.netty.utils.MessageUtil;
 import io.netty.channel.Channel;
 
 import java.util.UUID;

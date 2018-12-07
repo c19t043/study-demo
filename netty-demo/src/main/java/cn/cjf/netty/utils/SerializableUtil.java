@@ -1,14 +1,14 @@
-package cn.cjf.chat.utils;
+package cn.cjf.netty.utils;
 
-import cn.cjf.chat.config.PacketType;
-import cn.cjf.chat.config.Protocol;
-import cn.cjf.chat.config.SerializableType;
-import cn.cjf.chat.domain.LoginEchoPacket;
-import cn.cjf.chat.domain.LoginPacket;
-import cn.cjf.chat.domain.MessagePacket;
-import cn.cjf.chat.domain.Packet;
-import cn.cjf.chat.serializable.FastJsonSerializable;
-import cn.cjf.chat.serializable.SerializableBase;
+import cn.cjf.netty.config.PacketType;
+import cn.cjf.netty.config.Protocol;
+import cn.cjf.netty.config.SerializableType;
+import cn.cjf.netty.domain.LoginEchoPacket;
+import cn.cjf.netty.domain.LoginPacket;
+import cn.cjf.netty.domain.MessagePacket;
+import cn.cjf.netty.domain.Packet;
+import cn.cjf.netty.serializable.FastJsonSerializable;
+import cn.cjf.netty.serializable.SerializableBase;
 import io.netty.buffer.ByteBuf;
 
 import java.util.HashMap;

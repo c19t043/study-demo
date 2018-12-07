@@ -1,6 +1,6 @@
-package cn.cjf.chat.handle;
+package cn.cjf.netty.handle;
 
-import cn.cjf.chat.config.Protocol;
+import cn.cjf.netty.config.Protocol;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;

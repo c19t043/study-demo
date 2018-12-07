@@ -1,11 +1,11 @@
-package cn.cjf.chat.client.handler;
+package cn.cjf.netty.client.handler;
 
-import cn.cjf.chat.config.ConstantConfig;
-import cn.cjf.chat.config.MessagePattern;
-import cn.cjf.chat.domain.LoginEchoPacket;
-import cn.cjf.chat.domain.MessagePacket;
-import cn.cjf.chat.domain.Packet;
-import cn.cjf.chat.utils.ChannelBindKeyUtil;
+import cn.cjf.netty.config.ConstantConfig;
+import cn.cjf.netty.config.MessagePattern;
+import cn.cjf.netty.domain.LoginEchoPacket;
+import cn.cjf.netty.domain.MessagePacket;
+import cn.cjf.netty.domain.Packet;
+import cn.cjf.netty.utils.ChannelBindKeyUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 

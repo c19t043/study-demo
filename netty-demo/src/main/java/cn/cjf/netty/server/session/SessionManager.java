@@ -1,7 +1,7 @@
-package cn.cjf.chat.server.session;
+package cn.cjf.netty.server.session;
 
-import cn.cjf.chat.config.ConstantConfig;
-import cn.cjf.chat.domain.LoginPacket;
+import cn.cjf.netty.config.ConstantConfig;
+import cn.cjf.netty.domain.LoginPacket;
 import io.netty.channel.Channel;
 import io.netty.util.internal.ConcurrentSet;
 

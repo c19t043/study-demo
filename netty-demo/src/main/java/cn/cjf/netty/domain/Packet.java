@@ -1,4 +1,4 @@
-package cn.cjf.chat.domain;
+package cn.cjf.netty.domain;
 
 import lombok.Data;
 

@@ -1,6 +1,6 @@
-package cn.cjf.chat.domain;
+package cn.cjf.netty.domain;
 
-import cn.cjf.chat.config.PacketType;
+import cn.cjf.netty.config.PacketType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;

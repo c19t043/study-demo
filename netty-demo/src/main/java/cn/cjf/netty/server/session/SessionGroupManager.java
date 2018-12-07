@@ -1,4 +1,4 @@
-package cn.cjf.chat.server.session;
+package cn.cjf.netty.server.session;
 
 import java.util.HashMap;
 import java.util.HashSet;

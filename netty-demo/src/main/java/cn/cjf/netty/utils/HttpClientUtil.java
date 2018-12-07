@@ -1,4 +1,4 @@
-package cn.cjf.chat.utils;
+package cn.cjf.netty.utils;
 
 import org.apache.commons.codec.Charsets;
 import org.apache.http.Consts;

@@ -1,11 +1,11 @@
-package cn.cjf.chat.server.handler;
+package cn.cjf.netty.server.handler;
 
-import cn.cjf.chat.domain.LoginEchoPacket;
-import cn.cjf.chat.domain.LoginPacket;
-import cn.cjf.chat.server.session.SessionManager;
-import cn.cjf.chat.server.session.SessionVo;
-import cn.cjf.chat.utils.ChannelBindKeyUtil;
-import cn.cjf.chat.utils.MessageUtil;
+import cn.cjf.netty.domain.LoginEchoPacket;
+import cn.cjf.netty.domain.LoginPacket;
+import cn.cjf.netty.server.session.SessionManager;
+import cn.cjf.netty.server.session.SessionVo;
+import cn.cjf.netty.utils.ChannelBindKeyUtil;
+import cn.cjf.netty.utils.MessageUtil;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;

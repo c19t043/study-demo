@@ -1,6 +1,6 @@
-package cn.cjf.chat.thread;
+package cn.cjf.netty.thread;
 
-import cn.cjf.chat.config.Conf;
+import cn.cjf.netty.config.Conf;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 
 import java.util.concurrent.Callable;

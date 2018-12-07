@@ -1,15 +1,15 @@
-package cn.cjf.chat.client;
+package cn.cjf.netty.client;
 
-import cn.cjf.chat.client.commandhandle.FacadeHandle;
-import cn.cjf.chat.client.handler.HeartBeatTimerHandler;
-import cn.cjf.chat.client.handler.SimpleClientHandler;
-import cn.cjf.chat.config.CommandEnum;
-import cn.cjf.chat.handle.FilterHandle;
-import cn.cjf.chat.handle.PacketDecoder;
-import cn.cjf.chat.handle.PacketEncoder;
-import cn.cjf.chat.thread.ThreadPoolUtil;
-import cn.cjf.chat.utils.ChannelBindKeyUtil;
-import cn.cjf.chat.utils.ConsoleUtil;
+import cn.cjf.netty.client.commandhandle.FacadeHandle;
+import cn.cjf.netty.client.handler.HeartBeatTimerHandler;
+import cn.cjf.netty.client.handler.SimpleClientHandler;
+import cn.cjf.netty.config.CommandEnum;
+import cn.cjf.netty.handle.FilterHandle;
+import cn.cjf.netty.handle.PacketDecoder;
+import cn.cjf.netty.handle.PacketEncoder;
+import cn.cjf.netty.thread.ThreadPoolUtil;
+import cn.cjf.netty.utils.ChannelBindKeyUtil;
+import cn.cjf.netty.utils.ConsoleUtil;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 public class NettyClient {
     private static final int MAX_RETRY = 5;
     private static final String HOST = "127.0.0.1";
-    private static final int PORT = 8000;
+    private static final int PORT = 7000;
 
     private void connect(String host, int port) {
         NioEventLoopGroup worker = new NioEventLoopGroup();
@@ -56,7 +56,7 @@ public class NettyClient {
         try {
             connect(bootstrap, host, port, MAX_RETRY);
         } finally {
-            reConnectServer();
+//            reConnectServer();
         }
     }
 
