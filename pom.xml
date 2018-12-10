@@ -19,6 +19,7 @@
         <module>springboot-demo</module>
         <module>redis-demo</module>
         <module>netty-demo</module>
+        <module>message-router</module>
     </modules>
 
     <properties>
