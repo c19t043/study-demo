@@ -20,6 +20,8 @@
         <module>redis-demo</module>
         <module>netty-demo</module>
         <module>message-router</module>
+        <module>jmockit-demo</module>
+        <module>nginx-demo</module>
     </modules>
 
     <properties>
