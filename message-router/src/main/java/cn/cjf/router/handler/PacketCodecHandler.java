@@ -1,5 +1,6 @@
 package cn.cjf.router.handler;
 
+import cn.cjf.router.config.ConstantConf;
 import cn.cjf.router.protocal.Packet;
 import cn.cjf.router.utils.SerializableUtil;
 import io.netty.buffer.ByteBuf;
@@ -23,16 +24,15 @@ public class PacketCodecHandler extends MessageToMessageCodec<ByteBuf, Packet> {
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf byteBuf, List<Object> out) {
         byteBuf.markReaderIndex();
-        byteBuf.skipBytes(8);
-        int algorithm = byteBuf.getInt(4);
+        byteBuf.skipBytes(ConstantConf.INT_BYTE * 2);
+        int algorithm = byteBuf.getInt(ConstantConf.INT_BYTE);
         byteBuf.resetReaderIndex();
         out.add(SerializableUtil.decode(byteBuf, algorithm));
     }
 
     @Override
     protected void encode(ChannelHandlerContext ctx, Packet packet, List<Object> out) {
-        ByteBuf byteBuf = ctx.channel().alloc().ioBuffer();
-        SerializableUtil.encode(packet, packet.getAlgorithm());
+        ByteBuf byteBuf = SerializableUtil.encode(packet, packet.getAlgorithm());
         out.add(byteBuf);
     }
 }
