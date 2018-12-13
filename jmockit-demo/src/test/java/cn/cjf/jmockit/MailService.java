@@ -1,4 +1,4 @@
-package cn.cjf.jmockit.demo4;
+package cn.cjf.jmockit;
 
 // 邮件服务类，用于发邮件
 public interface MailService {

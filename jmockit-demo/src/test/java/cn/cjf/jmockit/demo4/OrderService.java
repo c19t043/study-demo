@@ -1,5 +1,7 @@
 package cn.cjf.jmockit.demo4;
 
+import cn.cjf.jmockit.MailService;
+
 import javax.annotation.Resource;
 
 public class OrderService {

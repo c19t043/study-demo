@@ -1,5 +1,6 @@
 package cn.cjf.jmockit.demo4;
 
+import cn.cjf.jmockit.MailService;
 import mockit.Expectations;
 import mockit.Injectable;
 import mockit.Tested;
