@@ -22,6 +22,7 @@
         <module>message-router</module>
         <module>jmockit-demo</module>
         <module>nginx-demo</module>
+        <module>spring-util-demo</module>
     </modules>
 
     <properties>
