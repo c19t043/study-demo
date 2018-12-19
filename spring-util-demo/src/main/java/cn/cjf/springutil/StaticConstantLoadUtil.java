@@ -3,6 +3,7 @@ package cn.cjf.springutil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 public class StaticConstantLoadUtil {
@@ -10,6 +11,7 @@ public class StaticConstantLoadUtil {
      * properties配置文件classpath路径,如果test.properties,路径test
      */
     public static String propertiesFilePath;
+    private static ResourceBundle resource;
 
     /**
      * 静态字段，自动设置
@@ -62,8 +64,21 @@ public class StaticConstantLoadUtil {
 
     private static String getValue(String key) {
         if (StringUtils.isNotBlank(propertiesFilePath)) {
-            ResourceBundle resource = ResourceBundle.getBundle(propertiesFilePath);
-            return resource.getString(key.toLowerCase());
+            if (resource == null) {
+                resource = ResourceBundle.getBundle(propertiesFilePath);
+            }
+            //转为小写key获取，如果为null,_转为.获取
+            String keyLower = key.toLowerCase();
+            String result = null;
+            try {
+                result = resource.getString(keyLower);
+            } catch (MissingResourceException e) {
+
+            }
+            if (StringUtils.isBlank(result)) {
+                result = resource.getString(keyLower.replaceAll("_", "."));
+            }
+            return result;
         } else {
             return CustomPropertyPlaceholderConfigurer.getProperty(key);
         }
