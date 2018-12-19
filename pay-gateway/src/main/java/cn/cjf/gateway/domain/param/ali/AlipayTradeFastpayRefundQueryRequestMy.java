@@ -5,7 +5,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
 @Data
-public class AlipayTradeCloseRequest {
+public class AlipayTradeFastpayRefundQueryRequestMy {
     /**
      * <pre>
      * 该交易在支付宝系统中的交易流水号
@@ -16,7 +16,6 @@ public class AlipayTradeCloseRequest {
      * </pre>
      * 交易流水号
      */
-    @RequiredAnnotation
     @JSONField(name = "trade_no")
     private String tradeNo;
     /**
@@ -28,17 +27,27 @@ public class AlipayTradeCloseRequest {
      * </pre>
      * 商户订单号
      */
-    @RequiredAnnotation
     @JSONField(name = "out_trade_no")
     private String outTradeNo;
     /**
      * <pre>
-     * 卖家端自定义的的操作员 ID
-     *      可选
-     *      String(28)
+     * 请求退款接口时，传入的退款请求号，如果在退款请求时未传入，则该值为创建交易时的外部交易号
+     *      必选
+     *      String(64)
      * </pre>
-     * 操作员 ID
+     * 退款请求号
      */
-    @JSONField(name = "operator_id")
-    private String operatorId;
+    @RequiredAnnotation
+    @JSONField(name = "out_request_no")
+    private String outRequestNo;
+    /**
+     * <pre>
+     * 银行间联模式下有用，其它场景请不要使用；
+     * 双联通过该参数指定需要查询的交易所属收单机构的pid
+     *      可选
+     *      String(16)
+     * </pre>
+     */
+    @JSONField(name = "org_pid")
+    private String orgPid;
 }
