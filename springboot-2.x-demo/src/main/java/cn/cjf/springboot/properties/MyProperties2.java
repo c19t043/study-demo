@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @since 2018/4/23 0023
  */
 @Component
-@PropertySource("classpath:my2.properties")
+//@PropertySource("classpath:my2.properties")
 @ConfigurationProperties(prefix = "my2")
 @Data
 @ToString

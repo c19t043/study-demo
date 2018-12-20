@@ -1,6 +1,7 @@
 package cn.cjf.springboot.mapper;
 
-import cn.cjf.springboot.entity.User;
+import cn.cjf.springboot.entity.User1;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -23,7 +24,7 @@ public interface UserMapper1 {
      * @return 查询结果
      */
     @Select("SELECT * FROM t_user WHERE username = #{username}")
-    List<User> findByUsername(@Param("username") String username);
+    List<User1> findByUsername(@Param("username") String username);
 
 
     /**
@@ -32,5 +33,6 @@ public interface UserMapper1 {
      * @param user 用户信息
      * @return 成功 1 失败 0
      */
-    int insert(User user);
+    @Insert("INSERT INTO `t_user`(`username`,`password`) VALUES (#{username},#{password})")
+    int insert(User1 user);
 }

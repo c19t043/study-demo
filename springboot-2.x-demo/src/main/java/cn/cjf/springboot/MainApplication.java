@@ -17,10 +17,6 @@ public class MainApplication {
         SpringApplication.run(MainApplication.class, args);
     }
 
-    @GetMapping("/demo1")
-    public String demo1() {
-        return "Hello battcn";
-    }
 
 //    @Bean
 //    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {

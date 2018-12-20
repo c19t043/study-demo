@@ -23,7 +23,8 @@ import java.io.Serializable;
 /**
  * mybatis时注解
  */
-public class User implements Serializable {
+@Table(name = "t_user")
+public class User1 implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,12 +33,12 @@ public class User implements Serializable {
     @Transient
     private String email;
 
-    public User(String username, String password) {
+    public User1(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public User(Long id, String username, String password) {
+    public User1(Long id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;

@@ -45,4 +45,10 @@ public class PropertiesController {
         log.info("=================================================================================================");
         return myProperties2;
     }
+
+
+    @GetMapping("/demo1")
+    public String demo1() {
+        return "Hello battcn";
+    }
 }

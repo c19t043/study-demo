@@ -1,6 +1,6 @@
 package cn.cjf.springboot.mapper;
 
-import cn.cjf.springboot.entity.User;
+import cn.cjf.springboot.entity.User1;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -24,13 +24,13 @@ public class UserMapper1Test {
 
     @Test
     public void test1() {
-        final int row1 = userMapper.insert(new User("u1", "p1"));
+        final int row1 = userMapper.insert(new User1("u1", "p1"));
         log.info("[添加结果] - [{}]", row1);
-        final int row2 = userMapper.insert(new User("u2", "p2"));
+        final int row2 = userMapper.insert(new User1("u2", "p2"));
         log.info("[添加结果] - [{}]", row2);
-        final int row3 = userMapper.insert(new User("u1", "p3"));
+        final int row3 = userMapper.insert(new User1("u1", "p3"));
         log.info("[添加结果] - [{}]", row3);
-        final List<User> u1 = userMapper.findByUsername("u1");
+        final List<User1> u1 = userMapper.findByUsername("u1");
         log.info("[根据用户名查询] - [{}]", u1);
     }
 }
