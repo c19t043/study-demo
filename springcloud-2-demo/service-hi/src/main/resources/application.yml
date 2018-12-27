@@ -1,0 +1,29 @@
+server:
+  port: 8762
+
+spring:
+  application:
+    name: service-hi
+  #指定zipkin server的地址
+  zipkin:
+    base-url: http://localhost:9411
+    #通过服务名访问
+    #base-url: http://chainmonitor/
+  sleuth:
+    sampler:
+      #设置采样率，为了测试设置100%采集，设置为1.0
+      probability: 1.0
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"

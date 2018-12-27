@@ -4,6 +4,9 @@ import com.battcn.swagger.annotation.EnableSwagger2Doc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
+import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 /**
  * 我的第一个SpringBoot程序
@@ -13,14 +16,19 @@ import org.springframework.cache.annotation.EnableCaching;
  * @@EnableSwagger2Doc 开启swagger
  */
 @SpringBootApplication
-@EnableCaching
+//@EnableCaching
 @EnableSwagger2Doc
+//@EnableWebSocket
 public class MainApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MainApplication.class, args);
     }
 
+//    @Bean
+//    public ServerEndpointExporter serverEndpointExporter() {
+//        return new ServerEndpointExporter();
+//    }
 
 //    @Bean
 //    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {

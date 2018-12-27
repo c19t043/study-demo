@@ -5,6 +5,7 @@ import cn.cjf.springboot.exception.ErrorResponseEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 
 /**
  * 全局异常处理
@@ -29,7 +31,19 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-
+//    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+//    public Object MethodArgumentNotValidHandler(MethodArgumentNotValidException exception) {
+//        //按需重新封装需要返回的错误信息
+//        List<ParamValidationResult> paramValidationResults = new ArrayList<>();
+//        //解析原错误信息，封装后返回，此处返回非法的字段名称，错误信息
+//        for (FieldError error : exception.getBindingResult().getFieldErrors()) {
+//            ParamValidationResult validationResult = new ParamValidationResult();
+//            validationResult.setMessage(error.getDefaultMessage());
+//            validationResult.setParam(error.getField());
+//            paramValidationResults.add(validationResult);
+//        }
+//        return new ResultMsg(ResultCode.CODE_401, paramValidationResults);
+//    }
 
     /**
      * 定义要捕获的异常 可以多个 @ExceptionHandler({})
