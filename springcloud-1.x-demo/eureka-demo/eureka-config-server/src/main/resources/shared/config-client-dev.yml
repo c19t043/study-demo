@@ -1,0 +1,4 @@
+server:
+  port: 8850
+
+foo: foo version 1

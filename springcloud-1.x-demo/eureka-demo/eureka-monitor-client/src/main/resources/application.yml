@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: turbine-service
+
+server:
+  port: 8820
+
+turbine:
+  aggregator:
+    #可以不写，默认就是default
+    clusterConfig: default
+  #配置了需要监控的服务名
+  appConfig: eureka-ribbon-client,eureka-feign-client
+  clusterNameExpression: new String("default")
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
