@@ -1,8 +1,0 @@
-my:
-  name: test
-  age: 22
-spring:
-  profiles:
-    active: dev
-server:
-  port: 8080

@@ -1,6 +1,7 @@
 package cn.cjf.service;
 
 import org.junit.Assert;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +14,7 @@ public class RibbonServiceTest{
     @Autowired
     RibbonService ribbonService;
 
+    @Test
     public void testRibbonService(){
         Assert.assertNotNull(ribbonService);
 
