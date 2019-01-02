@@ -11,7 +11,7 @@
         <module>eureka-feign-client</module>
         <module>eureka-monitor-client</module>
         <module>eureka-zuul-client</module>
-        <module>config-server</module>
+        <module>eureka-config-server</module>
         <module>eureka-config-client</module>
     </modules>
     <modelVersion>4.0.0</modelVersion>
