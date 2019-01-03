@@ -1,25 +1,31 @@
 package cn.cjf.controller;
 
-import cn.cjf.base.BaseSpringBootTest;
 import cn.cjf.common.response.ApiResult;
 import cn.cjf.entity.bo.OrderBo;
 import cn.cjf.service.OrderService;
-import mockit.*;
+import cn.cjf.service.ProductService;
+import mockit.Expectations;
+import mockit.Injectable;
+import mockit.Tested;
+import mockit.integration.junit4.JMockit;
 import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.runner.RunWith;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpSession;
 
-public class OrderControllerTest extends BaseSpringBootTest {
+public class OrderControllerJmockitTest {
     /**
      * 要测试的对象
      */
-    @Autowired
+    @Tested
     OrderController orderController;
 
-    @Autowired
+    @Injectable
     OrderService orderService;
+
+    @Injectable
+    ProductService productService;
 
     /**
      * 测试{@link OrderController#getObject(javax.servlet.http.HttpServletRequest)}
@@ -28,11 +34,18 @@ public class OrderControllerTest extends BaseSpringBootTest {
     @Test
     public void testgetObject_4() {
         MockHttpSession session = new MockHttpSession();
-        session.setAttribute("managerId",1);
+        session.setAttribute("managerId", 1);
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         request.setSession(session);
-        request.setParameter("id","3");
+        request.setParameter("id", "3");
+
+        new Expectations() {
+            {
+                orderService.findOrderById(anyLong);
+                result = new OrderBo(Long.valueOf("3"), Long.valueOf("2"), Long.valueOf("2222"));
+            }
+        };
 
         ApiResult order = orderController.getObject(request);
         Assert.assertNotNull(order.getData());
@@ -48,7 +61,14 @@ public class OrderControllerTest extends BaseSpringBootTest {
     @Test
     public void testgetObject_3() {
         MockHttpServletRequest request = new MockHttpServletRequest();
-        request.setParameter("id","3");
+        request.setParameter("id", "3");
+
+        new Expectations() {
+            {
+                orderService.findOrderById(anyLong);
+                result = new OrderBo(Long.valueOf("3"), Long.valueOf("2"), Long.valueOf("2222"));
+            }
+        };
 
         ApiResult order = orderController.getObject(request);
         Assert.assertNotNull(order.getData());
@@ -68,35 +88,15 @@ public class OrderControllerTest extends BaseSpringBootTest {
     }
 
     /**
-     * 测试{@link OrderController#getOrder(java.lang.Long)}
+     * 测试{@link OrderController#getOrder(Long)}
      * 模拟Controller内部orderService依赖
      */
     @Test
     public void testgetOrder_2() {
-        new Expectations(orderService) {
+        new Expectations() {
             {
                 orderService.findOrderById(anyLong);
                 result = new OrderBo(Long.valueOf("2"), Long.valueOf("2"), Long.valueOf("2222"));
-            }
-        };
-
-        ApiResult order = orderController.getOrder(Long.valueOf(2));
-        Assert.assertNotNull(order.getData());
-
-        OrderBo orderBo = (OrderBo) order.getData();
-        Assert.assertEquals(orderBo.getId(), Long.valueOf("2"));
-    }
-
-    /**
-     * 测试{@link OrderController#getOrder(java.lang.Long)}
-     * 直接模拟结果
-     */
-    @Test
-    public void testgetOrder() {
-        new Expectations(orderController) {
-            {
-                orderController.getOrder(anyLong);
-                result = ApiResult.succ(new OrderBo(Long.valueOf("2"), Long.valueOf("2"), Long.valueOf("2222")));
             }
         };
 

@@ -1,6 +1,6 @@
 package cn.cjf.cn.cjf.listener;
 
-import cn.cjf.base.BaseTest;
+import cn.cjf.base.BaseSpringBootTest;
 import cn.cjf.listener.WebInitListener;
 import mockit.Expectations;
 import mockit.Injectable;
@@ -9,15 +9,12 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.mock.web.MockServletContext;
-import org.springframework.web.context.ContextLoader;
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 
-public class WebInitListenerTest extends BaseTest {
+public class WebInitListenerTest extends BaseSpringBootTest {
 
     @Tested
     WebInitListener webInitListener;
