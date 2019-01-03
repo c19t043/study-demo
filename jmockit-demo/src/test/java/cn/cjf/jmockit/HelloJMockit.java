@@ -1,4 +1,4 @@
-package cn.cjf.jmockit.demo1;
+package cn.cjf.jmockit;
 
 import java.util.Locale;
 
