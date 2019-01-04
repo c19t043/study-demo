@@ -24,7 +24,6 @@
         <module>nginx-demo</module>
         <module>spring-util-demo</module>
         <module>springboot-2.x-demo</module>
-        <module>springcloud-1-demo</module>
         <module>springcloud-2-demo</module>
         <module>springcloud-1.x-demo</module>
     </modules>

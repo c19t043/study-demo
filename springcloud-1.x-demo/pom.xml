@@ -6,6 +6,23 @@
     <version>0.1-SNAPSHOT</version>
     <modules>
         <module>eureka-demo</module>
+        <module>1.x-admin-server</module>
+        <module>1.x-eureka-server</module>
+        <module>1.x-service-ribbon</module>
+        <module>1.x-service-feign</module>
+        <module>1.x-service-zuul</module>
+        <module>1.x-config-server</module>
+        <module>1.x-service-config</module>
+        <module>1.x-service-zipkin</module>
+        <module>1.x-service-hi</module>
+        <module>1.x-service-turbine</module>
+        <module>1.x-consult-server</module>
+        <module>1.x-service-zipkin-mysql</module>
+        <module>1.x-service-sleuth</module>
+        <module>1.x-service-user</module>
+        <module>1.x-service-sleuth-stream-elasticsearch</module>
+        <module>1.x-service-sleuth-stream-mysql</module>
+        <module>1.x-admin-client</module>
     </modules>
     <modelVersion>4.0.0</modelVersion>
 
@@ -82,6 +99,18 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Dalston.SR1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>

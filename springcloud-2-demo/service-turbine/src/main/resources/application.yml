@@ -19,7 +19,7 @@ management:
         allowed-methods: "*"
 
 turbine:
-  app-config: service-hi,service-lucy
+  app-config: service-hi,service-miya
   aggregator:
     clusterConfig: default
   clusterNameExpression: new String("default")
