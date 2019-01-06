@@ -1,6 +1,6 @@
 package cn.cjf.jmockit.demo2;
 
-import cn.cjf.jmockit.demo1.HelloJMockit;
+import cn.cjf.jmockit.HelloJMockit;
 import mockit.Expectations;
 import mockit.Mocked;
 import mockit.Verifications;

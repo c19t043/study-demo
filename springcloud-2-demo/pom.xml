@@ -9,14 +9,17 @@
         <module>gateway-demo-2</module>
         <module>service-gateway</module>
         <module>service-hi</module>
-        <module>eureka-server</module>
+        <module>f-eureka-server</module>
         <module>service-ribbon</module>
-        <module>serice-feign</module>
+        <module>service-feign</module>
         <module>service-zuul</module>
-        <module>config-server</module>
+        <module>f-config-server</module>
         <module>config-client</module>
         <module>server-zipkin</module>
         <module>service-turbine</module>
+        <module>f-admin-server</module>
+        <module>f-admin-client</module>
+        <module>service-miya</module>
     </modules>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>springcloud-2-demo</artifactId>
@@ -37,6 +40,10 @@
 
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
         <!-- 不添加该依赖tomcat7:run无法运行项目 -->
         <!--<dependency>-->
         <!--<groupId>javax.servlet</groupId>-->

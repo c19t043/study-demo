@@ -1,5 +1,0 @@
-eureka:
-  client:
-  #开启Eureka健康检查
-    healthcheck:
-      enabled: true
