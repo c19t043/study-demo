@@ -26,6 +26,7 @@
         <module>springboot-2.x-demo</module>
         <module>springcloud-2-demo</module>
         <module>springcloud-1.x-demo</module>
+        <module>hystrix-demo</module>
     </modules>
 
     <properties>

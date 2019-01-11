@@ -23,6 +23,8 @@
         <module>1.x-service-sleuth-stream-elasticsearch</module>
         <module>1.x-service-sleuth-stream-mysql</module>
         <module>1.x-admin-client</module>
+        <module>1.x-demo-hystrix</module>
+        <module>1.x-demo-stream</module>
     </modules>
     <modelVersion>4.0.0</modelVersion>
 
