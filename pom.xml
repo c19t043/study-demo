@@ -27,6 +27,9 @@
         <module>springcloud-2-demo</module>
         <module>springcloud-1.x-demo</module>
         <module>hystrix-demo</module>
+        <module>mockit-demo</module>
+        <module>rxjava-demo</module>
+        <module>java8-demo</module>
     </modules>
 
     <properties>

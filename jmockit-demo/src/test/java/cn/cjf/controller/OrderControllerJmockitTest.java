@@ -4,15 +4,20 @@ import cn.cjf.common.response.ApiResult;
 import cn.cjf.entity.bo.OrderBo;
 import cn.cjf.service.OrderService;
 import cn.cjf.service.ProductService;
+import mockit.Capturing;
 import mockit.Expectations;
 import mockit.Injectable;
 import mockit.Tested;
 import mockit.integration.junit4.JMockit;
+import org.apache.catalina.session.StandardSession;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpSession;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public class OrderControllerJmockitTest {
     /**
@@ -26,6 +31,28 @@ public class OrderControllerJmockitTest {
 
     @Injectable
     ProductService productService;
+
+    @Capturing
+    @Injectable
+    HttpServletRequest request;
+
+
+    /**
+     * {@link OrderController#getList()}
+     */
+    @Test
+    public void testgetList() {
+        MockHttpSession session = new MockHttpSession();
+        session.setAttribute("orderBo", new OrderBo(Long.valueOf("3"), Long.valueOf("2"), Long.valueOf("2222")));
+        new Expectations() {
+            {
+                request.getSession();
+                result = session;
+            }
+        };
+        orderController.getList();
+    }
+
 
     /**
      * 测试{@link OrderController#getObject(javax.servlet.http.HttpServletRequest)}
