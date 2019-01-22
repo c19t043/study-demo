@@ -30,6 +30,7 @@
         <module>mockit-demo</module>
         <module>rxjava-demo</module>
         <module>java8-demo</module>
+        <module>springboot-ok2-demo</module>
     </modules>
 
     <properties>

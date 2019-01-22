@@ -10,8 +10,9 @@ import java.util.Arrays;
 @Configuration
 @Aspect
 public class AOPConfig {
+
     @Around("@within(org.springframework.stereotype.Controller)")
-    public Object simpleAop(final ProceedingJoinPoint pjp) throws Exception {
+    public Object simpleAop(final ProceedingJoinPoint pjp) {
         try {
             Object[] args = pjp.getArgs();
             System.out.println("args:" + Arrays.asList(args));
@@ -24,5 +25,6 @@ public class AOPConfig {
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
+        return null;
     }
 }

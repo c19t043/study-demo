@@ -1,6 +1,6 @@
 package cn.cjf.springboot;
 
-import cn.cjf.springboot.bean.Person;
+import cn.cjf.springboot.bean.Person1;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class SpringBootMainApplicationTest {
     @Autowired
-    Person person;
+    Person1 person;
 
     @Test
     public void contextLoads(){

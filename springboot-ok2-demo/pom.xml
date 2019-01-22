@@ -2,37 +2,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>cn.cjf</groupId>
+    <version>0.1-SNAPSHOT</version>
+    <artifactId>springboot-ok2-demo</artifactId>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.6.RELEASE</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>springboot-demo</artifactId>
-    <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.ibeetl/beetl-framework-starter -->
-        <dependency>
-            <groupId>com.ibeetl</groupId>
-            <artifactId>beetl-framework-starter</artifactId>
-            <version>1.1.71.RELEASE</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
         <dependency>
@@ -77,31 +67,9 @@
         <!--导入配置文件处理器，配置文件进行绑定就会有提示-->
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot</artifactId>
-            <!-- version继承父模块的-->
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-commons</artifactId>
-            <version>1.9.3.RELEASE</version>
-        </dependency>
-
-
-        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>6.0.6</version>
         </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-
 
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -116,15 +84,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>utf-8</encoding>
-                </configuration>
             </plugin>
         </plugins>
     </build>
