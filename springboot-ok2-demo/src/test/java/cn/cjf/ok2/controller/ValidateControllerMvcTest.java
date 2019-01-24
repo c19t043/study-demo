@@ -3,13 +3,13 @@ package cn.cjf.ok2.controller;
 import cn.cjf.ok2.MainApplication;
 import cn.cjf.ok2.api.CommonResult;
 import cn.cjf.ok2.api.ResultUtil;
-import cn.cjf.ok2.domain.Leader;
+import cn.cjf.ok2.domain.validate.Leader;
+import cn.cjf.ok2.domain.validate.ValidateGroupBean;
 import com.alibaba.fastjson.JSON;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.util.NestedServletException;
 
 @SpringBootTest(classes = MainApplication.class)
 @RunWith(SpringRunner.class)
@@ -40,7 +41,7 @@ public class ValidateControllerMvcTest {
     }
 
     /**
-     * {@link ValidateController#groupValidate1(cn.cjf.ok2.domain.ValidateGroupBean)}
+     * {@link ValidateController#groupValidate1(ValidateGroupBean)}
      */
     @Test
     public void testgroupValidate1() throws Exception {
@@ -62,7 +63,7 @@ public class ValidateControllerMvcTest {
 
 
     /**
-     * {@link ValidateController#groupValidate(cn.cjf.ok2.domain.ValidateGroupBean)}
+     * {@link ValidateController#groupValidate(ValidateGroupBean)}
      */
     @Test
     public void testgroupValidate() throws Exception {
@@ -84,7 +85,7 @@ public class ValidateControllerMvcTest {
     /**
      * {@link ValidateController#param2(java.lang.String)}
      */
-    @Test
+    @Test(expected = NestedServletException.class)
     public void testparam2() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(
                 MockMvcRequestBuilders
@@ -110,7 +111,7 @@ public class ValidateControllerMvcTest {
     }
 
     /**
-     * {@link ValidateController#json(cn.cjf.ok2.domain.Leader, org.springframework.validation.BindingResult)}
+     * {@link ValidateController#json(Leader, org.springframework.validation.BindingResult)}
      */
     @Test
     public void testjson() throws Exception {
@@ -125,7 +126,7 @@ public class ValidateControllerMvcTest {
     }
 
     /**
-     * {@link ValidateController#testSimpleValidate2(cn.cjf.ok2.domain.Leader)}
+     * {@link ValidateController#testSimpleValidate2(Leader)}
      */
     @Test
     public void testSimpleValidate2() throws Exception {
@@ -149,7 +150,7 @@ public class ValidateControllerMvcTest {
     }
 
     /**
-     * {@link ValidateController#testSimpleValidate(cn.cjf.ok2.domain.Leader, org.springframework.validation.BindingResult)}
+     * {@link ValidateController#testSimpleValidate(Leader, org.springframework.validation.BindingResult)}
      */
     @Test
     public void testSimpleValidate() throws Exception {

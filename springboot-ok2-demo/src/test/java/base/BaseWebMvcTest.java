@@ -2,6 +2,7 @@ package base;
 
 import cn.cjf.ok2.MainApplication;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +24,9 @@ public class BaseWebMvcTest {
     public void setUp() throws Exception {
         mvc = MockMvcBuilders.webAppContextSetup(context).build();//建议使用这种
     }
+
+    @Test
+    public void testX(){}
 //    @Test
 //    public void test1() throws Exception {
 //        mvc.perform(MockMvcRequestBuilders.get("/data/getMarkers")

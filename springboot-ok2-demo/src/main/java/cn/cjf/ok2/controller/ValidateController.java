@@ -2,8 +2,8 @@ package cn.cjf.ok2.controller;
 
 import cn.cjf.ok2.api.CommonResult;
 import cn.cjf.ok2.api.ResultUtil;
-import cn.cjf.ok2.domain.Leader;
-import cn.cjf.ok2.domain.ValidateGroupBean;
+import cn.cjf.ok2.domain.validate.Leader;
+import cn.cjf.ok2.domain.validate.ValidateGroupBean;
 import cn.cjf.ok2.validate.ValidateGroupBeanTest;
 import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
