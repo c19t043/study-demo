@@ -7,11 +7,13 @@ import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 @Configuration
 @EnableCaching//启用缓存
-@EnableAsync//启用异步执行功能
-@EnableScheduling//启用调度功能
+//@EnableAsync//启用异步执行功能
+//@EnableScheduling//启用调度功能
+@EnableRedisHttpSession//redis分布式session
 public class Config {
 //    @Bean
 //    public MethodValidationPostProcessor methodValidationPostProcessor() {

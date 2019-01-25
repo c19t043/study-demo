@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <groupId>cn.cjf.springboot.starter</groupId>
+    <packaging>pom</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <modules>
+        <module>springboot-ok2-starter-redis-lock</module>
+        <module>springboot-ok2-samples</module>
+        <module>springboot-ok2-starter-lock-local</module>
+        <module>springboot-ok2-starter-redis</module>
+    </modules>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>springboot-ok2-starter-demo</artifactId>
+</project>

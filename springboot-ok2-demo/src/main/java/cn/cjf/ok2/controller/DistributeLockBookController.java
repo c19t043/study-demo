@@ -1,7 +1,7 @@
 package cn.cjf.ok2.controller;
 
-import cn.cjf.ok2.distribute_lock.CacheLock;
-import cn.cjf.ok2.distribute_lock.CacheParam;
+import cn.cjf.ok2.distribute_lock_annotation_aop.CacheLock;
+import cn.cjf.ok2.distribute_lock_annotation_aop.CacheParam;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

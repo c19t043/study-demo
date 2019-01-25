@@ -30,6 +30,8 @@
         <module>rxjava-demo</module>
         <module>java8-demo</module>
         <module>springboot-ok2-demo</module>
+        <module>springcloud-ok2-demo</module>
+        <module>springboot-ok2-starter-demo</module>
     </modules>
 
     <properties>

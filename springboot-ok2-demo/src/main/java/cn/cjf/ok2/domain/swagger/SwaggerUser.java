@@ -11,12 +11,18 @@ import java.io.Serializable;
 @ApiModel
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class SwaggerUser implements Serializable {
     public SwaggerUser(String username, String password) {
         this.username = username;
         this.password = password;
     }
+
+    public SwaggerUser(Long id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
     private static final long serialVersionUID = 8655851615465363473L;
 
     private Long id;
