@@ -2,11 +2,14 @@ package cn.cjf.ok2.redis.lock.distribute.lock;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.RedisStringCommands;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.types.Expiration;
 
+import java.io.Serializable;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -14,39 +17,40 @@ public class RedisDistributedLock extends AbstractDistributedLock {
 
     private final Logger logger = LoggerFactory.getLogger(RedisDistributedLock.class);
 
-    private RedisTemplate<Object, Object> redisTemplate;
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
-    private ThreadLocal<String> lockFlag = new ThreadLocal<String>();
+    private final String value = "";
 
-    public RedisDistributedLock(RedisTemplate<Object, Object> redisTemplate) {
-        super();
-        this.redisTemplate = redisTemplate;
-    }
+    private ThreadLocal<String> lockFlag = new ThreadLocal<>();
 
     @Override
-    public boolean lock(String key, long expire, int retryTimes, long sleepMillis) {
-        boolean result = setRedis(key, expire);
-        // 如果获取锁失败，按照传入的重试次数进行重试
-        while ((!result) && retryTimes-- > 0) {
-            try {
-                logger.debug("lock failed, retrying..." + retryTimes);
-                Thread.sleep(sleepMillis);
-            } catch (InterruptedException e) {
-                return false;
-            }
-            result = setRedis(key, expire);
+    public boolean tryLock(String key, long expire, int retryTimes, long timeout, TimeUnit timeUnit) {
+        boolean result;
+        try {
+            do {
+                result = setRedis(key, expire, timeUnit);
+                if (!result && timeout > 0) {
+                    timeout = TimeUnit.MILLISECONDS.convert(timeout, timeUnit);
+                    Thread.sleep(timeout);
+                }
+            } while ((!result) && retryTimes-- > 0);
+        } catch (InterruptedException e) {
+            return false;
         }
         return result;
     }
 
-    private boolean setRedis(String key, long expire) {
+    private boolean setRedis(String key, long expire, TimeUnit timeUnit) {
         try {
+            redisTemplate.opsForValue().set(key, value, expire, timeUnit);
+
             Boolean success = redisTemplate.execute((RedisCallback<Boolean>) connection -> {
                 String uuid = UUID.randomUUID().toString();
                 lockFlag.set(uuid);
                 return connection.set(key.getBytes(),
                         new byte[0],
-                        Expiration.from(expire, TimeUnit.SECONDS),
+                        Expiration.from(expire, timeUnit),
                         RedisStringCommands.SetOption.SET_IF_ABSENT);
             });
             return success;

@@ -17,11 +17,19 @@ public @interface CacheLock {
     String prefix() default "";
 
     /**
-     * 过期秒数,默认为5秒
-     *
-     * @return 轮询锁的时间
+     * 过期秒数,默认为0秒
      */
-    int expire() default 5;
+    int expire() default 1;
+
+    /**
+     * 超时时间,默认为0秒
+     */
+    int timeout() default 0;
+
+    /**
+     * 重试次数,默认是0次
+     */
+    int retryTimes() default 0;
 
     /**
      * 超时时间单位

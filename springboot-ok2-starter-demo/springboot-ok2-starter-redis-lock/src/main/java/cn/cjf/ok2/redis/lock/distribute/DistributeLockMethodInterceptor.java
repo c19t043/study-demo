@@ -37,10 +37,13 @@ public class DistributeLockMethodInterceptor {
         if (StringUtils.isEmpty(lock.prefix())) {
             throw new RuntimeException("lock key don't null...");
         }
-        final String lockKey = cacheKeyGenerator.getLockKey(pjp);
+        String lockKey = cacheKeyGenerator.getLockKey(pjp);
         try {
+            int expire = lock.expire() > 0 ? lock.expire() : 0;
+            int retry = lock.retryTimes() > 0 ? lock.retryTimes() : 0;
+            long timeout = lock.timeout() > 0 ? lock.timeout() : 0;
             // 采用原生 API 来实现分布式锁
-            final Boolean success = distributedLock.lock(lockKey, lock.expire());
+            final Boolean success = distributedLock.tryLock(lockKey, expire, retry, timeout, lock.timeUnit());
             if (!success) {
                 // TODO 按理来说 我们应该抛出一个自定义的 CacheLockException 异常;这里偷下懒
                 throw new CacheLockException("请勿重复请求");

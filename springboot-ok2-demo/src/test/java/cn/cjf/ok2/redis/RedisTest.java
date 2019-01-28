@@ -30,7 +30,7 @@ public class RedisTest {
     private StringRedisTemplate stringRedisTemplate;
 
     @Autowired
-    private RedisTemplate<String, Serializable> redisCacheTemplate;
+    private RedisTemplate<String, Object> redisCacheTemplate;
 
     /*
     下列的就是Redis其它类型所对应的操作方式

@@ -1,6 +1,6 @@
 package cn.cjf.ok2.controller;
 
-import cn.cjf.ok2.local_lock_annotation_aop.LocalLock;
+import cn.cjf.ok2.lock.local.annotation.LocalLock;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -1,6 +1,6 @@
-package cn.cjf.ok2.controller;
+package cn.cjf.ok2.redis.controller;
 
-import cn.cjf.ok2.MainApplication;
+import cn.cjf.ok2.redis.MainApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +26,14 @@ public class DistributeLockBookControllerTest {
         String query = distributeLockBookController.query2("1");
         System.out.println(query);
         String query1 = distributeLockBookController.query2("1");
+        System.out.println(query1);
+    }
+
+    @Test
+    public void test3() {
+        String query = distributeLockBookController.query3("2");
+        System.out.println(query);
+        String query1 = distributeLockBookController.query3("2");
         System.out.println(query1);
     }
 }

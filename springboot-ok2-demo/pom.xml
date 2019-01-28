@@ -22,6 +22,22 @@
 
     <dependencies>
         <dependency>
+            <groupId>cn.cjf.springboot.starter</groupId>
+            <artifactId>springboot-ok2-starter-lock-local</artifactId>
+            <version>0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.cjf.springboot.starter</groupId>
+            <artifactId>springboot-ok2-starter-redis</artifactId>
+            <version>0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.cjf.springboot.starter</groupId>
+            <artifactId>springboot-ok2-starter-redis-lock</artifactId>
+            <version>0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>

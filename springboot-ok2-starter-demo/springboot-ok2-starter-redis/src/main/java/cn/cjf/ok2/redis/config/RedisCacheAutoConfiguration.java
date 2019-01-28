@@ -17,20 +17,20 @@ import java.io.Serializable;
 @AutoConfigureAfter(RedisAutoConfiguration.class)
 public class RedisCacheAutoConfiguration {
 
-    @Bean
-    @ConditionalOnBean(RedisConnectionFactory.class)
-    public RedisTemplate<String, Object> redisCacheTemplateWithJedis(RedisConnectionFactory redisConnectionFactory) {
-        RedisTemplate<String, Object> template = new RedisTemplate<>();
-        template.setKeySerializer(new StringRedisSerializer());
-        template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
-        template.setConnectionFactory(redisConnectionFactory);
-        return template;
-    }
+//    @Bean
+//    @ConditionalOnBean(RedisConnectionFactory.class)
+//    public RedisTemplate<String, Object> redisCacheTemplateWithJedis(RedisConnectionFactory redisConnectionFactory) {
+//        RedisTemplate<String, Object> template = new RedisTemplate<>();
+//        template.setKeySerializer(new StringRedisSerializer());
+//        template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+//        template.setConnectionFactory(redisConnectionFactory);
+//        return template;
+//    }
 
     @Bean
     @ConditionalOnBean(LettuceConnectionFactory.class)
-    public RedisTemplate<String, Serializable> redisCacheTemplateWithLettuce(LettuceConnectionFactory redisConnectionFactory) {
-        RedisTemplate<String, Serializable> template = new RedisTemplate<>();
+    public RedisTemplate<String, Object> redisCacheTemplateWithLettuce(LettuceConnectionFactory redisConnectionFactory) {
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setKeySerializer(new StringRedisSerializer());
         template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
         template.setConnectionFactory(redisConnectionFactory);

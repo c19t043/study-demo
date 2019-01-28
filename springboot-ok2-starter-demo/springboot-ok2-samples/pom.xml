@@ -9,6 +9,8 @@
         <module>springboot-ok2-starter-redis-lock-sample</module>
         <module>springboot-ok2-starter-lock-local-sample</module>
         <module>springboot-ok2-starter-redis-sample</module>
+        <module>springboot-ok2-starter-redis-cache-sample</module>
+        <module>springboot-ok2-scheduler-sample</module>
     </modules>
     <modelVersion>4.0.0</modelVersion>
 
