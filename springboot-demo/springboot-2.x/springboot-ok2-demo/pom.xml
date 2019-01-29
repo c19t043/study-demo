@@ -75,13 +75,13 @@
         </dependency>
         <!--导入配置文件处理器，配置文件进行绑定就会有提示-->
 
-        <!--导入配置文件处理器，配置文件进行绑定就会有提示-->
+        <!--springboot热加载工具-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
-        <!--导入配置文件处理器，配置文件进行绑定就会有提示-->
+        <!--springboot热加载工具-->
 
 
         <dependency>

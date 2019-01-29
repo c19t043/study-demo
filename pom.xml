@@ -32,6 +32,9 @@
         <module>springboot-ok2-demo</module>
         <module>springcloud-ok2-demo</module>
         <module>springboot-ok2-starter-demo</module>
+        <module>springboot-security-demo</module>
+        <module>springboot-1.x-demo</module>
+        <module>springboot-2.x</module>
     </modules>
 
     <properties>
