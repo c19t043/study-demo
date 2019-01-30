@@ -1,6 +1,6 @@
 package cn.cjf.springboot.swagger2.controller;
 
-import cn.cjf.springboot.swagger2.model.User;
+import cn.cjf.springboot.swagger2.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

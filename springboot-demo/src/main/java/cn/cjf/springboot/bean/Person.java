@@ -54,7 +54,6 @@ import java.util.Map;
 @Component
 @ConfigurationProperties(prefix = "person")
 public class Person {
-
     private String lastName;
     private Integer age;
     private Boolean boss;

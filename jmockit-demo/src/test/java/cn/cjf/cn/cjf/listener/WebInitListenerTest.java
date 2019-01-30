@@ -33,7 +33,6 @@ public class WebInitListenerTest extends BaseSpringBootTest {
                 result = applicationContext;
             }
         };
-
         webInitListener.contextInitialized(sce);
 
         Assert.assertNotNull(WebInitListener.getSpringContext());

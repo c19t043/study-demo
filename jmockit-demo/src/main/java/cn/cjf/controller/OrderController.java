@@ -5,6 +5,7 @@ import cn.cjf.common.response.exception.ErrorEnum;
 import cn.cjf.entity.bo.OrderBo;
 import cn.cjf.service.OrderService;
 import cn.cjf.service.ProductService;
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,17 @@ public class OrderController {
     OrderService orderService;
     @Autowired
     ProductService productService;
+
+    @Autowired
+    HttpServletRequest request;
+
+
+    @GetMapping("/order/getList")
+    public ApiResult getList() {
+        OrderBo orderBo = (OrderBo) request.getSession().getAttribute("orderBo");
+        System.out.println(JSON.toJSONString(orderBo));
+        return ApiResult.succ();
+    }
 
     /**
      * 返回String
@@ -43,7 +55,7 @@ public class OrderController {
 
         HttpSession session = request.getSession();
         Object managerId = session.getAttribute("managerId");
-        if(managerId == null){
+        if (managerId == null) {
             return ApiResult.failMsg(ErrorEnum.PARAMS_ERROR);
         }
 

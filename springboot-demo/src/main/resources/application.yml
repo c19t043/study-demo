@@ -4,6 +4,18 @@ spring:
   config:
     location:
 
+# 与mybatis整合
+mybatis:
+  config-location: classpath:mybatis.xml
+  mapper-locations:
+  - classpath:cn/tengshe789/dao/*.xml
+
+# 分页配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
 
 #person:
 #  lastName: hello
@@ -15,5 +27,5 @@ spring:
 #  - lisi
 #  - zhaoliu
 #  dog:
-#    name: С��
+#    name: С��
 #    age: 12

@@ -1,0 +1,4 @@
+#配置自定义Starter的自动化配置
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  cn.cjf.ok2.redis.lock.distribute.DistributedLockAutoConfiguration,\
+  cn.cjf.ok2.redis.lock.distribute.DistributeLockMethodInterceptor

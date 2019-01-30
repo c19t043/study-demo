@@ -1,6 +1,5 @@
 package cn.cjf.springboot;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
@@ -17,6 +16,7 @@ public class SpringBootMainApplication {
         //修改默认配置文件
         new SpringApplicationBuilder(SpringBootMainApplication.class)
                 .properties("spring.config.location=classpath:application.yml")
+                .properties("spring.profiles.active=true")
                 .run(args);
     }
 
