@@ -23,18 +23,10 @@
         <module>jmockit-demo</module>
         <module>nginx-demo</module>
         <module>spring-util-demo</module>
-        <module>springcloud-2-demo</module>
-        <module>springcloud-1.x-demo</module>
         <module>hystrix-demo</module>
         <module>mockit-demo</module>
         <module>rxjava-demo</module>
         <module>java8-demo</module>
-        <module>springboot-ok2-demo</module>
-        <module>springcloud-ok2-demo</module>
-        <module>springboot-ok2-starter-demo</module>
-        <module>springboot-security-demo</module>
-        <module>springboot-1.x-demo</module>
-        <module>springboot-2.x</module>
     </modules>
 
     <properties>
