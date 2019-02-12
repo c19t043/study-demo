@@ -1,0 +1,33 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+          http://www.springframework.org/schema/security
+          http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+    <!-- 用于认证的 AuthenticationManager -->
+    <security:authentication-manager alias="authenticationManager">
+        <!--<security:authentication-provider-->
+                <!--user-service-ref="userDetailsService" />-->
+
+        <security:authentication-provider>
+            <!-- 基于 Jdbc 的 UserDetailsService 实现，JdbcDaoImpl -->
+            <security:jdbc-user-service users-by-username-query="1"
+                                        authorities-by-username-query="2"
+                                        group-authorities-by-username-query="3"
+                                        data-source-ref="4"/>
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <bean id="userDetailsService"
+          class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename"
+                  value="classpath:org/springframework/security/messages" />
+    </bean>
+</beans>

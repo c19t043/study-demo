@@ -27,6 +27,8 @@
         <module>mockit-demo</module>
         <module>rxjava-demo</module>
         <module>java8-demo</module>
+        <module>spring-security-demo</module>
+        <module>springboot-security4-demo</module>
     </modules>
 
     <properties>
