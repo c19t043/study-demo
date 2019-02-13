@@ -1,4 +1,4 @@
-package cn.cjf.config;
+package cn.cjf.config2;
 
 import feign.Retryer;
 import org.springframework.context.annotation.Bean;

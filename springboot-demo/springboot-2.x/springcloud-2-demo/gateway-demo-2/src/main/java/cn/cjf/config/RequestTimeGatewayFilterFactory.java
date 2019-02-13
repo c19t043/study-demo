@@ -1,4 +1,4 @@
-package cn.cjf.config;
+package cn.cjf.config2;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

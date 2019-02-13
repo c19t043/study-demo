@@ -130,18 +130,18 @@ section可选值有：
 - CPU：CPU相关信息；
 - Keyspace：redis中各个DB里key的信息；
 ```
-+ config
++ config2
 
 config是一个非常有价值的命令，主要体现在对redis的运维。因为生产环境一般是不允许随意重启的，不能因为需要调优一些参数就修改conf配置文件并重启。redis作者早就想到了这一点，通过config命令能热修改一些配置，不需要重启redis实例，可以通过如下命令查看哪些参数可以热修改：
-> `config get *`
+> `config2 get *`
 
 热修改就比较容易了，执行如下命令即可：
-> `config set `
+> `config2 set `
 
-例如：config set slowlog-max-len 100，config set maxclients 1024
+例如：config2 set slowlog-max-len 100，config2 set maxclients 1024
 
 这样修改的话，如果以后由于某些原因redis实例故障需要重启，那通过config热修改的参数就会被配置文件中的参数覆盖，所以我们需要通过一个命令将config热修改的参数刷到redis配置文件中持久化，通过执行如下命令即可：
-> `config rewrite`
+> `config2 rewrite`
 
 执行该命令后，我们能在config文件中看到类似这种信息：
 ```

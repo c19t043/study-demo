@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @Description: 微信相关常量
  */
 @Component
-@ConfigurationProperties(locations = {"classpath:config/wechat.properties"}, prefix = "wechat")
+@ConfigurationProperties(locations = {"classpath:config2/wechat.properties"}, prefix = "wechat")
 @Data
 @ToString
 public class WeChatConfigBean {

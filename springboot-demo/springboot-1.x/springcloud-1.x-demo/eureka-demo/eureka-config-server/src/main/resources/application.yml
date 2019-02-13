@@ -14,7 +14,7 @@ spring:
       label: master
 
   application:
-    name: eureka-config-server
+    name: eureka-config2-server
 
 server:
   port: 8840

@@ -1,4 +1,4 @@
-package cn.cjf.config;
+package cn.cjf.config2;
 
 import cn.cjf.filter.RequestTimeFilter;
 import cn.cjf.filter.TokenFilter;

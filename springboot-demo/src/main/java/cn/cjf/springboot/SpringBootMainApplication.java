@@ -15,7 +15,7 @@ public class SpringBootMainApplication {
 
         //修改默认配置文件
         new SpringApplicationBuilder(SpringBootMainApplication.class)
-                .properties("spring.config.location=classpath:application.yml")
+                .properties("spring.config2.location=classpath:application.yml")
                 .properties("spring.profiles.active=true")
                 .run(args);
     }

@@ -7,7 +7,7 @@
           http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
     <!--
-    auto-config="true" 相当于:
+    auto-config2="true" 相当于:
     <security:http>
         <security:form-login/>
         <security:http-basic/>

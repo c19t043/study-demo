@@ -1,4 +1,4 @@
-package cn.cjf.config;
+package cn.cjf.config2;
 
 public interface SUserRepository extends JpaRepository<SUser, Integer> {
 	@Query("select u from SUser u where u.email=?1 and u.password=?2")

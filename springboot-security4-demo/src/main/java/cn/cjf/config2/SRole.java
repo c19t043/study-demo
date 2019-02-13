@@ -1,4 +1,4 @@
-package cn.cjf.config;
+package cn.cjf.config2;
 
 @Entity
 @Table(name = "s_role", catalog = "test")

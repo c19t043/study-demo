@@ -1,4 +1,4 @@
-package cn.cjf.config;
+package cn.cjf.config2;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
