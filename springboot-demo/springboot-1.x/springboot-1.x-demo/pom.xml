@@ -11,6 +11,7 @@
     <modules>
         <module>springboot-1.x-security-demo</module>
         <module>springboot-1.x-base-demo</module>
+        <module>springboot-1.x-security-auth2-demo</module>
     </modules>
 
     <parent>

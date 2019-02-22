@@ -29,6 +29,7 @@
         <module>java8-demo</module>
         <module>spring-security-demo</module>
         <module>springboot-security4-demo</module>
+        <module>data-model-design-demo</module>
     </modules>
 
     <properties>
