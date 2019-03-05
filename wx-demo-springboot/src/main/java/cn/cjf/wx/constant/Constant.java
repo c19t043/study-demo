@@ -7,7 +7,7 @@ public class Constant {
 
     // 账户业务模块流水号前缀(account)
     public static final String AC_BIZ_SEQUENCE_NO_PREFIX = "ac";
-    // 账户业务模块流水号前缀(config)
+    // 账户业务模块流水号前缀(config2)
     public static final String CF_BIZ_SEQUENCE_NO_PREFIX = "cf";
     // 账户业务模块流水号前缀(metadata)
     public static final String MD_BIZ_SEQUENCE_NO_PREFIX = "md";

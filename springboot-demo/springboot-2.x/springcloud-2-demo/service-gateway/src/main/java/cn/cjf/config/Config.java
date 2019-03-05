@@ -1,4 +1,4 @@
-package cn.cjf.config;
+package cn.cjf.config2;
 
 import cn.cjf.resolver.HostAddrKeyResolver;
 import cn.cjf.resolver.UriKeyResolver;

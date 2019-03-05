@@ -88,13 +88,6 @@
             <version>1.9.3.RELEASE</version>
         </dependency>
 
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>6.0.6</version>
-        </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -165,10 +158,10 @@
             <artifactId>spring-boot-starter-jta-atomikos</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-quartz-starter</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-quartz-starter</artifactId>-->
+        <!--</dependency>-->
 
         <!-- spring boot start -->
         <dependency>

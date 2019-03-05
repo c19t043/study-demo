@@ -1,6 +1,6 @@
 package cn.cjf.service;
 
-import cn.cjf.config.FeignConfig;
+import cn.cjf.config2.FeignConfig;
 import cn.cjf.hystrix.HiHystrix;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.cloud.netflix.feign.FeignClientsConfiguration;

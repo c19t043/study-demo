@@ -1,4 +1,4 @@
-package cn.cjf.config;
+package cn.cjf.config2;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

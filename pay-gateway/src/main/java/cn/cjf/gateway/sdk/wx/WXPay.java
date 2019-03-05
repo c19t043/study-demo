@@ -51,19 +51,19 @@ public class WXPay {
 
     private void checkWXPayConfig() throws Exception {
         if (this.config == null) {
-            throw new Exception("config is null");
+            throw new Exception("config2 is null");
         }
         if (this.config.getAppID() == null || this.config.getAppID().trim().length() == 0) {
-            throw new Exception("appid in config is empty");
+            throw new Exception("appid in config2 is empty");
         }
         if (this.config.getMchID() == null || this.config.getMchID().trim().length() == 0) {
-            throw new Exception("appid in config is empty");
+            throw new Exception("appid in config2 is empty");
         }
         if (this.config.getCertStream() == null) {
-            throw new Exception("cert stream in config is empty");
+            throw new Exception("cert stream in config2 is empty");
         }
         if (this.config.getWXPayDomain() == null) {
-            throw new Exception("config.getWXPayDomain() is null");
+            throw new Exception("config2.getWXPayDomain() is null");
         }
 
         if (this.config.getHttpConnectTimeoutMs() < 10) {

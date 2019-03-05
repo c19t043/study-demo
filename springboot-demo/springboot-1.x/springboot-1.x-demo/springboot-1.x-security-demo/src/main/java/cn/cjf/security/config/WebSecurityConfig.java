@@ -1,78 +1,72 @@
 package cn.cjf.security.config;
 
-import cn.cjf.security.domain.SecurityUser;
-import cn.cjf.security.domain.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import cn.cjf.security.authentication.IpAuthenticationProvider;
+import cn.cjf.security.filter.IpAuthenticationProcessingFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    private static final Logger logger = LoggerFactory.getLogger(WebSecurityConfig.class);
+
+    //ip认证者配置
+    @Bean
+    IpAuthenticationProvider ipAuthenticationProvider() {
+        return new IpAuthenticationProvider();
+    }
+
+    //配置封装ipAuthenticationToken的过滤器
+    IpAuthenticationProcessingFilter ipAuthenticationProcessingFilter(AuthenticationManager authenticationManager) {
+        IpAuthenticationProcessingFilter ipAuthenticationProcessingFilter = new IpAuthenticationProcessingFilter();
+        //为过滤器添加认证器
+        ipAuthenticationProcessingFilter.setAuthenticationManager(authenticationManager);
+        //重写认证失败时的跳转页面
+        ipAuthenticationProcessingFilter.setAuthenticationFailureHandler(
+                new SimpleUrlAuthenticationFailureHandler("/ipLogin?error"));
+        return ipAuthenticationProcessingFilter;
+    }
+
+    //配置登录端点
+    @Bean
+    LoginUrlAuthenticationEntryPoint loginUrlAuthenticationEntryPoint() {
+        LoginUrlAuthenticationEntryPoint loginUrlAuthenticationEntryPoint = new LoginUrlAuthenticationEntryPoint
+                ("/ipLogin");
+        return loginUrlAuthenticationEntryPoint;
+    }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception { //配置策略
-        http.csrf().disable();
-        http.authorizeRequests().
-                antMatchers("/static/**").permitAll().anyRequest().authenticated().
-                and().formLogin().loginPage("/login").permitAll().successHandler(loginSuccessHandler()).
-                and().logout().permitAll().invalidateHttpSession(true).
-                deleteCookies("JSESSIONID").logoutSuccessHandler(logoutSuccessHandler()).
-                and().sessionManagement().maximumSessions(10).expiredUrl("/login");
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .antMatchers("/", "/home").permitAll()
+                .antMatchers("/ipLogin").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/")
+                .permitAll()
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/ipLogin")
+                .authenticationEntryPoint(loginUrlAuthenticationEntryPoint())
+        ;
+
+        //注册IpAuthenticationProcessingFilter  注意放置的顺序 这很关键
+        http.addFilterBefore(ipAuthenticationProcessingFilter(authenticationManager()), UsernamePasswordAuthenticationFilter.class);
+
     }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
-        auth.eraseCredentials(false);
-    }
-
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() { //密码加密
-        return new BCryptPasswordEncoder(4);
-    }
-
-    @Bean
-    public LogoutSuccessHandler logoutSuccessHandler() { //登出处理
-        return new LogoutSuccessHandler() {
-            @Override
-            public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-                try {
-                    SecurityUser user = (SecurityUser) authentication.getPrincipal();
-                    logger.info("USER : " + user.getUsername() + " LOGOUT SUCCESS ! ");
-                } catch (Exception e) {
-                    logger.info("LOGOUT EXCEPTION , e : " + e.getMessage());
-                }
-                httpServletResponse.sendRedirect("/login");
-            }
-        };
-    }
-
-    @Bean
-    public SavedRequestAwareAuthenticationSuccessHandler loginSuccessHandler() { //登入处理
-        return new SavedRequestAwareAuthenticationSuccessHandler() {
-            @Override
-            public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-                User userDetails = (User) authentication.getPrincipal();
-                logger.info("USER : " + userDetails.getUsername() + " LOGIN SUCCESS ! ");
-                super.onAuthenticationSuccess(request, response, authentication);
-            }
-        };
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(ipAuthenticationProvider());
     }
 }

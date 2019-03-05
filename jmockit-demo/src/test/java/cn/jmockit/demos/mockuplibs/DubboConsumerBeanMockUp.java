@@ -2,7 +2,7 @@
 //
 //import java.util.Map;
 //
-//import org.apache.dubbo.config.spring.ReferenceBean;
+//import org.apache.dubbo.config2.spring.ReferenceBean;
 //
 //import mockit.Invocation;
 //import mockit.Mock;

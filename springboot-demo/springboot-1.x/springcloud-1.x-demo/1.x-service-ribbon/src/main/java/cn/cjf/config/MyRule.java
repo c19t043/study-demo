@@ -1,4 +1,4 @@
-package cn.cjf.config;
+package cn.cjf.config2;
 
 import com.netflix.loadbalancer.ILoadBalancer;
 import com.netflix.loadbalancer.IRule;
