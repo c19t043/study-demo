@@ -30,6 +30,7 @@
         <module>spring-security-demo</module>
         <module>springboot-security4-demo</module>
         <module>data-model-design-demo</module>
+        <module>shiro-demo</module>
     </modules>
 
     <properties>
