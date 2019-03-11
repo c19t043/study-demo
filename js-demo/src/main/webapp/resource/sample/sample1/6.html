@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!--<link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.css">-->
+    <link rel="stylesheet" href="../../lib/sweetAlert2/sweetalert2.min.css">
+    <style>
+        .box {
+            margin: 0 auto;
+            width: 1200px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .title_box {
+            position: relative;
+            background: #c1c1c1;
+        }
+
+        .title {
+            display: inline-block;
+            padding: 20px;
+            font-size: 20px;
+            line-height: 20px;
+        }
+
+        .box button {
+            position: absolute;
+            right: 30px;
+            top: 15px;
+            padding: 8px 10px;
+            border: 0;
+            outline: 0;
+            background: #f6f6f6;
+            cursor: pointer;
+        }
+
+        .MenuPanel {
+            position: relative;
+            width: 100%;
+            padding-bottom: 20px;
+        }
+
+        .MenuTitle {
+            font-size: 18px;
+            padding-left: 30px;
+            padding-top: 10px;
+            padding-bottom: 14px;
+            background: #ccc;
+            cursor: pointer;
+        }
+
+        .MenuBtn {
+            position: absolute;
+            right: 140px;
+            top: 6px;
+            padding: 8px 10px;
+            border: 0;
+            outline: 0;
+            background: #f6f6f6;
+            cursor: pointer;
+        }
+
+        .icon {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: url("select.png") no-repeat;
+            background-size: 10px 10px;
+            margin-right: 10px;
+        }
+
+        .del {
+            position: absolute;
+            right: -14px;
+            top: 10px;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: url("del.png") no-repeat;
+            background-size: 30px 30px;
+            cursor: pointer;
+        }
+
+        .MenuContent {
+            background: #DCDCDC;
+        }
+
+        .secondPanel, .ThirdPanel {
+            position: relative;
+        }
+
+        .secondTitle {
+            padding-left: 60px;
+            padding-top: 10px;
+            padding-bottom: 14px;
+            cursor: pointer;
+        }
+
+        /* 二级抽屉及以下删除按钮 */
+        .del_2,
+        .del_3,
+        .del_4,
+        .del1_1,
+        .del2_2,
+        .del3_3,
+        .del4_4 {
+            position: absolute;
+            right: -14px;
+            top: 8px;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: url("del.png") no-repeat;
+            background-size: 30px 30px;
+            cursor: pointer;
+        }
+
+        /* 二级抽屉及以下增加按钮 */
+        .btn2,
+        .btn3,
+        .btn4,
+        .btn1_1,
+        .btn2_2,
+        .btn3_3,
+        .btn4_4 {
+            position: absolute;
+            right: 140px;
+            top: 6px;
+            padding: 8px 10px;
+            border: 0;
+            outline: 0;
+            background: #f6f6f6;
+            cursor: pointer;
+        }
+
+        .ThirdTitle {
+            padding-left: 90px;
+            padding-top: 10px;
+            padding-bottom: 14px;
+            cursor: pointer;
+        }
+
+        .ThirdContent {
+            width: 700px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .edition {
+            position: relative;
+            width: 140px;
+            height: 40px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 40px;
+            float: left;
+            margin-right: 30px;
+            margin-bottom: 10px;
+        }
+
+        .edition:nth-child(4n) {
+            margin-right: 0;
+        }
+
+        .del_edt {
+            position: absolute;
+            right: -14px;
+            top: 8px;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: url("del.png") no-repeat;
+            background-size: 30px 30px;
+            cursor: pointer;
+        }
+
+        .swal2-popup .swal2-header {
+            align-items: end;
+            background-color: #c1c1c1;
+            border-top-left-radius: 10px;
+        }
+
+        .swal2-popup, .swal2-modal, .swal2-show {
+            padding: 0px;
+            border-top-left-radius: 20px;
+        }
+
+        #swal2-title {
+            padding-left: 20px;
+        }
+
+        #swal2-content {
+            padding-top: 20px;
+        }
+
+        .swal2-popup .swal2-close {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="title_box">
+        <div class="title">分类列表</div>
+        <button parentId="0" level="0" classifyId="0" class="addClassify">+增加一级分类</button>
+    </div>
+
+    <div>
+        <!-- 1 -->
+        <div class="MenuPanel">
+            <div class="MenuTitle">
+                <i class="icon"></i>学前教育
+            </div>
+            <button class="MenuBtn">+增加二级分类</button>
+            <i class="del"></i>
+            <!-- 二级抽屉 -->
+            <div class="MenuContent">
+                <div class="secondPanel">
+                    <div class="secondTitle">
+                        <i class="icon"></i>初一
+                    </div>
+                    <button class="btn2">+增加三级分类</button>
+                    <i class="del_2"></i>
+                    <div class="secondContent">
+                        <!-- 三级抽屉 -->
+                        <div class="ThirdPanel">
+                            <div class="ThirdTitle">
+                                <i class="icon"></i>语文
+                            </div>
+                            <button class="btn1_1">+增加四级分类</button>
+                            <i class="del1_1"></i>
+                            <div class="ThirdContent">
+                                <div class="edition"><i class="del_edt"></i>人教版</div>
+                                <div class="edition"><i class="del_edt"></i>苏教版</div>
+                                <div class="edition"><i class="del_edt"></i>美教版</div>
+                                <div class="edition"><i class="del_edt"></i>中教版</div>
+                                <div class="edition"><i class="del_edt"></i>人教新版</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="../../lib/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../lib/sweetAlert2/sweetalert2.all.min.js"></script>
+<script src="../../lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        bindFunction();
+    });
+
+    function bindFunction(){
+        $(".MenuPanel").each(function () {
+            $(this).children(".MenuContent").hide();
+        });
+
+        $(".MenuTitle").each(function () {
+            $(this).click(function () {
+                if ($(this).parents(".MenuPanel").children(".MenuContent").css("display") !=
+                    "none") {
+                    $(this).parents(".MenuPanel").children(".MenuContent").hide("slow");
+                    $(this).children(".icon").css("transform", "rotateZ(0deg)");
+                } else {
+                    $(".MenuPanel").each(function () {
+                        $(this).children(".MenuContent").hide();
+                    });
+                    $(this).children(".icon").css("transform", "rotateZ(180deg)");
+                    $(this).parents(".MenuPanel").children(".MenuContent").show("slow");
+                }
+            });
+
+        });
+
+
+        // 二级抽屉
+        $(".secondPanel").each(function () {
+            $(this).children(".secondContent").hide();
+        });
+
+        $(".secondTitle").each(function () {
+            $(this).click(function () {
+                if ($(this).parents(".secondPanel").children(".secondContent").css("display") !=
+                    "none") {
+                    $(this).parents(".secondPanel").children(".secondContent").hide("slow");
+                    $(this).children(".icon").css("transform", "rotateZ(0deg)");
+                } else {
+                    $(".secondPanel").each(function () {
+                        $(this).children(".secondContent").hide();
+                    });
+                    $(this).children(".icon").css("transform", "rotateZ(180deg)");
+                    $(this).parents(".secondPanel").children(".secondContent").show("slow");
+                }
+            });
+
+        });
+
+
+        // 三级抽屉
+        $(".ThirdPanel").each(function () {
+            $(this).children(".ThirdContent").hide();
+        });
+        $(".ThirdTitle").each(function () {
+            $(this).click(function () {
+                if ($(this).parents(".ThirdPanel").children(".ThirdContent").css("display") !=
+                    "none") {
+                    $(this).parents(".ThirdPanel").children(".ThirdContent").hide("slow");
+                    $(this).children(".icon").css("transform", "rotateZ(0deg)");
+                } else {
+                    $(".ThirdPanel").each(function () {
+                        $(this).children(".ThirdContent").hide();
+                    });
+                    $(this).children(".icon").css("transform", "rotateZ(180deg)");
+                    $(this).parents(".ThirdPanel").children(".ThirdContent").show("slow");
+                }
+            });
+
+        });
+
+        $(".addClassify").on("click", addClassify);
+    }
+</script>
+<script>
+    var data = [{
+        id: 1,
+        level: 1,
+        name: "测试一级分类1",
+        parentId: 0,
+        children: [{
+            id: 3,
+            level: 2,
+            name: "测试二级分类1",
+            parentId: 1,
+            children: [{
+                id: 5,
+                level: 3,
+                name: "测试三级分类1",
+                parentId: 3,
+                children: [{
+                    id: 6,
+                    level: 4,
+                    name: "测试四级分类1",
+                    parentId: 5,
+                    children: []
+                }]
+            }]
+        }]
+    }, {
+        id: 2,
+        level: 1,
+        name: "测试一级分类2",
+        parentId: 0,
+        children: [{
+            id: 4,
+            level: 2,
+            name: "测试二级分类2",
+            parentId: 2,
+            children: []
+        }]
+    }];
+
+    var level2LevelZh = [0,"一","二","三","四"];
+
+    var id = 1;
+
+    function addClassify(){
+        //父级分类id
+        var parentId = $(this).attr("parentId");
+        var parentLevel = parseInt($(this).attr("level"));
+        if(parentLevel !== 0) parentId = $(this).attr("classifyId");
+        var curLevel = parentLevel + 1;
+        var levelName = level2LevelZh[curLevel];
+        Swal.fire({
+            title: '新增' + levelName + '级分类',
+            html:
+            '分类名称：' +
+            '<input type="text" id="classifyName" style="width: 250px; height:30px"> ',
+            showCloseButton: true,
+            showCancelButton: true,
+            reverseButtons: true,
+            confirmButtonText: "确定",
+            cancelButtonText: "取消"
+        }).then((result) => {
+            if(result.value) {
+            console.log($("#classifyName").val());
+            var curClassifyName = $("#classifyName").val();
+            var classifyId = id;
+            id++;
+            if(addClassifyNameAndValidateName(parentId,curLevel,classifyId,curClassifyName)){
+                var classifyHTML = madeClassifyHTML(parentId,curLevel,classifyId,curClassifyName);
+                insertClassifyHTML(this,classifyHTML,curLevel);
+                $(".addClassify").on("click", addClassify);
+                // bindFunction();
+                Swal.fire({
+                    type: 'success',
+                    title: '操作成功！',
+                    timer: 1500
+                })
+            }else{
+                Swal.fire({
+                    title: '提示',
+                    html: '该分类已有课程使用，请修改课程分类后，再删除',
+                    confirmButtonText: "好的"
+                })
+            }
+        }
+    })
+    }
+
+    var classifyDB_all = {"default_top_level":[]};
+    // 分类存储信息 并判断同level下是否存在相同值
+    function addClassifyNameAndValidateName(parentId,level,classifyId,classifyName){
+        var arr;
+        switch(level){
+            case 1: arr = classifyDB_all.default_top_level;break;
+            case 2:
+            case 3:
+            case 4: arr = classifyDB_all[parentId];
+        }
+        return addClassifyInfo(arr,classifyId,classifyName);
+    }
+
+    function addClassifyInfo(arr,classifyId,classifyName){
+        var flag = true;
+        $.each(arr,function (index,value) {
+            if(value === classifyName){
+                flag = false;
+                return true;
+            }
+        });
+        if(flag){
+            arr.push(classifyName);
+            classifyDB_all[classifyId]=[];
+        }
+        return flag;
+    }
+
+    // 插入分类html标签
+    function insertClassifyHTML(obj,classifyHTML,level){
+        // 增加一级分类
+        switch(level){
+            case 1: $(".box > div:last-child").append(classifyHTML); break;
+            case 2: $(obj).siblings("."+classifyMap[level-1].content).append(classifyHTML);break;
+            case 3: $(obj).siblings("."+classifyMap[level-1].content).append(classifyHTML);break;
+            case 4: $(obj).siblings("."+classifyMap[level-1].content).append(classifyHTML);break;
+        }
+    }
+    // 制作分类标签
+    var classifyMap = [0,{panel:"MenuPanel",title:"MenuTitle",button:"MenuBtn",del:"del",content:"MenuContent"},
+        {panel:"secondPanel",title:"secondTitle",button:"btn2",del:"del_2",content:"secondContent"},
+        {panel:"ThirdPanel",title:"ThirdTitle",button:"btn1_1",del:"del1_1",content:"ThirdContent"}];
+    function madeClassifyHTML(parentId,level,classifyId,classifyName){
+        switch (level){
+            case 1:
+            case 2:
+            case 3:
+                var classifyStyle = classifyMap[level];
+                return '<div class="'+classifyStyle.panel+'">'+
+                    '<div class="'+classifyStyle.title+'">'+
+                        '<i class="icon"></i>'+classifyName+
+                    '</div>'+
+                    '<button class="addClassify '+classifyStyle.button+'" parentId="'+parentId+'" level="'+level+'" classifyId="'+classifyId+'">+增加'+level2LevelZh[level+1]+'级分类</button>'+
+                    '<i class="'+classifyStyle.del+'"></i>'+
+                    '<div class="'+classifyStyle.content+'">'+
+                    '</div>'+
+                '</div>';
+            case 4 : return '<div class="edition"><i class="del_edt"></i>'+classifyName+'</div>';
+            /*            case 1 :  '<div class="MenuPanel">'+
+                                        '<div class="MenuTitle">'+
+                                            '<i class="icon"></i>'+classifyName+
+                                        '</div>'+
+                                        ' <button class="MenuBtn" parentId="'+parentId+'" level="'+(level++)+'" classifyId="'+classifyId+'" class="addClassify">+增加二级分类</button>'+
+                                        '<i class="del"></i>'+
+                                        <!-- 二级抽屉 -->
+                                        '<div class="MenuContent">'+
+                                        '</div>'+
+                                    '</div>';
+                        case 2 : '<div class="secondPanel">'+
+                                        '<div class="secondTitle">'+
+                                            '<i class="icon"></i>'+classifyName+
+                                        '</div>'+
+                                        '<button class="btn2" parentId="0" level="0" classifyId="0" class="addClassify">+增加三级分类</button>'+
+                                        '<i class="del_2"></i>'+
+                                        '<div class="secondContent">'+
+                                        '</div>'+
+                                    '</div>';
+                        case 3 :  '<div class="ThirdPanel">'+
+                                        '<div class="ThirdTitle">'+
+                                            '<i class="icon"></i>'+classifyName+
+                                        '</div>'+
+                                        '<button class="btn1_1" parentId="0" level="0" classifyId="0" class="addClassify">+增加四级分类</button>'+
+                                        '<i class="del1_1"></i>'+
+                                        '<div class="ThirdContent">'+
+                                        '</div>'+
+                                    '</div>';*/
+        }
+    }
+</script>
+
+</html>
