@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-    <!--<link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.css">-->
+    <link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.css">
     <link rel="stylesheet" href="../../lib/sweetAlert2/sweetalert2.min.css">
     <style>
         .box {
@@ -214,43 +214,41 @@
         <button parentId="0" level="0" classifyId="0" class="addClassify">+增加一级分类</button>
     </div>
 
-    <div>
-        <!-- 1 -->
-        <div class="MenuPanel">
-            <div class="MenuTitle">
-                <i class="icon"></i>学前教育
-            </div>
-            <button class="MenuBtn">+增加二级分类</button>
-            <i class="del"></i>
-            <!-- 二级抽屉 -->
-            <div class="MenuContent">
-                <div class="secondPanel">
-                    <div class="secondTitle">
-                        <i class="icon"></i>初一
-                    </div>
-                    <button class="btn2">+增加三级分类</button>
-                    <i class="del_2"></i>
-                    <div class="secondContent">
-                        <!-- 三级抽屉 -->
-                        <div class="ThirdPanel">
-                            <div class="ThirdTitle">
-                                <i class="icon"></i>语文
-                            </div>
-                            <button class="btn1_1">+增加四级分类</button>
-                            <i class="del1_1"></i>
-                            <div class="ThirdContent">
-                                <div class="edition"><i class="del_edt"></i>人教版</div>
-                                <div class="edition"><i class="del_edt"></i>苏教版</div>
-                                <div class="edition"><i class="del_edt"></i>美教版</div>
-                                <div class="edition"><i class="del_edt"></i>中教版</div>
-                                <div class="edition"><i class="del_edt"></i>人教新版</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- 1 -->
+    <!--<div class="MenuPanel">-->
+        <!--<div class="MenuTitle">-->
+            <!--<i class="icon"></i>学前教育-->
+        <!--</div>-->
+        <!--<button class="MenuBtn">+增加二级分类</button>-->
+        <!--<i class="del"></i>-->
+        <!--&lt;!&ndash; 二级抽屉 &ndash;&gt;-->
+        <!--<div class="MenuContent">-->
+            <!--<div class="secondPanel">-->
+                <!--<div class="secondTitle">-->
+                    <!--<i class="icon"></i>初一-->
+                <!--</div>-->
+                <!--<button class="btn2">+增加三级分类</button>-->
+                <!--<i class="del_2"></i>-->
+                <!--<div class="secondContent">-->
+                    <!--&lt;!&ndash; 三级抽屉 &ndash;&gt;-->
+                    <!--<div class="ThirdPanel">-->
+                        <!--<div class="ThirdTitle">-->
+                            <!--<i class="icon"></i>语文-->
+                        <!--</div>-->
+                        <!--<button class="btn1_1">+增加四级分类</button>-->
+                        <!--<i class="del1_1"></i>-->
+                        <!--<div class="ThirdContent">-->
+                            <!--<div class="edition"><i class="del_edt"></i>人教版</div>-->
+                            <!--<div class="edition"><i class="del_edt"></i>苏教版</div>-->
+                            <!--<div class="edition"><i class="del_edt"></i>美教版</div>-->
+                            <!--<div class="edition"><i class="del_edt"></i>中教版</div>-->
+                            <!--<div class="edition"><i class="del_edt"></i>人教新版</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 </div>
 </body>
 
@@ -259,121 +257,222 @@
 <script src="../../lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        bindFunction();
+        $(".addClassify").on("click",addClassify);
+        initClassifyList(data);
+        hideAllContent();
     });
 
-    function bindFunction(){
-        $(".MenuPanel").each(function () {
-            $(this).children(".MenuContent").hide();
-        });
-
-        $(".MenuTitle").each(function () {
-            $(this).click(function () {
-                if ($(this).parents(".MenuPanel").children(".MenuContent").css("display") !=
-                    "none") {
-                    $(this).parents(".MenuPanel").children(".MenuContent").hide("slow");
-                    $(this).children(".icon").css("transform", "rotateZ(0deg)");
-                } else {
-                    $(".MenuPanel").each(function () {
-                        $(this).children(".MenuContent").hide();
-                    });
-                    $(this).children(".icon").css("transform", "rotateZ(180deg)");
-                    $(this).parents(".MenuPanel").children(".MenuContent").show("slow");
-                }
-            });
-
-        });
-
-
-        // 二级抽屉
-        $(".secondPanel").each(function () {
-            $(this).children(".secondContent").hide();
-        });
-
-        $(".secondTitle").each(function () {
-            $(this).click(function () {
-                if ($(this).parents(".secondPanel").children(".secondContent").css("display") !=
-                    "none") {
-                    $(this).parents(".secondPanel").children(".secondContent").hide("slow");
-                    $(this).children(".icon").css("transform", "rotateZ(0deg)");
-                } else {
-                    $(".secondPanel").each(function () {
-                        $(this).children(".secondContent").hide();
-                    });
-                    $(this).children(".icon").css("transform", "rotateZ(180deg)");
-                    $(this).parents(".secondPanel").children(".secondContent").show("slow");
-                }
-            });
-
-        });
-
-
-        // 三级抽屉
-        $(".ThirdPanel").each(function () {
-            $(this).children(".ThirdContent").hide();
-        });
-        $(".ThirdTitle").each(function () {
-            $(this).click(function () {
-                if ($(this).parents(".ThirdPanel").children(".ThirdContent").css("display") !=
-                    "none") {
-                    $(this).parents(".ThirdPanel").children(".ThirdContent").hide("slow");
-                    $(this).children(".icon").css("transform", "rotateZ(0deg)");
-                } else {
-                    $(".ThirdPanel").each(function () {
-                        $(this).children(".ThirdContent").hide();
-                    });
-                    $(this).children(".icon").css("transform", "rotateZ(180deg)");
-                    $(this).parents(".ThirdPanel").children(".ThirdContent").show("slow");
-                }
-            });
-
-        });
-
-        $(".addClassify").on("click", addClassify);
+    function hideAllContent(){
+        $(".icon").parent().siblings("div").hide();
+        $(".icon").css("transform", "rotateZ(180deg)");
     }
-</script>
-<script>
+
+    function hideChildContent(obj){
+        $(obj).parent().find(".icon").parent().siblings("div").hide();
+        $(obj).parent().find(".icon").css("transform", "rotateZ(180deg)");
+    }
+
+
+    function bindFoldFunction(obj){
+        if($(obj).attr("classifyId") === "0"){
+            $(obj).parent().siblings("div").last().children(".fold").on("click", foldClassify);
+        }else{
+            $(obj).siblings("div").children("div:last").children(".fold").on("click", foldClassify);
+        }
+    }
+
+    function foldClassify(){
+        if($(this).siblings("div").css("display") === "none"){
+            $(this).children(".icon").css("transform", "rotateZ(0deg)");
+            $(this).siblings("div").show();
+            $(this).siblings("div").css("display","");
+        }else{
+            hideChildContent(this);
+        }
+    }
+
     var data = [{
         id: 1,
         level: 1,
         name: "测试一级分类1",
         parentId: 0,
         children: [{
-            id: 3,
+            id: 2,
             level: 2,
             name: "测试二级分类1",
             parentId: 1,
             children: [{
-                id: 5,
+                id: 3,
                 level: 3,
                 name: "测试三级分类1",
-                parentId: 3,
+                parentId: 2,
                 children: [{
-                    id: 6,
+                    id: 4,
                     level: 4,
                     name: "测试四级分类1",
-                    parentId: 5,
+                    parentId: 3,
+                    children: []
+                },{
+                    id: 5,
+                    level: 4,
+                    name: "测试四级分类2",
+                    parentId: 3,
+                    children: []
+                },{
+                    id: 6,
+                    level: 4,
+                    name: "测试四级分类3",
+                    parentId: 3,
                     children: []
                 }]
             }]
         }]
     }, {
-        id: 2,
+        id: 7,
         level: 1,
         name: "测试一级分类2",
         parentId: 0,
         children: [{
-            id: 4,
+            id: 8,
             level: 2,
-            name: "测试二级分类2",
-            parentId: 2,
-            children: []
+            name: "测试二级分类1",
+            parentId: 7,
+            children: [{
+                id: 9,
+                level: 3,
+                name: "测试三级分类1",
+                parentId: 8,
+                children: [{
+                    id: 10,
+                    level: 4,
+                    name: "测试四级分类1",
+                    parentId: 9,
+                    children: []
+                },{
+                    id: 11,
+                    level: 4,
+                    name: "测试四级分类2",
+                    parentId: 9,
+                    children: []
+                },{
+                    id: 12,
+                    level: 4,
+                    name: "测试四级分类3",
+                    parentId: 9,
+                    children: []
+                }]
+            }]
         }]
     }];
 
-    var level2LevelZh = [0,"一","二","三","四"];
+    function initClassifyList(dataArr){
+        if(dataArr.length > 0){
+            $.each(dataArr,function(index,classifyVO){
+                var $addBtn;
+                if(classifyVO.parentId === "0"){
+                    $addBtn = $(".addClassify[parentId='"+classifyVO.parentId+"']");
+                }else{
+                    $addBtn = $(".addClassify[classifyId='"+classifyVO.parentId+"']");
+                }
+                addClassifyWithCommon($addBtn[0],classifyVO.parentId,
+                    classifyVO.level,
+                    classifyVO.id,
+                    classifyVO.name)
+                if(classifyVO.children.length > 0){
+                    initClassifyList(classifyVO.children);
+                }
+                if(id < classifyVO.id){
+                    id = classifyVO.id + 1;
+                }
+            })
+            // console.log(id);
+        }
+    }
 
+    var level2LevelZh = [0,"一","二","三","四"];
     var id = 1;
+
+    function bindDelClassify(obj) {
+        if($(obj).attr("classifyId") === "0"){
+            $(obj).parent().siblings("div").last().children(".custom_del").on("click", delClassify);
+        }else{
+            $(obj).siblings("div").children("div:last").children(".custom_del").on("click", delClassify);
+        }
+        // $(".custom_del").on("click", delClassify);
+    }
+
+    function delClassify() {
+        Swal.fire({
+            title: '提示',
+            html: '删除该分类后，课程将不允许添加到该分类，是否继续删除？',
+            showCloseButton: true,
+            showCancelButton: true,
+            reverseButtons: true,
+            confirmButtonText: "删除",
+            cancelButtonText: "取消"
+        }).then((result) => {
+            if(result.value){
+                var parentId = $(this).attr("parentId");
+                var level = parseInt($(this).attr("level"));
+                var classifyId = $(this).attr("classifyId");
+                var classifyName = $(this).attr("classifyName");
+                if(validateExistChildClassify(parentId,level,classifyId)){
+                    Swal.fire({
+                        title: '提示',
+                        html: '该分类下，还有子分类，请先移除子分类后，再删除',
+                        confirmButtonText: "好的"
+                    })
+                }else{
+                    if(delClassifyWithSyncAjax(classifyId)){
+                        delClassifyFrom_classifyDB(parentId,classifyId,classifyName);
+                        $(this).parent().remove();
+                    }else{
+                        Swal.fire({
+                            type: 'error',
+                            title: '操作失败！'
+                        })
+                    }
+                }
+            }
+        })
+    }
+
+    // ajax同步删除课程分类
+    function delClassifyWithSyncAjax(classifyId){
+        return true;
+    }
+
+    // 校验要删除的分类下是否存在子分类
+    function validateExistChildClassify(parentId,level,classifyId) {
+        var flag = false;
+        switch (level){
+            case 1:
+            case 2:
+            case 3:
+                if(classifyDB_all[classifyId].length > 0){
+                    flag = true;
+                }
+        }
+        return flag;
+    }
+
+    function delClassifyFrom_classifyDB(parentId,classifyId,classifyName) {
+        if(parentId=== "0"){
+            classifyDB_all.default_top_level.splice(classifyDB_all.default_top_level.indexOf(classifyName),1);
+        }else{
+            classifyDB_all[parentId].splice(classifyDB_all[parentId].indexOf(classifyName),1);
+        }
+        delete classifyDB_all[classifyId];
+    }
+
+
+    function bindAddClassify(obj) {
+        if($(obj).attr("classifyId") === "0"){
+            $(obj).parent().siblings("div").last().children(".addClassify").on("click", addClassify);
+        }else{
+            $(obj).siblings("div").children("div:last").children(".addClassify").on("click", addClassify);
+        }
+    }
 
     function addClassify(){
         //父级分类id
@@ -394,15 +493,13 @@
             cancelButtonText: "取消"
         }).then((result) => {
             if(result.value) {
-            console.log($("#classifyName").val());
             var curClassifyName = $("#classifyName").val();
-            var classifyId = id;
-            id++;
-            if(addClassifyNameAndValidateName(parentId,curLevel,classifyId,curClassifyName)){
-                var classifyHTML = madeClassifyHTML(parentId,curLevel,classifyId,curClassifyName);
-                insertClassifyHTML(this,classifyHTML,curLevel);
-                $(".addClassify").on("click", addClassify);
-                // bindFunction();
+            if(!validateBeforeAdd(parentId,curLevel,curClassifyName)){
+                return;
+            }
+            var classifyId = addClassifyWithSyncAjax(parentId,curLevel,curClassifyName);
+            if(classifyId){
+                addClassifyWithCommon(this,parentId,curLevel,classifyId,curClassifyName);
                 Swal.fire({
                     type: 'success',
                     title: '操作成功！',
@@ -410,18 +507,57 @@
                 })
             }else{
                 Swal.fire({
-                    title: '提示',
-                    html: '该分类已有课程使用，请修改课程分类后，再删除',
-                    confirmButtonText: "好的"
+                    type: 'error',
+                    title: '操作失败！'
                 })
             }
         }
     })
     }
 
+    function addClassifyWithCommon(obj,parentId,level,classifyId,classifyName){
+        var classifyHTML = madeClassifyHTML(parentId,level,classifyId,classifyName);
+        insertClassifyHTML(obj,classifyHTML,level);
+        addClassifyName2ClassifyDB(parentId,level,classifyId,classifyName)
+        bindAddClassify(obj);
+        bindDelClassify(obj);
+        bindFoldFunction(obj);
+    }
+
+    // 异步添加课程分类:返回classifyId
+    function addClassifyWithSyncAjax(parentId,curLevel,curClassifyName){
+        var classifyId = id;
+        id++;
+        return classifyId;
+    }
+
     var classifyDB_all = {"default_top_level":[]};
-    // 分类存储信息 并判断同level下是否存在相同值
-    function addClassifyNameAndValidateName(parentId,level,classifyId,classifyName){
+    // 分类存储课程分类名 并判断同level下是否存在相同值
+
+    // 添加前，校验参数是否能通过
+    function validateBeforeAdd(parentId,level,classifyName){
+        var flag = true;
+        if(!classifyName){
+            flag = false;
+            Swal.fire({
+                title: '提示',
+                html: '课程分类名不能为空',
+                confirmButtonText: "好的"
+            })
+        }
+        else if(validateDuplicateClassifyName(parentId,level,classifyName)){
+            flag = false;
+            Swal.fire({
+                title: '提示',
+                html: '该分类已有课程使用，请修改课程分类后，再删除',
+                confirmButtonText: "好的"
+            })
+        }
+        return flag;
+    }
+
+    // 验证分类名同level下存在相同名
+    function validateDuplicateClassifyName(parentId,level,classifyName){
         var arr;
         switch(level){
             case 1: arr = classifyDB_all.default_top_level;break;
@@ -429,29 +565,35 @@
             case 3:
             case 4: arr = classifyDB_all[parentId];
         }
-        return addClassifyInfo(arr,classifyId,classifyName);
-    }
-
-    function addClassifyInfo(arr,classifyId,classifyName){
-        var flag = true;
+        var flag = false;
         $.each(arr,function (index,value) {
             if(value === classifyName){
-                flag = false;
+                flag = true;
                 return true;
             }
         });
-        if(flag){
-            arr.push(classifyName);
-            classifyDB_all[classifyId]=[];
-        }
         return flag;
+    }
+
+    // 添加到classifyDB
+    function addClassifyName2ClassifyDB(parentId,level,classifyId,classifyName){
+        var arr;
+        switch(level){
+            case 1: arr = classifyDB_all.default_top_level;break;
+            case 2:
+            case 3:
+            case 4: arr = classifyDB_all[parentId];
+        }
+        arr.push(classifyName);
+        classifyDB_all[classifyId]=[];
     }
 
     // 插入分类html标签
     function insertClassifyHTML(obj,classifyHTML,level){
         // 增加一级分类
         switch(level){
-            case 1: $(".box > div:last-child").append(classifyHTML); break;
+            // > div:last-child
+            case 1: $(".box").append(classifyHTML); break;
             case 2: $(obj).siblings("."+classifyMap[level-1].content).append(classifyHTML);break;
             case 3: $(obj).siblings("."+classifyMap[level-1].content).append(classifyHTML);break;
             case 4: $(obj).siblings("."+classifyMap[level-1].content).append(classifyHTML);break;
@@ -468,15 +610,17 @@
             case 3:
                 var classifyStyle = classifyMap[level];
                 return '<div class="'+classifyStyle.panel+'">'+
-                    '<div class="'+classifyStyle.title+'">'+
-                        '<i class="icon"></i>'+classifyName+
-                    '</div>'+
-                    '<button class="addClassify '+classifyStyle.button+'" parentId="'+parentId+'" level="'+level+'" classifyId="'+classifyId+'">+增加'+level2LevelZh[level+1]+'级分类</button>'+
-                    '<i class="'+classifyStyle.del+'"></i>'+
-                    '<div class="'+classifyStyle.content+'">'+
-                    '</div>'+
-                '</div>';
-            case 4 : return '<div class="edition"><i class="del_edt"></i>'+classifyName+'</div>';
+                            '<div class="'+classifyStyle.title+' fold">'+
+                                '<i class="icon"></i>'+classifyName+
+                            '</div>'+
+                            '<button class="addClassify '+classifyStyle.button+'" parentId="'+parentId+'" level="'+level+'" classifyId="'+classifyId+'">+增加'+level2LevelZh[level+1]+'级分类</button>'+
+                            '<i class="'+classifyStyle.del+' custom_del" ' +
+                                    'parentId="'+parentId+'" level="'+level+'" classifyId="'+classifyId+'" classifyName="'+classifyName+'"></i>'+
+                            '<div class="'+classifyStyle.content+'">'+
+                            '</div>'+
+                        '</div>';
+            case 4 : return '<div class="edition"><i class="del_edt custom_del" ' +
+                                    'parentId="'+parentId+'" level="'+level+'" classifyId="'+classifyId+'" classifyName="'+classifyName+'"></i>'+classifyName+'</div>';
             /*            case 1 :  '<div class="MenuPanel">'+
                                         '<div class="MenuTitle">'+
                                             '<i class="icon"></i>'+classifyName+
