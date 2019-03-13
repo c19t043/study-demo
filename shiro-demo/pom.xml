@@ -5,7 +5,7 @@
     <groupId>cn.cjf</groupId>
     <version>0.1-SNAPSHOT</version>
     <modelVersion>4.0.0</modelVersion>
-
+    <packaging>war</packaging>
     <artifactId>shiro-demo</artifactId>
 
     <dependencies>
