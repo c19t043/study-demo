@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-    <link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <!--<link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.css">-->
     <link rel="stylesheet" href="../../lib/sweetAlert2/sweetalert2.min.css">
     <style>
         .box {
@@ -183,28 +183,28 @@
             cursor: pointer;
         }
 
-        .swal2-popup .swal2-header {
-            align-items: end;
-            background-color: #c1c1c1;
-            border-top-left-radius: 10px;
-        }
+        /*.swal2-popup .swal2-header {*/
+            /*align-items: end;*/
+            /*background-color: #c1c1c1;*/
+            /*border-top-left-radius: 10px;*/
+        /*}*/
 
-        .swal2-popup, .swal2-modal, .swal2-show {
-            padding: 0px;
-            border-top-left-radius: 20px;
-        }
+        /*.swal2-popup, .swal2-modal, .swal2-show {*/
+            /*padding: 0px;*/
+            /*border-top-left-radius: 20px;*/
+        /*}*/
 
-        #swal2-title {
-            padding-left: 20px;
-        }
+        /*#swal2-title {*/
+            /*padding-left: 20px;*/
+        /*}*/
 
-        #swal2-content {
-            padding-top: 20px;
-        }
+        /*#swal2-content {*/
+            /*padding-top: 20px;*/
+        /*}*/
 
-        .swal2-popup .swal2-close {
-            color: black;
-        }
+        /*.swal2-popup .swal2-close {*/
+            /*color: black;*/
+        /*}*/
     </style>
 </head>
 <body>
@@ -254,8 +254,10 @@
 
 <script src="../../lib/jquery/jquery-1.9.1.min.js"></script>
 <script src="../../lib/sweetAlert2/sweetalert2.all.min.js"></script>
-<script src="../../lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<!--<script src="../../lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>-->
 <script type="text/javascript">
+    var base = "http://localhost:8080/ukplatform";
+
     $(document).ready(function () {
         $(".addClassify").on("click",addClassify);
         initClassifyList(data);

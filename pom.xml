@@ -32,6 +32,9 @@
         <module>data-model-design-demo</module>
         <module>shiro-demo</module>
         <module>js-demo</module>
+        <module>platform-demo</module>
+        <module>js-util</module>
+        <module>java-util</module>
     </modules>
 
     <properties>
