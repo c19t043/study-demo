@@ -122,6 +122,8 @@ public class ExcelUtil {
             // 创建工作表
             HSSFSheet sheet = createSheetAndDefaultHandle(workbook, "月结算报表");
 
+            sheet.setColumnWidth(3,50);
+
             // 合并单元格
             // 行,列从0开始计算
             mergeCell(sheet, 0, 1, 0, 0);

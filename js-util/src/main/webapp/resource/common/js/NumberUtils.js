@@ -10,9 +10,17 @@ var NumberUtils = function () {
  * @param number 金额(分)
  * @returns {string} 12 -> 0.12; -12 -> -0.12
  */
-NumberUtils.retain2PositionDecimal = function (number) {
+NumberUtils.retain2PositionDecimal = function (number, handledFlag) {
+    // 如果为0，或false等条件
     if (number === 0 || !number) {
         return "0.00";
+    }
+    // 如果已经有小数点,不改变
+    if (number.toString().indexOf(".") !== -1) {
+        return number;
+    }
+    if (handledFlag && number !== 0) {
+        return number + ".00";
     }
     if (!(number instanceof Number)) {
         number = parseInt(number);
@@ -23,7 +31,7 @@ NumberUtils.retain2PositionDecimal = function (number) {
         fen = -fen;
     }
     if (fen < 10) {
-        fen = fen + "0";
+        fen = "0" + fen;
     }
     if (fen === 0) {
         fen = "00";

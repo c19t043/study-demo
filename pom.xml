@@ -35,6 +35,7 @@
         <module>platform-demo</module>
         <module>js-util</module>
         <module>java-util</module>
+        <module>knowledge_summary</module>
     </modules>
 
     <properties>
