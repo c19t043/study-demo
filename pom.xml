@@ -38,6 +38,7 @@
         <module>knowledge_summary</module>
         <module>shiro-demo2</module>
         <module>shiro-demo3</module>
+        <module>education-demo</module>
     </modules>
 
     <properties>

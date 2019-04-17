@@ -21,20 +21,21 @@ NumberUtils.retain2PositionDecimal = function (number, handledFlag) {
     }
     if (handledFlag && number !== 0) {
         return number + ".00";
-    }
-    if (!(number instanceof Number)) {
-        number = parseInt(number);
-    }
-    var yuan = Math.floor(number / 100);
-    var fen = number % 100;
-    if (fen < 0) {
-        fen = -fen;
-    }
-    if (fen < 10) {
-        fen = "0" + fen;
-    }
-    if (fen === 0) {
-        fen = "00";
+    }else{
+        if (!(number instanceof Number)) {
+            number = parseInt(number);
+        }
+        var yuan = Math.floor(number / 100);
+        var fen = number % 100;
+        if (fen < 0) {
+            fen = -fen;
+        }
+        if (fen < 10) {
+            fen = "0" + fen;
+        }
+        if (fen === 0) {
+            fen = "00";
+        }
     }
     return yuan + "." + fen;
 };
