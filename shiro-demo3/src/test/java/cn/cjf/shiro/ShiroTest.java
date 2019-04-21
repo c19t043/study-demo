@@ -7,6 +7,7 @@ import org.apache.shiro.config.IniSecurityManagerFactory;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.Factory;
+import org.apache.shiro.web.filter.authc.AnonymousFilter;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -39,7 +40,6 @@ public class ShiroTest {
 //            System.out.println("未知账户异常");
             e.printStackTrace();
         }
-
         // 进行授权操作时，用户必选通过认证
         Assert.assertTrue(subject.hasRole("role1"));
 

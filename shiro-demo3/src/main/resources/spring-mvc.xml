@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--配置DI注解解析器-->
+    <context:annotation-config/>
+    <!--配置IOC注解解析器-->
+    <context:component-scan base-package="cn.cjf.shiro" />
+    <!--配置mvc注解解析器-->
+    <mvc:annotation-driven/>
+    <!--配置静态资源处理器-->
+    <mvc:default-servlet-handler/>
+
+    <!--配置视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/view/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--引入shiro配置文件-->
+    <import resource="classpath:spring-shiro.xml"></import>
+    <!--引入spring配置文件-->
+    <import resource="classpath:spring.xml"></import>
+</beans>
