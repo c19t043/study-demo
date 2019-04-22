@@ -75,6 +75,19 @@
             <scope>provided</scope>
         </dependency>
         <!-- lombok end -->
+
+        <!-- httpClient start -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.3.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>4.3.6</version>
+        </dependency>
+        <!-- httpClient end -->
     </dependencies>
 
     <build>
