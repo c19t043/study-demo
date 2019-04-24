@@ -20,6 +20,42 @@
 
 
 
+## 创建型模式
+
+以下为创建型模式
+
+## 原型模式
+
+原型模式的思想是将一个对象，进行复制，克隆成为一个与对象类似的新对象。
+关于对象复制有两种概念：浅复制，深复制
+浅复制：将一个对象复制后，对象的基本数据类型重新创建赋值，引用类型依然是原有类型
+深复制：将一个对象复制后，对象的基本数据类型和引用类型都重新创建赋值
+
+```java
+public class ProtoType implements Cloneable,Serializable{
+    private static final long serialVersionUID =1L;
+    private String str;
+    /** 浅复制 */
+    @Override
+    public Object clone() throws CloneNotSupportedException{
+        Prototype prototype = (Prototype) super.clone();
+        return prototype;
+    }
+    /** 深复制 */
+    public Object deepClone() throws IOException{
+        /* 将当前对象写入二进制流 */
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(bos);
+        oos.writeObject(this);
+
+        /* 从二进制流中读取新对象 */
+        ByteArrayInputStream bis = new ByteArrayInputStrean(bos.toByteArray());
+        ObjectInputStream ois = new ObjectInputStream(bis);
+        return ois.readObject();
+    }
+}
+```
+
 
 
 ## 简单工厂模式
