@@ -3,7 +3,7 @@
 ```
 docker pull zookeeper:3.4
 
-docker run --rm --name zookeeper -p 2181:2181 -p 2888:2888 -p 3888:3888 -d zookeeper:3.4
+docker run -d --rm --name zookeeper -p 2181:2181 -p 2888:2888 -p 3888:3888  zookeeper:3.4
 ```
 
 ```

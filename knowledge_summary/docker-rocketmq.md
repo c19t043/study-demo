@@ -11,7 +11,13 @@ docker pull styletang/rocketmq-console-ng:1.0.0
 docker run --rm -d -p 9876:9876 --name rmqserver  foxiswho/rocketmq:server-4.4.0
 
 #broker
-docker run --rm -d -p 10911:10911 -p 10909:10909 --name rmqbroker --link rmqserver:namesrv -e "NAMESRV_ADDR=namesrv:9876" -e "JAVA_OPTS=-Duser.home=/opt"  -e "JAVA_OPT_EXT=-server -Xms128m -Xmx128m -Xmn128m" foxiswho/rocketmq:broker-4.4.0
+docker run --rm -d -p 10911:10911 -p 10909:10909 \
+--name rmqbroker \
+--link rmqserver:namesrv \
+-e "NAMESRV_ADDR=namesrv:9876" \
+-e "JAVA_OPTS=-Duser.home=/opt"  \
+-e "JAVA_OPT_EXT=-server -Xms128m -Xmx128m -Xmn128m" \
+foxiswho/rocketmq:broker-4.4.0
 
 #broker 配置文件位置 (容器内)
 /etc/rocketmq/broker.conf
@@ -31,7 +37,10 @@ foxiswho/rocketmq:broker-4.4.0
 docker run -d --rm --name rmqconsole --link rmqserver:namesrv -e "JAVA_OPTS=-Drocketmq.namesrv.addr=IP地址:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false" -p 8180:8080 -t styletang/rocketmq-console-ng:1.0.0
 
 #Example:
-docker run -d --rm --name rmqconsole --link rmqserver:namesrv -e "JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false" -p 8180:8080 -t styletang/rocketmq-console-ng:1.0.0
+docker run -d --rm --name rmqconsole --link rmqserver:namesrv \
+-e "JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false" \
+-p 8180:8080 \
+styletang/rocketmq-console-ng:1.0.0
 
 #浏览器访问
 localhost:8180

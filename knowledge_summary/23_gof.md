@@ -17,7 +17,84 @@
 + 合成复用原则
     尽量少时用继承，而使用合成/聚合的方式
 
+## 结构型模式
 
+## 适配器模式
+
+将某个类的接口转为换客户期望的另外一个接口后使用，目的是消除由接口不匹配造成的类的兼容性问题
+
+适配器模式主要分类的适配器模式，对象的适配器模式，接口的适配器模式
+
+类的适配器模式：将一个类转换为满足另外一个新接口的类,
+可以创建一个新的类，继承原始类，实现目标接口，实现接口方法，接口内部调用原始类的方法，最终使用目标接口来调用
+
+对象的适配器模式：将一个类的实例转换为满足另外一个新接口的类，
+可以创建一个新的类，持有类的实例，实现目标接口，实现接口方法，接口内部调用原始类的方法，最终使用目标接口来调用
+
+接口的适配器模式：当不希望实现一个接口中的所有方法时，
+可以创建一个抽象类，实现接口的所有方法，在接口的子类时，
+可以只继承抽象类，实现需要的接口
+
+### 类的适配器模式
+
+```java
+public class SourceClass{
+    public void method(){}
+}
+public interface TargetInterface{
+    void method1();
+    void method2();
+}
+public class Adaper extends SourceClass implements TargetInterface{
+    @Override
+    public void method1(){
+        super.method();
+    }
+    @Override
+    public void method2(){}
+}
+public class AdapterTest{
+    @Test
+    public void testTargetInterface(){
+        TargetInterface t = new Adapter();
+        t.method1();
+    }
+}
+```
+
+## 对象的适配器模式
+
+在类的适配器模式继承上改造
+
+```java
+public class Adapter implements TargetInterface{
+    private SourceClass source;
+    public Adapter(SourceClass source){
+        this.source = source;
+    }
+    @Override
+    public void method1(){
+        source.method();
+    }
+    @Override
+    public void method2(){}
+}
+```
+
+## 接口的适配器模式
+
+在类的适配器模式上改造
+
+```java
+public abstract AbstractTarget implements TargetInterface{
+    void method1(){}
+    void method2(){}
+}
+public class Sub1 extends AbstractTarget{
+    @Override
+    public void method1(){}
+}
+```
 
 
 ## 创建型模式
