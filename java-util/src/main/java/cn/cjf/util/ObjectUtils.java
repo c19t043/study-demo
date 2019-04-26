@@ -3,6 +3,7 @@ package cn.cjf.util;
 import cn.cjf.util.vo.BaseVo;
 import org.springframework.util.ReflectionUtils;
 
+import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -27,6 +28,34 @@ public class ObjectUtils {
                 map.put((Serializable) idValue, bo);
             }
         });
+        return map;
+    }
+
+    public static final String ID_KEY_NAME = "id";
+
+    /**
+     * 将对象转为map  List<object{id,xx}> -> map<id,object>
+     */
+    public static <T> Map<Long, T> transformObjectCollection2Map(List<T> list, String fieldKeyName) {
+        Map<Long, T> map = new HashMap<>(list.size());
+        if (list.isEmpty()) {
+            return map;
+        }
+        T t = list.get(0);
+        Class<?> clazz = t.getClass();
+        try {
+            PropertyDescriptor pd = new PropertyDescriptor(fieldKeyName, clazz);
+            Object[] emptyArr = new Object[0];
+            list.forEach(bo -> {
+                try {
+                    map.put((Long) pd.getReadMethod().invoke(bo, emptyArr), bo);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (IntrospectionException e) {
+            e.printStackTrace();
+        }
         return map;
     }
 

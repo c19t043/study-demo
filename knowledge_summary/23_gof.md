@@ -19,6 +19,11 @@
 
 ## 结构型模式
 
+
+
+
+
+
 ## 适配器模式
 
 将某个类的接口转为换客户期望的另外一个接口后使用，目的是消除由接口不匹配造成的类的兼容性问题
@@ -93,6 +98,115 @@ public abstract AbstractTarget implements TargetInterface{
 public class Sub1 extends AbstractTarget{
     @Override
     public void method1(){}
+}
+```
+
+## 装饰模式
+
+装饰模式：给一个对象动态的添加一些功能，
+实现时，装饰对象和被装饰对象都需要实现同一接口，装饰对象持有被装饰对象的实例
+
+```java
+public interface Sourceable{
+    void method();
+}
+public class Source implements Sourceable{
+    @Override
+    public void method(){}
+}
+public class Decorator implements Sourceable{
+    private Sourceable source;
+    public Decorator(Sourceable source){
+        this.source = source;
+    }
+    @Override
+    public void method(){
+        //装饰前
+        source.method();
+        //装饰后
+    }
+}
+public class DecoratorTest{
+    @Test
+    public void testDecorator(){
+        Sourceable source = new Source();
+        Sourceable decorator = new Decorator(source);
+        decorator.method();
+    }
+}
+```
+
+## 代理模式
+
+代理模式跟装饰模式稍微有区别
+代理模式，是只用使用代理类，调用时不用处理被代理类
+
+```java
+public class Proxy implements Sourceable{
+    private Sourceable source;
+    public Proxy(){
+        source = new Source();
+    }
+    @Override
+    public void method(){
+        // 代理类前
+        source.method();
+        // 代理后
+    }
+}
+public class ProxyTest{
+    @Test
+    public void testProxy(){
+        Sourceable source = new Proxy();
+        source.method();
+    }
+}
+```
+
+## 外观模式（门面模式）
+
+外观模式：对外暴露统一接口，隐藏内部细节
+
+```java
+public class Cpu{
+    public void start(){}
+    public void shutdown(){}
+}
+public class Memory{
+    public void start(){}
+    public void shutdown(){}
+}
+public class Disk{
+    public void start(){}
+    public void shutdown(){}
+}
+public class ComputerFacade{
+    Cpu cpu;
+    Memory memory;
+    Disk disk;
+    public ComputerFacade(){
+        cput = new Cpu();
+        memory = new Memory();
+        disk = new Disk();
+    }
+    public void start(){
+        cpu.start();
+        memory.start();
+        disk.start();
+    }
+    public void shutdown(){
+        cpu.shutdown();
+        memory.shutdown();
+        disk.shutdown();
+    }
+}
+public class FacadeTest{
+    @Test
+    public void testFacade(){
+        ComputerFacade computer = new ComputerFacade();
+        computer.start();
+        computer.shutdown();
+    }
 }
 ```
 

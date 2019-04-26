@@ -4,4 +4,70 @@
     padding: 0;
     list-style: none;
 }
+#app{
+    width: 1600px;
+    height: 880px;
+    margin: 20px auto;
+}
 /*  通用   */
+
+/* 页头 */
+.header{
+    height: 100px;
+    border: 1px solid black;
+
+    display: flex;
+    justify-content: space-between;
+}
+.header .header-left{
+    height: 100px;
+    width: 100px;
+    /*background-color: red;*/
+}
+.header .header-left img{
+    height: 100px;
+    width: 100px;
+}
+.header .header-right{
+    height: 100px;
+    width: 100px;
+    /*background-color: red;*/
+    line-height: 100px;
+    display: flex;
+    justify-content: center;
+}
+/* 页头 */
+
+/* 内容区 */
+.content{
+    height: 600px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+}
+.content .content-left{
+    height: 600px;
+    width: 200px;
+    border: 1px solid black;
+}
+.content .content-left ul{
+    margin: 10px auto;
+    /*border: 1px solid black;*/
+    text-align: center;
+}
+.content .content-left ul li{
+    margin-bottom: 10px;
+}
+.content .content-right{
+    height: 600px;
+    width: 1400px;
+    /*border: 1px solid black;*/
+}
+/* 内容区 */
+
+/* 页脚 */
+.footer{
+    height: 100px;
+    border: 1px solid black;
+}
+/* 页脚 */
