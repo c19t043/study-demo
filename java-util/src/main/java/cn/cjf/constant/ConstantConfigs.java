@@ -1,4 +1,4 @@
-package cn.cjf.common.config;
+package cn.cjf.constant;
 
 
 /**
@@ -7,7 +7,7 @@ package cn.cjf.common.config;
  * @author CJF
  * @date 2018-10-12
  */
-public interface ConstantConfig {
+public interface ConstantConfigs {
     /**
      * map初始化容量
      */

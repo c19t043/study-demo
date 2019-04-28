@@ -1,4 +1,4 @@
-package cn.cjf.common.util;
+package cn.cjf.util;
 
 
 import org.springframework.util.StringUtils;

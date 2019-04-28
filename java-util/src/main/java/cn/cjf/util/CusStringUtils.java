@@ -1,13 +1,24 @@
 package cn.cjf.util;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 
+import java.util.Date;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static java.util.regex.Pattern.compile;
 
 public class CusStringUtils extends StringUtils {
+
+    /**
+     * 创建UUID
+     */
+    public static String makeUUID() {
+        StringBuffer s = new StringBuffer(DateFormatUtils.format(new Date(),"yyyyMMddHHmmss"));
+        return s.append((new Random().nextInt(900) + 100)).toString();
+    }
 
     public static int toInt(String str) {
         if (StringUtils.isEmpty(str)) {

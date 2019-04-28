@@ -211,6 +211,76 @@ public class FacadeTest{
 ```
 
 
+## 桥接模式
+
+桥接模式：将抽象类与实现类进行解耦，使二者可以独立变化
+
+```java
+public interface Sourceable{
+    void method();
+}
+public class Sub1 implements Sourceable{
+    @Override
+    public void method(){}
+}
+public class Sub2 implements Sourceable{
+    @Override
+    public void method(){}
+}
+
+public class Bridge{
+    private Sourceable source;
+    public void setSource(Sourceable source){
+        this.source = souce;
+    }
+    pubilc void method();
+}
+
+public class TestBridge{
+    @Test
+    public void testBridge(){
+        Bridge bridge = new Bridge();
+        Sourceable sub1 = new Sub1();
+        bridge.setSource(sub1);
+        bridge.method();
+    }
+}
+```
+
+## 组合模式
+
+组合模式又叫部分-整体模式，在处理类似树形结构时比较方便
+
+```java
+public class Node{
+    private String name;
+    private List<Node> subNodes;
+    public void add(Node node){
+        subNodes.add(node);
+    }
+    public void remove(Node node){
+        subNodes.remove(node);
+    }
+    public List<Node> getChildren(){
+        return subNodes;
+    }
+}
+public class TestNode{
+    @Test
+    public void testNode(){
+        Node parent = new Node();
+        Node sub1 = new Node();
+        Node sub2 = new Node();
+        parent.add(sub1);
+        parent.add(sub2);
+
+        List<Node> subNodes = parent.getChildren();
+    }
+}
+```
+
+
+
 ## 创建型模式
 
 以下为创建型模式

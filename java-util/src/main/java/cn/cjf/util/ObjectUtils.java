@@ -6,6 +6,7 @@ import org.springframework.util.ReflectionUtils;
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,37 @@ public class ObjectUtils {
             list.forEach(bo -> {
                 try {
                     map.put((Long) pd.getReadMethod().invoke(bo, emptyArr), bo);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (IntrospectionException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+
+    public static <T> Map<Long, List<T>> transformObjectCollection2MapValueList(List<T> list, String fieldKeyName) {
+        Map<Long, List<T>> map = new HashMap<>(list.size());
+        if (list.isEmpty()) {
+            return map;
+        }
+        T t = list.get(0);
+        Class<?> clazz = t.getClass();
+        try {
+            PropertyDescriptor pd = new PropertyDescriptor(fieldKeyName, clazz);
+            Object[] emptyArr = new Object[0];
+            list.forEach(bo -> {
+                try {
+                    Long id = (Long) pd.getReadMethod().invoke(bo, emptyArr);
+                    List<T> dataList;
+                    if(map.containsKey(id)){
+                        dataList = map.get(id);
+                    }else{
+                        dataList = new ArrayList<>();
+                        map.put(id,dataList);
+                    }
+                    dataList.add(bo);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
