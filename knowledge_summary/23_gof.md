@@ -17,12 +17,113 @@
 + 合成复用原则
     尽量少时用继承，而使用合成/聚合的方式
 
+## 关系模式
+
+关系模式分为4类：父类与子类，类与类，类的状态，中间类
+
+### 策略模式
+
+策略模式：定义了一系列算法，并算法封装起来，使不同算法之间可以相互替换，
+且算法的变化不会影响使用算法的客户
+
+一系列算法，实现同一接口，通过一定规则，可以使算法切换不同算法
+
+```java
+public interface Calculate{
+    int calculate(String exp);
+}
+public abstrac class AbstractCalculate{
+    public int[] split(String exp,String opt){
+        String[] arr = exp.split(opt);
+        return new int[]{Integer.parseInt(arr[0]),Integer.parseInt(arr[1])};
+    }
+}
+public class Plus extends AbstractCalculate implements Calculate{
+    public int calculate(String exp){
+        int[] arr = split(exp,"\\+");
+        return arr[0]+arr[1];
+    }
+}
+public class Minus extends AbstractCalculate implements Calculate{
+    public int calculate(String exp){
+        int[] arr = split(exp,"-");
+        return arr[0]-arr[1];
+    }
+}
+public class Multiply extends AbstractCalculate implements Calculate{
+    public int calculate(String exp){
+        int[] arr = split(exp,"\\*");
+        return arr[0]*arr[1];
+    }
+}
+public class StrategyTest{
+    @Test
+    public void testStrategy(){
+        String exp = "2+8";
+        Calculate cal = new Plus();
+        int val = cal.calculate(exp);
+    }
+}
+```
+
+### 模板方法模式
+
+模板方法模式:抽象类中有一个主方法，定义1到多个辅助抽象方法，
+主方法完成算法主体逻辑，抽象方法由子类决定具体实现
+
+主方法完成主体公共逻辑代码，将主体不同逻辑实现的部分抽取为抽象方法
+
+```java
+public abstract class AbstractCalculate{
+
+    public int calcuate(String exp){
+        int[] arr = split(exp);
+        return calculate(arr[0],arr[1]);
+    }
+
+    public abstract int[] split(String exp);
+
+
+    public absract int calculate(int num1,int nun2);
+}
+
+public class Plus extends AbstractCalculate{
+    @Override
+    public int[] split(String exp){
+        String[] arr = exp.split("\\+");
+        return new int[]{Integer.parseInt(arr[0])，Integer.parseInt(arr[1])}
+    }
+
+    @Override
+    public int calculate(int num1,int num2){
+        return num1+num2;
+    }
+}
+
+public class Minus extends AbstractCalculate{
+    @Override
+    public int[] split(String exp){
+        String[] arr = exp.split("-");
+        return new int[]{Integer.parseInt(arr[0])，Integer.parseInt(arr[1])}
+    }
+
+    @Override
+    public int calculate(int num1,int num2){
+        return num1-num2;
+    }
+}
+public class TemplateMethodTest{
+    @Test
+    public void testTemplateMethod(){
+        String exp = "2+8";
+        AbstractCalculate cal = new Plus();
+        int result = cal.calculate(exp);
+    }
+}
+```
+
+
 ## 结构型模式
-
-
-
-
-
 
 ## 适配器模式
 
@@ -279,6 +380,49 @@ public class TestNode{
 }
 ```
 
+
+## 享元模式
+
+享元模式：实现对象的共享，减少内存开销
+
+```java
+#数据库连接池
+public interface Connection{
+
+}
+
+public class DriverManager{
+    public static Connection getConnection(String url,String username,String password);
+}
+
+public class ConnectionPool{
+    private List<Connection> pool;
+    private String url;
+    private String username;
+    private String password;
+
+    public ConnectionPool(){
+        private int poolSize = 10;
+        Stream.iterate(0,t->t).limit(10).forEach(t->{
+            Connection c = DriverManager.getConnection(url,username,password);
+            pool.add(c);
+        });
+    }
+
+    public Connection getConnection(){
+       if(pool.isEmpty){
+           Connection c = DriverManager.getConnection(url,username,password);
+           pool.add(c);
+       }
+       return pool.get(0);
+    }
+
+    public void release(Connection connection){
+        pool.add(connection);
+    }
+}
+
+```
 
 
 ## 创建型模式

@@ -12,6 +12,32 @@ public class DateUtils {
     public static final String DATE_PATTERN_SPECIAL_1 = "yyyy/MM/dd HH:mm";
     public static final String DATE_PATTERN_DATE = "yyyy-MM-dd";
 
+    public static void main(String[] args) {
+        System.out.println(getOverplusDayFromInTimeStamp(System.currentTimeMillis() + 24 * 60 * 60 * 1000 * 7 + 1));
+    }
+
+    /**
+     * 根据传入的时间戳计算到现在剩余多少天
+     */
+    public static int getOverplusDayFromInTimeStamp(long timestamp) {
+        long currentTimeMillis = System.currentTimeMillis();
+        long oneDayTimestamp = 24 * 60 * 60 * 1000;
+        if (currentTimeMillis >= timestamp) {
+            // 过期
+            return 0;
+        } else if (oneDayTimestamp > (timestamp - currentTimeMillis)) {
+            //少于一天返回一天
+            return 1;
+        } else {
+            long overplusDay = (timestamp - currentTimeMillis) / oneDayTimestamp;
+            long overplusMinute = (timestamp - currentTimeMillis) % oneDayTimestamp;
+            if (overplusMinute > 0) {
+                overplusDay++;
+            }
+            return (int) overplusDay;
+        }
+    }
+
     public static Date getZeroDate() {
         Date date = new Date(0);
         return date;
