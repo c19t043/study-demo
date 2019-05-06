@@ -123,9 +123,69 @@ public class TemplateMethodTest{
 ```
 
 
+### 观察者模式
+
+观察者模式类似于邮件订阅，当被订阅的内容有更新，可及时通知订阅者
+
+```java
+public interface Observer{
+    void update();
+}
+public class Observer1 implements Observer{
+    public void update(){
+        System.out.println("observer1 receive");
+    }
+}
+public class Observer2 implements Observer{
+    public void update(){
+        System.out.println("observer1 receive");
+    }
+}
+public interface Subject{
+    /* 添加观察者 */
+    void add(Observer observer);
+    /* 删除观察者 */
+    void del(Observer observer);
+    /* 通知所有观察者 */
+    void notifyObservers();
+    /* 自定义操作 */
+    void operate();
+}
+public abstract AbstractSubject implements Subject{
+    private List<Observer> observers = new ArrayList<>();
+
+    public void  add(Observer observer){
+        observers.add(observer);
+    }
+    public void  del(Observer observer){
+        observers.remove(observer);
+    }
+    public void  notifyObservers(){
+        observers.foreach(observer -> observer.update());
+    }
+}
+public class MySubject extends AbstractSubject{
+    public void operate(){
+        System.out.println("mysubject operate");
+        this.notifyObservers();
+    }
+}
+public class TestObserver{
+    @Test
+    public void testObserver(){
+        MySubject mySubject = new MySubject();
+        mySubject.add(new Observer1());
+        mySubject.add(new Observer2());
+        mySubject.operate();
+    }
+}
+```
+
+
+
 ## 结构型模式
 
-## 适配器模式
+### 适配器模式
 
 将某个类的接口转为换客户期望的另外一个接口后使用，目的是消除由接口不匹配造成的类的兼容性问题
 

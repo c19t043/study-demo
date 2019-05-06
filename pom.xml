@@ -38,6 +38,7 @@
         <module>shiro-demo3</module>
         <module>education-demo</module>
         <module>base-service</module>
+        <module>pay-demo</module>
     </modules>
 
     <properties>
