@@ -32,7 +32,7 @@
 public interface Calculate{
     int calculate(String exp);
 }
-public abstrac class AbstractCalculate{
+public abstract class AbstractCalculate{
     public int[] split(String exp,String opt){
         String[] arr = exp.split(opt);
         return new int[]{Integer.parseInt(arr[0]),Integer.parseInt(arr[1])};
@@ -84,14 +84,14 @@ public abstract class AbstractCalculate{
     public abstract int[] split(String exp);
 
 
-    public absract int calculate(int num1,int nun2);
+    public abstract int calculate(int num1,int nun2);
 }
 
 public class Plus extends AbstractCalculate{
     @Override
     public int[] split(String exp){
         String[] arr = exp.split("\\+");
-        return new int[]{Integer.parseInt(arr[0])，Integer.parseInt(arr[1])}
+        return new int[]{Integer.parseInt(arr[0]),Integer.parseInt(arr[1])};
     }
 
     @Override
@@ -104,7 +104,7 @@ public class Minus extends AbstractCalculate{
     @Override
     public int[] split(String exp){
         String[] arr = exp.split("-");
-        return new int[]{Integer.parseInt(arr[0])，Integer.parseInt(arr[1])}
+        return new int[]{Integer.parseInt(arr[0]),Integer.parseInt(arr[1])};
     }
 
     @Override
@@ -151,7 +151,7 @@ public interface Subject{
     /* 自定义操作 */
     void operate();
 }
-public abstract AbstractSubject implements Subject{
+public abstract class AbstractSubject implements Subject{
     private List<Observer> observers = new ArrayList<>();
 
     public void  add(Observer observer){
@@ -181,7 +181,75 @@ public class TestObserver{
 }
 ```
 
+### 迭代器模式
 
+迭代器模式，意思是顺序访问集合中的元素
+
+```java
+public interface Iterator{
+    Object previous();
+    Object next();
+    boolean hasNext();
+}
+public interface Collection{
+    Iterator iterator();
+    
+    void get(int index);
+    
+    int size();
+}
+
+public class DefaultIterator implements Iterator{
+   private Collection collection;
+   private int pos = -1;
+   
+   public DefaultIterator(Collection collection){
+       this.collection = collection;
+   }
+   
+   public Object previous(){
+       if(pos>0){
+           pos--;
+       }
+       return collection.get(pos);
+   }
+   public Object next(){
+       if(pos<collection.size()-1){
+           pos++;
+       }
+       return collection.get(pos);
+   }
+   public boolean hasNext(){
+       if(pox < collection.size() - 1){
+           return true;
+       }else{
+           return false;
+       }
+   }
+}
+public class DefaultCollection implements Collection{
+      private String[] arr = {"A","B","C","D","E"};
+      public Iterator iterator(){
+          return new DefaultIterator(this);
+      }
+      public void get(int index){
+          return arr[index];
+      }
+      public int size(){
+          return arr.length;
+      }
+}
+public class TestIterator{
+    @Test
+    public void testIterator(){
+        Collection collection = new DefaultCollection();
+        Iterator iterator = collection.iterator();
+        if(iterator.hasNext()){
+            Object obj = iterator.next();
+        }
+    }
+}
+```
 
 ## 结构型模式
 
@@ -252,7 +320,7 @@ public class Adapter implements TargetInterface{
 在类的适配器模式上改造
 
 ```java
-public abstract AbstractTarget implements TargetInterface{
+public abstract class AbstractTarget implements TargetInterface{
     void method1(){}
     void method2(){}
 }
@@ -394,7 +462,7 @@ public class Bridge{
     public void setSource(Sourceable source){
         this.source = souce;
     }
-    pubilc void method();
+    public void method() {}
 }
 
 public class TestBridge{
@@ -445,8 +513,9 @@ public class TestNode{
 
 享元模式：实现对象的共享，减少内存开销
 
+数据库连接池
 ```java
-#数据库连接池
+
 public interface Connection{
 
 }
@@ -580,11 +649,11 @@ public class SenderFactory{
     public Sender produceEmailSender(){
         return new EmailSender();
     }
-    pubilc Sender produceSmsSender(){
+    public Sender produceSmsSender(){
         return new SmsSender();
     }
 }
-public class FactoryTest(){
+public class FactoryTest{
     @Test
     public void testProduce(){
         SenderFactory  factory = new SenderFactory();
@@ -603,11 +672,11 @@ public class SenderFactory{
     public static Sender produceEmailSender(){
         return new EmailSender();
     }
-    pubilc static Sender produceSmsSender(){
+    public static Sender produceSmsSender(){
         return new SmsSender();
     }
 }
-public class FactoryTest(){
+public class FactoryTest{
     @Test
     public void testProduce(){
         Sender sender = SenderFactory.produceEmailSender();
@@ -668,7 +737,7 @@ public class MicrosoftComputer implements Computer{
     }
 }
 
-public interface class Factory{
+public interface Factory{
     SenderFactory getSenderFactory(String typeName);
     ComputerFactory getComputerFactory(String typeName);
 }
@@ -719,7 +788,7 @@ public class FactoryProducerTest{
     public void testAbstractFactory(){
         Factory factory = FactoryProdcuer.getFactory("computerFactory");
         Computer computer = factory.getComputer("microsoftComputer");
-        Assert.assertTrue(computer instance MicrosoftComputer);
+        Assert.assertTrue(computer instanceof MicrosoftComputer);
         computer.calculate();
     }
 }
@@ -742,7 +811,7 @@ public class FactoryProducerTest{
 
 客户可点素食套餐（meal），鸡肉套餐
 
-```
+```java
 public interface Packing{
     String pack();
 }
@@ -868,7 +937,7 @@ public class MealBuilderTest{
 
 ```java
 public class Singleton{
-    private static class Singleton INSTANCE = new Singleton();
+    private static Singleton INSTANCE = new Singleton();
 
     private Singleton(){}
 
@@ -882,7 +951,7 @@ public class Singleton{
 
 ```java
 public class Singleton{
-    private static class Singleton INSTANCE;
+    private static Singleton INSTANCE;
 
     private Singleton(){}
 
@@ -900,7 +969,7 @@ public class Singleton{
 
 ```java
 public class Singleton{
-    private static class Singleton INSTANCE;
+    private static Singleton INSTANCE;
 
     private Singleton(){}
 
@@ -917,7 +986,7 @@ public class Singleton{
 
 ```java
 public class Singleton{
-    private static class Singleton INSTANCE;
+    private static Singleton INSTANCE;
 
     private Singleton(){}
 
@@ -934,7 +1003,7 @@ public class Singleton{
 
 ```java
 public class Singleton{
-    private static class Singleton INSTANCE;
+    private static Singleton INSTANCE;
 
     private Singleton(){}
 
@@ -953,7 +1022,7 @@ public class Singleton{
 
 ```java
 public class Singleton{
-    private static volatile class Singleton INSTANCE;
+    private static volatile Singleton INSTANCE;
 
     private Singleton(){}
 
