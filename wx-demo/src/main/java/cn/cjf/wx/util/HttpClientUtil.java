@@ -1,4 +1,4 @@
-package cn.cjf.util;
+package cn.cjf.wx.util;
 
 
 import org.apache.commons.lang3.StringUtils;
@@ -28,14 +28,14 @@ import java.util.Map;
 
 /**
  * http  工具类
+ *
  */
 public class HttpClientUtil {
     private static Logger logger = LoggerFactory.getLogger(HttpClientUtil.class);
-    private static final CloseableHttpClient httpclient = HttpClientBuilder.create().build();
+    private static final CloseableHttpClient httpclient = HttpClients.createDefault();
 
     /**
      * 发送HttpGet请求
-     *
      * @param url
      * @return
      */
@@ -50,7 +50,7 @@ public class HttpClientUtil {
         }
         String result = null;
         try {
-            if (null == response) {
+            if(null == response){
                 return null;
             }
             HttpEntity entity = response.getEntity();
@@ -71,7 +71,6 @@ public class HttpClientUtil {
 
     /**
      * 发送HttpPost请求，参数为map
-     *
      * @param url
      * @param map
      * @return
@@ -93,14 +92,14 @@ public class HttpClientUtil {
 
         String result = null;
         try {
-            if (null == response) {
+            if(null == response){
                 return null;
             }
             HttpEntity entity1 = response.getEntity();
             result = EntityUtils.toString(entity1);
         } catch (ParseException | IOException e) {
             e.printStackTrace();
-        } finally {
+        }finally {
             try {
                 response.close();
             } catch (IOException e) {
@@ -112,7 +111,6 @@ public class HttpClientUtil {
 
     /**
      * 发送不带参数的HttpPost请求
-     *
      * @param url
      * @return
      */
@@ -204,7 +202,6 @@ public class HttpClientUtil {
         }
         return null;
     }
-
     /**
      * Post请求
      */

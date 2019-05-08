@@ -553,6 +553,329 @@ public class ConnectionPool{
 
 ```
 
+### 责任链模式
+
+责任链模式：有多个对象，每个对象都持有下个对象的引用，这样就形成了一条链，
+请求在这条链上传递，直到某个对象决定处理这个请求
+
+```java
+public interface Handle{
+  void operate();  
+}
+public abstract class AbstractHandle{
+    Handle handle;
+    public void setHandle(Handle handle){
+        this.handle = handle;
+    }
+    public Handle getHandle(){
+        return handle;
+    }
+}
+public class DefaultHandle extends AbstractHandle implements Handle{
+    public void operate(){
+        /*满足条件就执行,否则交由下个handle执行*/
+        getHandle().operate();
+    }
+}
+public class TestHandle{
+    @Test
+    public void testHandle(){
+        DefaultHandle handle1 = new DefaultHandle();
+        DefaultHandle handle2 = new DefaultHandle();
+        handle1.setHandle(handle1);
+        handle1.operate();
+    }
+}
+```
+
+### 命令模式
+
+命令模式：实现命令发出者与命令执行者之间解耦，实现请求和执行分开
+
+类似于，司令官发出命令，小兵执行命令
+
+```java
+public interface Command{
+    void execute();
+}
+public class DefaultCommand implements Command{
+    Receiver receiver;
+    
+    public DefaultCommand(Receiver receiver){
+        this.receiver = receiver;
+    }
+    
+    public void execute(){
+        receiver.execute();
+    }
+}
+public class Invoker{
+    Command command;
+    
+    public Invoker(Command command){
+        this.command = command;
+    }
+    
+    public void execute(){
+        command.execute();
+    }
+}
+public class Receiver{
+    public void execute(){
+        
+    }
+}
+public class TestCommand{
+    @Test
+    public void testCommand(){
+        Command command = new DefaultCommand();
+        Invoker invoker = new Invoker(command);
+        Receiver receiver = new Receiver(command);
+        invoker.execute();
+        receiver.execute();
+    }
+}
+```
+
+### 备忘录模式
+
+备忘录模式：类似于备份，
+如有对象A,将当前时间点的对象数据，备份在内存中，过去某个时间点点，
+恢复备份时间点的数据
+
+```java
+public class Memory{
+    private String value;
+    
+    public Memory(String value){
+        this.value = value;
+    }
+    public String getValue(){
+        return value;
+    }
+}
+public class Original{
+    private String value;
+    
+    public void setValue(String value){
+        this.value = value;
+    }
+    public String getValue(){
+        return value;
+    }
+    
+    public Memory createMemory(){
+        return new Memory(value);
+    }
+    
+    public void restoreMemory(Memory memory){
+        setValue(memory.getValue());
+    }
+}
+public class Storage{
+    Memory memory;
+    public void setMemory(Memory memory){
+        this.memory = memory;
+    }
+    public Memory getMemory(){
+        return memory;
+    }
+}
+public class TestMemory{
+    @Test
+    public void testMemory(){
+        Original original = new Original();
+        original.setValue("one");
+        
+        Memory memory =original.createMemory();
+        Storage storage = new Storage();
+        storage.setMemory(memory);
+        
+        original.setValue("two");
+        
+        original.restoreMemory(storage.getMemory());
+        
+        original.getValue();
+    }
+}
+```
+
+
+
+### 状态模式
+
+状态模式：当对象的状态改变，其行为也随之改变，即一种状态对应一种行为
+
+```java
+public class State{
+    private int state;
+    public void setState(int state){
+        this.state = state;
+    }
+    public int getState(){
+        return state;
+    }
+    public void method1(){}
+    
+    public void method2(){}
+}
+public class Context{
+    private State state;
+    public void setState(State state){
+        this.state = state;       
+    }
+    public State getState(){
+        return state;
+    }
+    public void execute(){
+        if(state.getState() == 1){
+            state.method1();
+        }else if(getState() == 2){
+            state.method2();
+        }
+    }
+}
+public class TestState{
+    @Test
+    public void testState(){
+        Context context = new Context();
+        context.setState(new State());
+        context.execute();
+    }
+}
+```
+
+### 访问者模式
+
+访问者模式：是分离对象数据结构与算法，通过添加新的算法来增加新的功能，
+
+适用于，数据结构稳定的场景
+
+```java
+public interface Visitor{
+    void visit(Subject subject);
+}
+public class DefaultVisitor implements Visitor{
+    public void visit(Subject subject){
+        subject.getSubject();
+    }
+}
+public interface Subject{
+    void accept(Visitor visitor);
+    String getSubject();
+}
+public class DefaultSubject implements Subject{
+    public void accept(Visitor visitor){
+        visitor.visit(this);
+    }
+    public String getSubject(){
+        return "default subject";
+    }
+}
+public class TestVisitor{
+    @Test
+    public void testVisitor(){
+        Subject subject = new DefaultSubject();
+        Visitor visitor = new DefaultVisitor();
+        subject.accept(visitor);
+    }
+}
+```
+
+### 中介者模式
+
+中介者模式：是有两个对象A,B，A,B对象彼此依赖，当修改对象A时，对象B也需要修改
+为了解决对象A,B之间的耦合性，利用第三方Mediator来协调关系
+
+```java
+public interface Mediator{
+    void createMediator();
+    void workAll();
+}
+public class DefaultMediator implements Mediator{
+    private User userA;
+    private User userB;
+    private 
+    public void createMediator(){
+        userA = new UserA(this);
+        userB = new UserB(this);
+    }
+    public void workAll(){
+        userA.work();
+        userB.work();
+    }
+}
+public abstract class User{
+    private Mediator mediator;
+    public User(Mediator mediator){
+        this.mediator = mediator;
+    }
+    public abstract void work();
+}
+public class UserA extends User{
+    public UserA(Mediator mediator){
+        super(mediator);
+    }
+    public void work(){}
+}
+public class UserB extends User{
+    public UserB(Mediator mediator){
+        super(mediator);
+    }
+    public void work(){}
+}
+public class TestMediator{
+    @Test
+    public void testMediator(){
+        Mediator mediator = new DefaultMediator();
+        mediator.createMediator();
+        mediator.workAll();
+    }
+}
+```
+
+### 解析器模式
+
+解析器模式：顾名思义，是用来解析某种表达式
+
+```java
+public class Context{
+    private int num1;
+    private int num2;
+    public Context(int num1,int num2){
+        this.num1 = num1;
+        this.num2 = num2;
+    }
+    public int getNum1(){
+        return num1;
+    }
+    public int getNum2(){
+        return num2;
+    }
+}
+public interface Expression{
+    int interpret(Context context);
+}
+public class Plus implements Expression{
+    public int interpret(Context context){
+        return context.getNum1()+context.getNum2();
+    }
+}
+public class Minus implements Expression{
+    public int interpret(Context context){
+        return context.getNum1()-context.getNum2();
+    }
+}
+public class TestInterpret{
+    @Test
+    public void testInterpret(){
+        int result = new Plus(
+                new Context(9,
+                new Minus(new Context(9,7))));
+    }
+}
+```
+
 
 ## 创建型模式
 
