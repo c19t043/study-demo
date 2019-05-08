@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="static/css/index.css">
+    <link rel="stylesheet" href="resource/css/index.css">
 </head>
 <body>
 <div id="app">
     <!--页头区-->
     <div class="header">
         <!--logo-->
-        <div class="header-left"><img src="static/image/logo.jpg"></div>
+        <div class="header-left"><img src="resource/image/logo.jpg"></div>
         <!--登录人-->
         <div class="header-right"><span>登录人</span></div>
     </div>
@@ -20,15 +20,23 @@
         <div class="content-left">
             <!--树形结构菜单-->
             <ul>
-                <li><a href="#">账户管理</a></li>
-                <li><a href="#">角色管理</a></li>
-                <li><a href="#">权限管理</a></li>
+                <li>
+                    <router-link to="/account">账户管理</router-link>
+                </li>
+                <li>
+                    <router-link to="/role">角色管理</router-link>
+                </li>
+                <li>
+                    <router-link to="/privilege">权限管理</router-link>
+                </li>
             </ul>
         </div>
         <!--内容栏-->
         <div class="content-right">
             <!--内容-->
-            <div>内容</div>
+            <div>
+                <router-view></router-view>
+            </div>
         </div>
     </div>
     <!--页脚区-->
@@ -37,7 +45,23 @@
     </div>
 </div>
 
-<script src="static/lib/vue/v2.6.10/vue.js"></script>
-<script src="static/js/index.js"></script>
+<template id="accountManager">
+    <div>
+        账号管理
+    </div>
+</template>
+<template id="roleManager">
+    <div>
+        角色管理
+    </div>
+</template>
+<template id="privilegeManager">
+    <div>
+        权限管理
+    </div>
+</template>
+<script src="resource/lib/vue/v2.6.10/vue.js"></script>
+<script src="resource/lib/vue-router/v3.0.6/vue-router.js"></script>
+<script src="resource/js/index.js"></script>
 </body>
 </html>

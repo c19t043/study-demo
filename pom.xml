@@ -29,7 +29,6 @@
         <module>shiro-demo</module>
         <module>js-demo</module>
         <module>platform-demo</module>
-        <module>js-util</module>
         <module>java-util</module>
         <module>knowledge_summary</module>
         <module>shiro-demo2</module>

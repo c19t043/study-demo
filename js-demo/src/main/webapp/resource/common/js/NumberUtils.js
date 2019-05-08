@@ -10,17 +10,32 @@ var NumberUtils = function () {
  * @param number 金额(分)
  * @returns {string} 12 -> 0.12; -12 -> -0.12
  */
-NumberUtils.retain2PositionDecimal = function (number) {
-    if (number === 0) {
+NumberUtils.retain2PositionDecimal = function (number, handledFlag) {
+    // 如果为0，或false等条件
+    if (number === 0 || !number) {
         return "0.00";
     }
-    var yuan = number / 100;
-    var fen = number % 100;
-    if (fen < 0) {
-        fen = -fen;
+    // 如果已经有小数点,不改变
+    if (number.toString().indexOf(".") !== -1) {
+        return number;
     }
-    if (fen === 0) {
-        fen = "00";
+    if (handledFlag && number !== 0) {
+        return number + ".00";
+    }else{
+        if (!(number instanceof Number)) {
+            number = parseInt(number);
+        }
+        var yuan = Math.floor(number / 100);
+        var fen = number % 100;
+        if (fen < 0) {
+            fen = -fen;
+        }
+        if (fen < 10) {
+            fen = "0" + fen;
+        }
+        if (fen === 0) {
+            fen = "00";
+        }
     }
     return yuan + "." + fen;
 };
