@@ -8,7 +8,7 @@ const routes = [
     {path: '/account', component: account},
     {path: '/role', component: role},
     {path: '/privilege', component: privilege},
-    {path: '/', redirect:"/account"},
+    {path: '/', redirect: "/account"}
 ];
 
 // 创建router实例
@@ -17,6 +17,7 @@ const router = new VueRouter({
 });
 
 new Vue({
-    el:"#app",
+    el: "#app",
     router
 });
+
