@@ -1,0 +1,48 @@
+#app{
+	margin: 10px 0px;
+}
+
+/* header start */
+.p-header > div:first-child > img{
+	height: 50px;
+	width: 100px;
+}
+/* header end */
+
+/* content start */
+
+.panel-body{
+	padding: 0;
+}
+
+.p-content{
+	/* border-top: 1px solid#CCCCCC;
+	border-bottom: 1px solid#CCCCCC; */
+	position: relative;
+}
+
+.p-content > div{
+	height: 800px;
+}
+
+.p-content > div:first-child{
+	border-right: 1px solid #CCCCCC;
+	
+}
+
+.p-content .list-group{
+	position: absolute;
+	left: 40px;
+	top: 20px;
+}
+
+.p-content > div:nth-child(2){
+	padding: 20px;
+}
+
+.p-content > div:nth-child(2) > iframe{
+	height: 100%;
+	border: none;
+	overflow-x: hidden;
+}
+/* content end */
