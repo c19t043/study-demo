@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../../lib/bootstrap/v3.3.7/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/common.css"/>
+    <title>platform</title>
+</head>
+<body>
+<div id="account-add" class="panel panel-default col-lg-12">
+    <div class="panel-body col-lg-6 col-lg-offset-4">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label for="username" class="col-lg-2 text-right">用户名</label>
+                <div id="col-lg-4">
+                    <input type="text" id="username" name="username" placeholder="输入用户名" v-model="newAccount.username">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-lg-2 text-right">密码</label>
+                <div id="col-lg-4">
+                    <input type="text" id="password" name="password" placeholder="输入密码" v-model="newAccount.password">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nickname" class="col-lg-2 text-right">昵称</label>
+                <div id="col-lg-4">
+                    <input type="text" id="nickname" name="nickname" placeholder="输入昵称" v-model="newAccount.nickname">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-4 col-lg-offset-2">
+                    <button type="button" class="btn btn-primary" @click="submit()">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../lib/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../lib/bootstrap/v3.3.7/js/bootstrap.js"></script>
+<script src="../../../lib/vue/v2.6.10/vue.js"></script>
+<script src="../../../lib/vue-router/v3.0.6/vue-router.js"></script>
+<script>
+    new Vue({
+        el: "#account-add",
+        data: {
+            newAccount: {
+                id: '',
+                username: '',
+                password: '',
+                nickname: ''
+            }
+        },
+        mounted(){
+            this.init();
+        },
+        methods: {
+            /*  初始化*/
+            init() {
+                console.log(localStorage.currentAccount)
+                if (localStorage.currentAccount && localStorage.currentAccount !== 'undefined' && localStorage.currentAccount !== 'null') {
+                    let currentAccount = localStorage.currentAccount;
+                    this.newAccount = JSON.parse(currentAccount);
+
+                    localStorage.currentAccount = null;
+                }
+            },
+            /* 提交表单 */
+            submit() {
+                let accountList = JSON.parse(localStorage.accountList);
+
+                if(this.newAccount.id){
+                    accountList.some((account, i) => {
+                        if (account.id === this.newAccount.id) {
+                            // account = this.newAccount;
+                            accountList.splice(i,1,this.newAccount);
+                            return true;
+                        }
+                    });
+                }else{
+                    let id = accountList[accountList.length - 1].id;
+                    this.newAccount.id = parseInt(id) + 1;
+
+                    accountList.push(this.newAccount);
+                }
+
+                localStorage.accountList = JSON.stringify(accountList);
+
+                window.location.href = "account.html";
+            }
+
+        }
+    })
+</script>
+</html>

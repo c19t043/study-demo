@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-		<link rel="stylesheet" type="text/css" href="../../../lib/bootstrap/v3.3.7/css/bootstrap.css" />
-		<title>platform</title>
-		<style>
-			.panel-body {
-				padding: 0;
-			}
-		</style>
-	</head>
-	<body>
-		<div id="account-add" class="panel panel-default col-lg-12">
+const account_add = {
+    template: `
+		<div class="panel panel-default col-lg-12">
 			<div class="panel-body col-lg-6 col-lg-offset-4">
 				<form class="form-horizontal">
 					<div class="form-group">
@@ -42,9 +29,5 @@
 				</form>
 			</div>
 		</div>
-	</body>
-	<script src="../../../lib/jquery/jquery-1.9.1.min.js"></script>
-	<script src="../../../lib/bootstrap/v3.3.7/js/bootstrap.js"></script>
-	<script src="../../../lib/vue/v2.6.10/vue.js"></script>
-	<script src="../../../lib/vue-router/v3.0.6/vue-router.js"></script>
-</html>
+	`
+}

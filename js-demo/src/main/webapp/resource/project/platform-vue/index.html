@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../lib/bootstrap/v3.3.7/css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/index.css">
+    <title>platform</title>
+</head>
+<body>
+<div id="app" class="container col-lg-12">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row p-header">
+                <div class="col-lg-2">
+                    <img src="img/logo.jpg"/>
+                </div>
+                <div class="col-lg-2 col-lg-offset-8">
+                    <label>username</label>
+                    <a class="btn btn-primary">退出</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row p-content">
+                <div class="col-lg-1">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <router-link :to="{name:'account'}" @click="getAccountList()">账户管理</router-link>
+                        </li>
+                        <li class="list-group-item">
+                            <router-link :to="{name:'role'}" @click="getRoleList()">角色管理</router-link>
+                        </li>
+                        <li class="list-group-item">
+                            <router-link :to="{name:'privilege'}" @click="getPrivilegeList()">权限管理</router-link>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-11">
+                    <router-view class="col-lg-12"></router-view>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer"></div>
+    </div>
+</div>
+</body>
+<script src="../../lib/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../lib/bootstrap/v3.3.7/js/bootstrap.js"></script>
+<script src="../../lib/vue/v2.6.10/vue.js"></script>
+<script src="../../lib/vue-router/v3.0.6/vue-router.js"></script>
+<script src="../../lib/vue-resource/v1.5.1/vue-resource.min.js"></script>
+<script src="js/account.js"></script>
+<script src="js/account-add.js"></script>
+<script src="js/role.js"></script>
+<script src="js/role-add.js"></script>
+<script src="js/privilege.js"></script>
+<script src="js/privilege-add.js"></script>
+<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+</html>

@@ -1,7 +1,4 @@
 // 自定义路由组件
-const account = {template: '#accountManager'};
-const role = {template: '#roleManager'};
-const privilege = {template: '#privilegeManager'};
 
 // 自定义路由
 const routes = [
@@ -18,6 +15,9 @@ const router = new VueRouter({
 
 new Vue({
     el: "#app",
-    router
+    router,
+    data:{
+        
+    }
 });
 
