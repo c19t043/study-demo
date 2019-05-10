@@ -46,20 +46,28 @@
 <script src="../../../lib/bootstrap/v3.3.7/js/bootstrap.js"></script>
 <script src="../../../lib/vue/v2.6.10/vue.js"></script>
 <script src="../../../lib/vue-resource/v1.5.1/vue-resource.min.js"></script>
+<script src="../../../common/js/common.js" type="text/javascript" charset="utf-8"></script>
 <script>
+	const field_currentAccount = "currentAccount";
+	const field_accountList = "accountList";
     new Vue({
         el: "#account",
         data: {
             accountList: []
         },
         mounted() {
+			this.init();
             this.getAccountList();
         },
         methods: {
+			/* 清除缓存 */
+			init(){
+				setToLocalStorage(field_accountList,null);
+			},
             edit(id) {
                 this.accountList.some((account, i) => {
                     if (account.id === id) {
-                        localStorage.currentAccount = JSON.stringify(account);
+						setToLocalStorage(field_currentAccount,account);
                         return true;
                     }
                 });
@@ -74,13 +82,14 @@
                 });
             },
             getAccountList() {
-                if (localStorage.accountList && localStorage.accountList !== 'undefined') {
-                    this.accountList = JSON.parse(localStorage.accountList)
+                let accountList = getFromLocalStorage(field_accountList)
+				if (accountList) {
+					this.accountList = accountList;
                 } else {
                     this.$http.get("../data/account.json").then(response => {
                         const result = response.body;
                         this.accountList = result;
-                        localStorage.accountList = JSON.stringify(result);
+						setToLocalStorage(field_accountList,result);
                     }, response => {
                         console.log("请求处理失败");
                     })
