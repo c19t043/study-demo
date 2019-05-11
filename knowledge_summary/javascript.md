@@ -1,5 +1,25 @@
 # javascript
 
+## 模块化 和 组件化
+
++ 模块化
+
+是从代码逻辑的角度进行划分的，方便代码分层开发，保证每个功能模块的职能单一
+
++ 组件化
+
+是从ui界面的角度进行划分的，前端的组件化，方便ui组件的重用
+
+## localStorage
+
++ `localStorage.setItem('key','value')`
+
+localStorage 只支持存放字符串数据，要先调用JSON.stringify
+
++ `localStorage.setItem('key')`
+
+获取后要JSON.parse将字符串转为json对象
+
 ## 数组操作
 
 ### 删除,插入
@@ -9,7 +29,7 @@
 > `splice(index,删除个数,索引位置插入数据)`
 
 ```javascript
-let arr = [1,2,3,4]
+let arr = [1,2,3,4];
 arr.splice(1,1,3)
 ```
 ### 查找
@@ -32,7 +52,7 @@ arr.some((num) => {
 
 ```javascript
 let arr = [1,2,3,4];
-var index = arr.findIndex((num) => {
+const index = arr.findIndex((num) => {
     if(num === 2){
         // 返回true 就停止后序操作
         return true;
@@ -45,8 +65,8 @@ var index = arr.findIndex((num) => {
 > 查找索引
 
 ```javascript
-var name = 'zhangsan';
-var index = name.indexOf('zhangsan');
+let name = 'zhangsan';
+const index = name.indexOf('zhangsan');
 console.log(index);
 ```
 
@@ -55,7 +75,7 @@ console.log(index);
 > 遍历
 
 ```javascript
-var arr = [1,2,3,4];
+const arr = [1,2,3,4];
 arr.forEach(num => {
     console.log(num);
 })
@@ -66,7 +86,7 @@ arr.forEach(num => {
 > 包含,es6语法
 
 ```javascript
-var name = 'zhangsan';
+const name = 'zhangsan';
 if(name.includes('zhang')){
     console.log(true)
 }else{
@@ -94,7 +114,7 @@ this.arr.filter(num =>{
 表达式可以是字符串，也可以是正则表达式
 
 ```javascript
-var name = 'zhangsan';
+let name = 'zhangsan';
 name = name.replace('san','si');
 
 name = name.replace(/n/g,'s');
@@ -104,20 +124,20 @@ name = name.replace(/n/g,'s');
 
 ```javascript
 dateFormat(dateObj,pattern=''){
-    var dt = new Date(dateObj);
+    const dt = new Date(dateObj);
     
     //获取年月日
-    var y = dt.getFullYear();
-    var m = (dt.getMonth() + 1).toString().padStart(2,'0');
-    var d = dt.getDate().toString().padStart(2,'0');
+    const y = dt.getFullYear();
+    const m = (dt.getMonth() + 1).toString().padStart(2,'0');
+    const d = dt.getDate().toString().padStart(2,'0');
     
     if(pattern.toLowerCase() === 'yyyy-mm-dd'){
         //return y+"-"+m+"-"+d;
         return '${y}-${m}-${d}'
     }else{
-        var hh = dt.getHours().toString().padStart(2,'0');
-        var mm = dt.getMinutes().toString().padStart(2,'0');
-        var ss = dt.getSeconds().toString().padStart(2,'0');
+        const hh = dt.getHours().toString().padStart(2,'0');
+        const mm = dt.getMinutes().toString().padStart(2,'0');
+        const ss = dt.getSeconds().toString().padStart(2,'0');
         return '${y}-${m}-${d} ${hh}:${mm}:${ss}'
     }
 }
@@ -144,7 +164,7 @@ dateFormat(dateObj,pattern=''){
 > lambda 表达式 不用关注 this 作用域问题 , 否则需要 外部定义 let _this = this;
 
 ```javascript
-let _this = this
+let _this = this;
 let intervalId = setInterval(function() {
     console.log(_this);
 },100);

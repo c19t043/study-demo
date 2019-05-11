@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button @click="lang">浪起来</button>
+    <button @click="lowKey">低调</button>
+    <div>
+        {{message}}
+    </div>
+
+</div>
+<script src="../../lib/vue/v2.6.10/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            message: "猥琐发育别浪！",
+            intervalId: null
+        },
+        methods: {
+            lang() {
+                /* lambda 表达式 不用关注 this 作用域问题 , 否则需要 外部定义 let _this = this; */
+                if (!this.intervalId) {
+                    this.intervalId = setInterval(() => {
+                        const firstLetter = this.message.substring(0, 1);
+                        const surplusLetter = this.message.substring(1);
+                        this.message = surplusLetter + firstLetter;
+                    }, 300);
+                }
+            },
+            lowKey() {
+                if (this.intervalId) {
+                    clearInterval(this.intervalId);
+                    this.intervalId = null;
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
