@@ -304,6 +304,130 @@ new Vue({
 
 >  `v-show:'expression'` 修改元素样式,表达式为false,`display:none`，true,去掉`display`样式, 
 
+## 过滤器
+
+vue.js允许自定义过滤器，**可被用作一些常见的文本格式化**。
+
+过滤器可以用在两个地方：**mustachc插值（插值表达式） 和 v-bind表达式**
+
+### 全局过滤器
+
+> Vue.filter('过滤器的名称',function(data) {
+    return data+'123';
+  })
+
+### 私有过滤器
+
+> 如果全局过滤器，和私有过滤器名称相同，优先调用私有过滤器
+
+```html
+<td>{{item.time | dateFormat('yyyy-MM-dd')}}</td>
+<script>
+    new Vue({
+        filters:{
+            dateFormat(dateObj,pattern){
+                var dt = new Date(dateObj);
+                
+                //获取年月日
+                var y = dt.getFullYear();
+                var m = (dt.getMonth() + 1).toString().padStart(2,'0');
+                var d = dt.getDate().toString().padStart(2,'0');
+                
+                if(pattern && pattern.toLowerCase() === 'yyyy-MM-dd'){
+                    //return y+"-"+m+"-"+d;
+                    return '${y}-${m}-${d}'
+                }else{
+                     var hh = dt.getHours().toString().padStart(2,'0');
+                     var mm = dt.getMinutes().toString().padStart(2,'0');
+                     var ss = dt.getSeconds().toString().padStart(2,'0');
+                     return '${y}-${m}-${d} ${hh}:${mm}:${ss}'
+                 }
+            }
+        }
+    })
+</script>
+```
+
+ ## 按键修饰符
+ 
+ + `.enter` 
+ 
+ > enter键
+ 
+ 监听enter键（回车键）的按键松开复位事件
+ ```html
+<input type="button" value="按钮" @keyup.enter="add">
+```
+ 
+ + `.delete` 删除键
+ 
+ + `.tab` 制表键 tab键
+ 
+ + `.esc` 退出键 esc键
+ 
+ + `.space` 空格键
+ 
+ + `.up` 向上按键 up键
+ 
+ + `.down`
+ 
+ + `.left`
+ 
+ + `.right`
+ 
+ ### 传入按键的码值
+ 
+ > f1 => 112
+ 
+ 直接传入码值不好记
+ 
+  ```html
+ <input type="button" value="按钮" @keyup.112="add">
+ ```
+ 
+ ### 自定义按键修饰符
+ 
+ > Vue.config.keyCodes.f1 = 112;
+ 
+   ```html
+  <input type="button" value="按钮" @keyup.f1="add">
+  ```
+  
+## 自定义指令
+
+> Vue.directive(),
+
+参数1：指令名称，不要需要加 `v-`前缀 但在调用的时候必须要加 `v-` 前缀
+
+参数2：是一个对象，这个对象由一些指令相关的钩子函数 
+
+```javascript
+Vue.directive('focus',{
+    bind:function(el){
+        el.focus();
+    },
+    inserted:function(el){},
+    updated:function(el){},    
+})
+```
+
+
+### 指令钩子函数
+
++ `bind`:只调用一次，指令第一次绑定到元素时调用，
+用这个钩子函数可以定义一个在绑定时执行一次的初始化动作
+
++ `inserted` 只调用一次,插入到dom中后执行
+
++ `updated`: 可能会触发多次,dom节点更新后执行
+
++ `unbind`: 只调用一次，指令与元素解绑时调用
+  
+#### 钩子函数参数
+
++ `el` 被绑定的元素，是一个原生的js对象  
+
+
 
 ## vue实例的生命周期
 
@@ -365,7 +489,40 @@ new Vue({
 
 ## 注意事项
 
-+ 插值表达式闪烁问题
+### `v-for`可以组合方法使用
+
+```html
+<div id="app">
+    <div v-for="item in search(keyword)">
+        {{item.id}}--{{item.name}}    
+    </div>
+</div>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            list:[
+                {id:1,name:'zhangsan'},
+                {id:2,name:'lisi'},
+            ],
+            keyword:''
+        },
+        methods:{
+            search(keyword){
+               return this.list.filter(item =>{
+                   if(item.name.includes(keyword)){
+                      return item;
+                   }
+               })
+            }
+        }
+    })
+</script>
+``` 
+
+
+
+### 插值表达式闪烁问题
 
 当网络请求速度慢，数据加载未完成，插值表达式中值一直得不到替换，页面显示具体的插值表达式{{xx}}
 
