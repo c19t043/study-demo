@@ -8,14 +8,14 @@ function getBaseObjectFromLocalStorage(){
 	if(!isUndefined(localStorage[field])){
 		setBaseObjectFromLocalStorage({});
 	}
-	return JSON.parse(localStorage[field]);
+	return JSON.parse(localStorage.getItem(field));
 }
 
 /**
  * 设置根对象
  */
 function setBaseObjectFromLocalStorage(value){
-	localStorage[field] = JSON.stringify(value);
+	localStorage.setItem(field,JSON.stringify(value));
 }
 
 /**
