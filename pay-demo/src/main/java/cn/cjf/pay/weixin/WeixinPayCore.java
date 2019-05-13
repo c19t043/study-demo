@@ -10,8 +10,19 @@ import java.util.Map;
  * @date 2019/5/9
  */
 public class WeixinPayCore {
-    private WXPayConfig wxPayConfig;
-    private String notifyUrl;
+    private static String notifyUrl = "";
+    private static WXPayConfig wxPayConfig;
+    private static WXPay wxPay;
+
+    static {
+        try {
+            wxPayConfig = new DefaultConfig();
+            wxPay = new WXPay(wxPayConfig, notifyUrl, false, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * 作用：提交刷卡支付<br>
@@ -21,7 +32,7 @@ public class WeixinPayCore {
      * @return API返回数据
      * @throws Exception
      */
-    public Map<String, String> microPay(Map<String, String> reqData) throws Exception {
+    public static Map<String, String> microPay(Map<String, String> reqData) throws Exception {
         return new WXPay(wxPayConfig, notifyUrl).microPay(reqData);
     }
 
@@ -33,7 +44,7 @@ public class WeixinPayCore {
      * @return API返回数据
      * @throws Exception
      */
-    public Map<String, String> unifiedOrder(Map<String, String> reqData) throws Exception {
+    public static Map<String, String> unifiedOrder(Map<String, String> reqData) throws Exception {
         return new WXPay(wxPayConfig, notifyUrl).unifiedOrder(reqData);
     }
 
@@ -45,7 +56,7 @@ public class WeixinPayCore {
      * @return API返回数据
      * @throws Exception
      */
-    public Map<String, String> orderQuery(Map<String, String> reqData) throws Exception {
+    public static Map<String, String> orderQuery(Map<String, String> reqData) throws Exception {
         return new WXPay(wxPayConfig, notifyUrl).orderQuery(reqData);
     }
 
@@ -57,7 +68,7 @@ public class WeixinPayCore {
      * @return API返回数据
      * @throws Exception
      */
-    public Map<String, String> reverse(Map<String, String> reqData) throws Exception {
+    public static Map<String, String> reverse(Map<String, String> reqData) throws Exception {
         return new WXPay(wxPayConfig, notifyUrl).reverse(reqData);
     }
 
@@ -69,7 +80,7 @@ public class WeixinPayCore {
      * @return API返回数据
      * @throws Exception
      */
-    public Map<String, String> closeOrder(Map<String, String> reqData) throws Exception {
+    public static Map<String, String> closeOrder(Map<String, String> reqData) throws Exception {
         return new WXPay(wxPayConfig, notifyUrl).closeOrder(reqData);
     }
 
@@ -82,7 +93,7 @@ public class WeixinPayCore {
      * @return API返回数据
      * @throws Exception
      */
-    public Map<String, String> refund(Map<String, String> reqData) throws Exception {
+    public static Map<String, String> refund(Map<String, String> reqData) throws Exception {
         return new WXPay(wxPayConfig, notifyUrl).refund(reqData);
     }
 
@@ -94,7 +105,7 @@ public class WeixinPayCore {
      * @return API返回数据
      * @throws Exception
      */
-    public Map<String, String> refundQuery(Map<String, String> reqData) throws Exception {
+    public static Map<String, String> refundQuery(Map<String, String> reqData) throws Exception {
         return new WXPay(wxPayConfig, notifyUrl).refundQuery(reqData);
     }
 
@@ -106,7 +117,7 @@ public class WeixinPayCore {
      * @return API返回数据
      * @throws Exception
      */
-    public Map<String, String> downloadBill(Map<String, String> reqData) throws Exception {
+    public static Map<String, String> downloadBill(Map<String, String> reqData) throws Exception {
         return new WXPay(wxPayConfig, notifyUrl).downloadBill(reqData);
     }
 
@@ -118,7 +129,7 @@ public class WeixinPayCore {
      * @return API返回数据
      * @throws Exception
      */
-    public Map<String, String> report(Map<String, String> reqData) throws Exception {
+    public static Map<String, String> report(Map<String, String> reqData) throws Exception {
         return new WXPay(wxPayConfig, notifyUrl).report(reqData);
     }
 
@@ -130,7 +141,7 @@ public class WeixinPayCore {
      * @return API返回数据
      * @throws Exception
      */
-    public Map<String, String> shortUrl(Map<String, String> reqData) throws Exception {
+    public static Map<String, String> shortUrl(Map<String, String> reqData) throws Exception {
         return new WXPay(wxPayConfig, notifyUrl).shortUrl(reqData);
     }
 
@@ -142,7 +153,7 @@ public class WeixinPayCore {
      * @return API返回数据
      * @throws Exception
      */
-    public Map<String, String> authCodeToOpenid(Map<String, String> reqData) throws Exception {
+    public static Map<String, String> authCodeToOpenid(Map<String, String> reqData) throws Exception {
         return new WXPay(wxPayConfig, notifyUrl).authCodeToOpenid(reqData);
     }
 }

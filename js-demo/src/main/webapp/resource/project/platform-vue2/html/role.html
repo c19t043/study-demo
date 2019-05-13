@@ -45,24 +45,55 @@
 <script src="../../../lib/vue/v2.6.10/vue.js"></script>
 <script src="../../../lib/vue-router/v3.0.6/vue-router.js"></script>
 <script src="../../../lib/vue-resource/v1.5.1/vue-resource.min.js"></script>
+<script src="../../../common/js/common.js" type="text/javascript" charset="utf-8"></script>
 <script>
+    const field_currentRole = "currentRole";
+    const field_roleList = "roleList";
     new Vue({
         el: "#role",
         data: {
             roleList: []
         },
         mounted() {
+            this.init();
             this.getRoleList();
         },
         methods: {
+            /* 清除缓存 */
+            init(){
+                setToLocalStorage(field_roleList,null);
+            },
             getRoleList() {
-                this.$http.get("../data/role.json").then(response => {
-                    const result = response.body;
-                    this.roleList = result;
-                }, response => {
-                    console.log("请求处理失败");
-                })
-            }
+                let privilegeList = getFromLocalStorage(field_roleList)
+                if (privilegeList) {
+                    this.roleList = privilegeList;
+                } else {
+                    this.$http.get("../data/role.json").then(response => {
+                        const result = response.body;
+                        this.roleList = result;
+                        setToLocalStorage(field_roleList,result);
+                    }, response => {
+                        console.log("请求处理失败");
+                    })
+                }
+            },
+            edit(id) {
+                this.roleList.some((role, i) => {
+                    if (role.id === id) {
+                        setToLocalStorage(field_currentRole,role);
+                        return true;
+                    }
+                });
+                window.location.href = 'role-add.html';
+            },
+            del(id) {
+                this.roleList.some((role, i) => {
+                    if (role.id === id) {
+                        this.roleList.splice(i, 1);
+                        return true;
+                    }
+                });
+            },
         }
     });
 </script>

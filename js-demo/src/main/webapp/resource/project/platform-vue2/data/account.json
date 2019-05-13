@@ -1,18 +1,18 @@
 [
   {
-    "id": "1",
+    "id": 1,
     "username": "zhangsan",
     "password": "123",
     "nickname": "张三"
   },
   {
-    "id": "2",
+    "id": 2,
     "username": "lisi",
     "password": "123",
     "nickname": "李四"
   },
   {
-    "id": "3",
+    "id": 3,
     "username": "wangwu",
     "password": "123",
     "nickname": "王五"
