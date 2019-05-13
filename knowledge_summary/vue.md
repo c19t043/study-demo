@@ -833,6 +833,161 @@ new Vue({
 ```
 
 
+## vue获取dom元素 或 组件的引用
+
+### `ref` 属性
+
++ 获取dom元素
+
+```html
+<h3 ref="h3"></h3>
+```
+```javascript
+
+let h3 = this.$refs.h3;
+
+h3.outerHTML;
+```
+
++ 获取组件引用
+
+> 获取组件的属性和方法
+
+```html
+<div id="app">
+    <mylogin ref="mylogin"></mylogin>
+</div>
+
+<template id="tpl">
+    <div>
+        <input type="text">
+        <button></button>
+    </div>
+</template>
+```
+```javascript
+Vue.component('mylogin',{
+    template:'#tpl',
+    data(){
+        return {
+          msg:''  
+        };
+    },
+    methods:{
+        submit(){
+            
+        }
+    }
+})
+new Vue({
+    el:'app',
+    methods:{
+        console.log(this.$refs.mylogin.msg);
+        
+        console.log(this.$refs.mylogin.submit());
+    }
+})
+```
+
+## 路由
+
+### 基本使用
+
+```html
+<div id="app">
+    <!-- 路由标签 -->
+    <router-link to="/login">登录</router-link>
+    
+    <!-- 路由匹配的组件展示的位置 -->
+    <router-view></router-view>
+</div>
+```
+```javascript
+// 自定义组件模板对象
+var login = {
+    template:'<h1>登录组件</h1>'
+}
+
+// 创建路由实例
+var routerObj = new VueRouter({
+    routes:[
+        {path:'/login',component:login}
+    ]
+})
+
+// 挂在路由
+new Vue({
+    router:routerObj
+}).$mount("#app")
+
+```
+### 路由属性
+
++ `path` 表示监听的路由链接地址
+
++ `component` 组件模板对象
+
+不能使用`Vue.component('login',login)`
+
+错误：`{path:'/path',component:'login'}`
+
+正确：不使用`Vue.component`
+
+`{path:'/path',component:login}`
+
++ `redirect` 重定向路由地址
+
+`{path:'/',redirect:'/path'}`
+
+### 路由传参
+
+如果在路由中，使用查询字符串，给路由传递参数，
+则不需要修改路由规则的path属性
+
++ 路由+请求参数
+
+```html
+<route-link to="/login?id=1"></route-link>
+```
++ 获取路由参数
+
+```javascript
+// get /login?id=1
+
+this.$route.path // /login
+
+this.$route.query // {id:1}
+
+this.$route.query.id
+
+```
+
++ 路径参数
+
+```html
+<route-link to="/login/1"></route-link>
+```
+```javascript
+var login = {
+    template:'<h1></h1>'
+}
+new VueRouter({
+    routes:[
+        {path:'/login/:id',component:login}
+    ]
+})
+```
+
++ 获取路径参数
+
+```javascript
+// /login/1
+
+this.$route.path // /login/1
+this.$route.query // {}
+this.$route.param // {id:'1'}
+
+```
 
 ## 注意事项
 
