@@ -10,6 +10,9 @@
 </head>
 <body>
 <div id="role" class="panel panel-default col-lg-12">
+    <div class="panel-heading">
+        角色管理
+    </div>
     <div class="panel-body">
         <div class="row">
             <a href="role-add.html" class="btn btn-primary">添加角色</a>
@@ -30,8 +33,10 @@
                     <td>{{ role.name }}</td>
                     <td>{{ role.code }}</td>
                     <td>
-                        <a href="" class="btn btn-default">编辑</a>
-                        <a href="" class="btn btn-default">删除</a>
+                        <a href="javascript:" @click.prevent="privilegeManager(role.id)"
+                           class="btn btn-default">角色管理</a>
+                        <a href="javascript:" @click.prevent="edit(role.id)" class="btn btn-default">编辑</a>
+                        <a href="javascript:" @click.prevent="del(role.id)" class="btn btn-default">删除</a>
                     </td>
                 </tr>
                 </tbody>
@@ -60,8 +65,17 @@
         },
         methods: {
             /* 清除缓存 */
-            init(){
-                setToLocalStorage(field_roleList,null);
+            init() {
+                setToLocalStorage(field_roleList, null);
+            },
+            privilegeManager(id) {
+                this.roleList.some((role, i) => {
+                    if (role.id === id) {
+                        setToLocalStorage(field_currentRole, role);
+                        return true;
+                    }
+                });
+                window.location.href = 'role-privilege.html';
             },
             getRoleList() {
                 let privilegeList = getFromLocalStorage(field_roleList)
@@ -71,7 +85,7 @@
                     this.$http.get("../data/role.json").then(response => {
                         const result = response.body;
                         this.roleList = result;
-                        setToLocalStorage(field_roleList,result);
+                        setToLocalStorage(field_roleList, result);
                     }, response => {
                         console.log("请求处理失败");
                     })
@@ -80,7 +94,7 @@
             edit(id) {
                 this.roleList.some((role, i) => {
                     if (role.id === id) {
-                        setToLocalStorage(field_currentRole,role);
+                        setToLocalStorage(field_currentRole, role);
                         return true;
                     }
                 });

@@ -1,47 +1,129 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-		<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/v3.3.7/css/bootstrap.css" />
-		<link rel="stylesheet" type="text/css" href="css/common.css" />
-		<link rel="stylesheet" href="css/index.css">
-		<title>platform</title>
-	</head>
-	<body>
-		<div id="app" class="container col-lg-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<div class="row p-header">
-						<div class="col-lg-2">
-							<img src="img/logo.jpg" />
-						</div>
-						<div class="col-lg-2 col-lg-offset-8">
-							<label>username</label>
-							<a class="btn btn-primary">退出</a>
-						</div>
-					</div>
-				</div>
-				<div class="panel-body">
-					<div class="row p-content">
-						<div class="col-lg-1">
-							<ul class="list-group">
-								<li class="list-group-item"><a href="#" class="p-menu" menu-url="html/account.html">账户管理</a></li>
-								<li class="list-group-item"><a href="#" class="p-menu" menu-url="html/role.html">角色管理</a></li>
-								<li class="list-group-item"><a href="#" class="p-menu" menu-url="html/privilege.html">权限管理</a></li>
-							</ul>
-						</div>
-						<div class="col-lg-11">
-							<iframe id="p-content-mid" class="col-lg-12"></iframe>
-						</div>
-					</div>
-				</div>
-				<div class="panel-footer"></div>
-			</div>
-		</div>
-	</body>
-	<script src="../../lib/jquery/jquery-1.9.1.min.js"></script>
-	<script src="../../lib/bootstrap/v3.3.7/js/bootstrap.js"></script>
-	<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../lib/bootstrap/v3.3.7/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" href="css/index.css">
+    <title>platform</title>
+</head>
+<body>
+<div id="app" class="container col-lg-12">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row p-header">
+                <div class="col-lg-2">
+                    <img src="img/logo.jpg"/>
+                </div>
+                <div class="col-lg-2 col-lg-offset-8">
+                    <label>username</label>
+                    <a class="btn btn-primary">退出</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row p-content">
+                <div class="col-lg-1">
+                    <ul class="list-group">
+                        <li class="list-group-item" v-for="item in menList">
+                            <a href="#" class="p-menu" :menu-url="item.url" @click="menuClick(item.url)" v-text="item.name"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-11">
+                    <iframe id="p-content-mid" :src="defaultUrl" class="col-lg-12"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer"></div>
+    </div>
+</div>
+</body>
+<script src="../../lib/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../lib/bootstrap/v3.3.7/js/bootstrap.js"></script>
+<script src="../../lib/vue/v2.6.10/vue.js"></script>
+<script src="../../lib/vue-resource/v1.5.1/vue-resource.min.js"></script>
+<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            menList: [],
+            currentAccount: {
+                "id": 1,
+                "username": "zhangsan",
+                "password": "123",
+                "nickname": "张三"
+            },
+            accountRoleList: [],
+            rolePrivilegeList: [],
+            defaultUrl: "",
+        },
+        mounted() {
+            this.init();
+        },
+        methods: {
+            menuClick(url) {
+                console.log(url);
+                document.getElementById("p-content-mid").src = url;
+            },
+            init() {
+                this.$http.get("data/accountRole.json").then(response => {
+                    if (response.body) {
+                        this.accountRoleList = response.body.filter(item => {
+                            if (item.accountId === this.currentAccount.id) {
+                                return item;
+                            }
+                        })
+                    }
+                }).then(response => {
+                    this.$http.get("data/rolePrivilege.json").then(response => {
+                        if (response.body) {
+                            this.rolePrivilegeList = response.body.filter(item => {
+                                let flag = this.accountRoleList.some(accountRole => {
+                                    if (accountRole.roleId === item.roleId) {
+                                        return true;
+                                    }
+                                })
+                                if (flag) {
+                                    return item;
+                                }
+                            });
+                        }
+                    })
+                }).then(response => {
+                    this.$http.get("data/privilege.json").then(response => {
+                        if (response.body) {
+                            let privilegeList = response.body.filter(item => {
+                                if (item.type === 'menu') {
+                                    return item;
+                                }
+                            });
+
+                            privilegeList.forEach(privilege => {
+                                this.rolePrivilegeList.some(item => {
+                                    if (item.privilegeId === privilege.id) {
+                                        privilege.checked = true;
+                                    }
+                                })
+                            })
+
+                            this.menList = privilegeList.filter(item => {
+                                if (item.checked) {
+                                    return item;
+                                }
+                            });
+
+                            if (this.menList.length) {
+                                this.defaultUrl = this.menList[0].url;
+                            }
+                        }
+                    })
+                });
+            }
+        }
+    });
+</script>
 </html>

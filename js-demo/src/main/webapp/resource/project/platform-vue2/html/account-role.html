@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../../lib/bootstrap/v3.3.7/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/common.css"/>
+    <title>账号角色管理</title>
+</head>
+<body>
+<div id="account-role" class="panel panel-default col-lg-12">
+    <div class="panel-heading">
+        账号角色管理
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            账户：{{currentAccount.nickname}}
+        </div>
+        <div class="row">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>拥有权限</th>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>code</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="role in roleList">
+                    <td><input type="checkbox" :checked="role.checked" @click="roleSelect(role.id)"></td>
+                    <td>{{ role.id }}</td>
+                    <td>{{ role.name }}</td>
+                    <td>{{ role.code }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../lib/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../lib/bootstrap/v3.3.7/js/bootstrap.js"></script>
+<script src="../../../lib/vue/v2.6.10/vue.js"></script>
+<script src="../../../lib/vue-resource/v1.5.1/vue-resource.min.js"></script>
+<script src="../../../common/js/common.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    const field_currentAccount = "currentAccount";
+    new Vue({
+        el: '#account-role',
+        data: {
+            accountRoleList: [],
+            currentAccount: { },
+            roleList: []
+        },
+        mounted() {
+            this.init();
+        },
+        methods: {
+            init(){
+                let currentAccount = getFromLocalStorage(field_currentAccount);
+                this.currentAccount = currentAccount;
+
+                this.$http.get('../data/accountRole.json').then(response =>{
+                    this.accountRoleList = response.body.filter(item =>{
+                        if(item.accountId === this.currentAccount.id){
+                            return item;
+                        }
+                    });
+
+                    this.$http.get('../data/role.json').then(response =>{
+                        this.roleList = response.body;
+
+                        this.roleList.forEach(role => {
+                            this.accountRoleList.some(item => {
+                                if(item.roleId === role.id){
+                                    role.checked = true;
+                                }
+                            })
+                        })
+                    },response =>{
+                    })
+                },response =>{
+
+                })
+            },
+            roleSelect(roleId) {
+                this.roleList.some(role => {
+                    if (role.id === roleId) {
+                        role.checked = !role.checked;
+                        if (role.checked) {
+                            // add
+                            let id;
+                            if (this.accountRoleList.length) {
+                                id = this.accountList[this.accountRoleList.length - 1].id + 1;
+                            } else {
+                                id = 1;
+                            }
+                            this.accountRoleList.push({id: id, accountId: this.currentAccount.id, roleId: roleId})
+                        }else{
+                            // delete
+                            this.accountRoleList.some((item, i) => {
+                                if (item.roleId === roleId) {
+                                    this.accountRoleList.splice(i,1);
+                                    return true;
+                                }
+                            });
+                        }
+                        return true;
+                    }
+                })
+            }
+        }
+    })
+</script>
+</html>

@@ -9,19 +9,19 @@
 		<title>platform</title>
 	</head>
 	<body>
-		<div id="account-add" class="panel panel-default col-lg-12">
+		<div id="privilege-add" class="panel panel-default col-lg-12">
 			<div class="panel-body col-lg-6 col-lg-offset-4">
 				<form class="form form-horizontal">
 					<div class="form-group">
 						<label for="url" class="col-lg-2 text-right">url</label>
-						<div id="col-lg-4">
-							<input type="text" id="url" name="url" placeholder="输入url">
+						<div class="col-lg-4">
+							<input type="text" id="url" name="url" placeholder="输入url"  v-model="newPrivilege.url" >
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="operate-code" class="col-lg-2 text-right">operate-code</label>
-						<div id="col-lg-4">
-							<input type="text" id="operate-code" name="operate-code" placeholder="输入operate-code">
+						<label for="operate_code" class="col-lg-2 text-right">operate-code</label>
+						<div class="col-lg-4">
+							<input type="text" id="operate_code" name="operate_code" placeholder="输入operate-code" v-model="newPrivilege.operate">
 						</div>
 					</div>
 					<div class="form-group">
@@ -37,4 +37,58 @@
 	<script src="../../../lib/bootstrap/v3.3.7/js/bootstrap.js"></script>
 	<script src="../../../lib/vue/v2.6.10/vue.js"></script>
 	<script src="../../../lib/vue-router/v3.0.6/vue-router.js"></script>
+	<script src="../../../common/js/common.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		const field_currentPrivilege = "currentPrivilege";
+		const field_privilegeList = "privilegeList";
+		new Vue({
+			el: "#privilege-add",
+			data: {
+				newPrivilege: {
+					id: '',
+					url: '',
+					operate_code: ''
+				}
+			},
+			mounted() {
+				this.init();
+			},
+			methods: {
+				/*  初始化*/
+				init() {
+					let currentPrivilege = getFromLocalStorage(field_currentPrivilege);
+					if (currentPrivilege) {
+						this.newPrivilege = currentPrivilege;
+						setToLocalStorage(field_currentPrivilege,null)
+					}
+				},
+				/* 提交表单 */
+				submit() {
+					let privilegeList = getFromLocalStorage(field_privilegeList);
+
+					if (this.newPrivilege.id) {
+                        privilegeList.some((account, i) => {
+							if (account.id === this.newPrivilege.id) {
+                                privilegeList.splice(i, 1, this.newPrivilege);
+								return true;
+							}
+						});
+					} else {
+					    if(privilegeList.length){
+                            let id = privilegeList[privilegeList.length - 1].id;
+                            this.newPrivilege.id = parseInt(id) + 1;
+                        }else{
+                            this.newPrivilege.id = 1;
+                        }
+
+                        privilegeList.push(this.newPrivilege);
+					}
+
+					setToLocalStorage(field_privilegeList,privilegeList);
+
+					window.location.href = "privilege.html";
+				}
+			}
+		})
+	</script>
 </html>

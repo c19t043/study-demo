@@ -9,19 +9,19 @@
 		<title>platform</title>
 	</head>
 	<body>
-		<div id="account-add" class="panel panel-default col-lg-12">
+		<div id="role-add" class="panel panel-default col-lg-12">
 			<div class="panel-body col-lg-6 col-lg-offset-4">
 				<form class="form form-horizontal">
 					<div class="form-group">
 						<label for="name" class="col-lg-2 text-right">角色名</label>
-						<div id="col-lg-4">
-							<input type="text" id="name" name="name" placeholder="输入角色名">
+						<div class="col-lg-4">
+							<input type="text" id="name" name="name" placeholder="输入角色名" v-model="newRole.name">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="code" class="col-lg-2 text-right">角色编码</label>
-						<div id="col-lg-4">
-							<input type="text" id="code" name="code" placeholder="输入角色编码">
+						<div class="col-lg-4">
+							<input type="text" id="code" name="code" placeholder="输入角色编码" v-model="newRole.code">
 						</div>
 					</div>
 					<div class="form-group">
@@ -37,4 +37,54 @@
 	<script src="../../../lib/bootstrap/v3.3.7/js/bootstrap.js"></script>
 	<script src="../../../lib/vue/v2.6.10/vue.js"></script>
 	<script src="../../../lib/vue-router/v3.0.6/vue-router.js"></script>
+	<script src="../../../common/js/common.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		const field_currentRole = "currentRole";
+		const field_roleList = "roleList";
+		new Vue({
+			el: "#role-add",
+			data: {
+				newRole: {}
+			},
+			mounted() {
+				this.init();
+			},
+			methods: {
+				/*  初始化*/
+				init() {
+					let currentRole = getFromLocalStorage(field_currentRole);
+					if (currentRole) {
+						this.newRole = currentRole;
+						setToLocalStorage(field_currentRole,null)
+					}
+				},
+				/* 提交表单 */
+				submit() {
+					let roleList = getFromLocalStorage(field_roleList);
+
+					if (this.newRole.id) {
+						roleList.some((account, i) => {
+							if (account.id === this.newRole.id) {
+								roleList.splice(i, 1, this.newRole);
+								return true;
+							}
+						});
+					} else {
+						if(roleList.length){
+							let id = roleList[roleList.length - 1].id;
+							this.newRole.id = parseInt(id) + 1;
+						}else{
+							this.newRole.id = 1;
+						}
+
+						roleList.push(this.newRole);
+					}
+
+					setToLocalStorage(field_roleList,roleList);
+
+					window.location.href = "privilege.html";
+				}
+			}
+		})
+	</script>
 </html>

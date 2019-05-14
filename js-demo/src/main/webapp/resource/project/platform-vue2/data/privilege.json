@@ -2,21 +2,46 @@
   {
     "id": 1,
     "url": "/account/add",
+    "type": "operate",
     "operate": "add"
   },
   {
     "id": 2,
     "url": "/account/edit",
+    "type": "operate",
     "operate": "edit"
   },
   {
     "id": 3,
     "url": "/account/query",
+    "type": "operate",
     "operate": "query"
   },
   {
     "id": 4,
     "url": "/account/delete",
+    "type": "operate",
     "operate": "delete"
+  },
+  {
+    "id": 5,
+    "url": "html/account.html",
+    "name": "账号管理",
+    "type": "menu",
+    "operate": "query"
+  },
+  {
+    "id": 6,
+    "url": "html/role.html",
+    "name": "角色管理",
+    "type": "menu",
+    "operate": "query"
+  },
+  {
+    "id": 7,
+    "url": "html/privilege.html",
+    "name": "权限管理",
+    "type": "menu",
+    "operate": "query"
   }
 ]

@@ -1,5 +1,7 @@
 package cn.cjf.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +12,33 @@ import java.io.IOException;
  * @date 2019/5/10
  */
 public class WebUtils {
+    /**
+     * 是否是Ajax异步请求
+     */
+    public static boolean isAjaxRequest(HttpServletRequest request) {
+
+        String accept = request.getHeader("accept");
+        if (accept != null && accept.indexOf("application/json") != -1) {
+            return true;
+        }
+
+        String xRequestedWith = request.getHeader("X-Requested-With");
+        if (xRequestedWith != null && xRequestedWith.indexOf("XMLHttpRequest") != -1) {
+            return true;
+        }
+
+        String uri = request.getRequestURI();
+        if (StringUtils.containsAny(uri, ".json", ".xml")) {
+            return true;
+        }
+
+        String ajax = request.getParameter("__ajax");
+        if (StringUtils.containsAny(ajax, "json", "xml")) {
+            return true;
+        }
+
+        return false;
+    }
     /**
      * 获取客户端IP
      * <p>
