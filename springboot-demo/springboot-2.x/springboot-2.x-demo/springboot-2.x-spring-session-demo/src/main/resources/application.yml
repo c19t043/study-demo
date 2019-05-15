@@ -1,0 +1,23 @@
+#########################  若使用yml文件，则如下配置 ###################################
+#spring:
+#  redis:
+#      database: 1
+#      port: 6379
+#      host: 192.168.57.101
+#      #password: pwd
+#      timeout: 1s
+#      #lettuce 是一个可以做缓冲池的插件，也可以不用，使用pool为三级参数，即spring.redis.pool...
+#      lettuce:
+#        pool:
+#          max-active: 8
+#          max-idle: 8
+#          min-idle: 0
+#          max-wait: -1ms
+#设置Redis支持的Spring Session
+spring:
+  session:
+    store-type: redis
+    #redis:
+      #flush-mode: on_save
+      #添加后，redis中的key为spring:session:myproject
+      #namespace: myproject
