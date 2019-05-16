@@ -14,11 +14,15 @@
 
     <!-- 使用LettuceConnectionFactory -->
     <bean class="org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory">
-        <!--<property name="hostName" value="192.168.57.101"/>-->
-        <constructor-arg name="host" value="192.168.57.101"/>
-        <constructor-arg name="port" value="6379"/>
-        <!--<property name="port" value="${redis.port}"/>-->
-        <!--<property name="password" value="${redis.password}"/>-->
+        <!--<constructor-arg name="host" value="${redis.ip}"/>-->
+        <!--<constructor-arg name="port" value="${redis.port}"/>-->
+        <constructor-arg name="pool" ref="lettucePool"/>
+    </bean>
+
+    <bean id="lettucePool" class="org.springframework.data.redis.connection.lettuce.DefaultLettucePool">
+        <property name="hostName" value="${redis.ip}"/>
+        <property name="port" value="${redis.port}"/>
+        <property name="password" value="${redis.password}"/>
     </bean>
 
     <!-- 也可以将使用LettuceConnectionFactory改成使用JedisConnectionFactory，两者保留其一就好 -->

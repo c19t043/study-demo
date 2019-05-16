@@ -1,4 +1,4 @@
-package cn.cjf.util;
+package cn.cjf.pay.util;
 
 
 import org.apache.commons.lang3.StringUtils;
@@ -10,9 +10,9 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
@@ -223,6 +223,25 @@ public class HttpClientUtil {
         }
         return null;
     }
+
+    /**
+     * Post请求
+     */
+    public static String post(String url, String content) {
+        try {
+            // Post请求
+            HttpPost httpPost = new HttpPost(url);
+            StringEntity postEntity = new StringEntity(content, ENCODING_UTF8);
+            httpPost.setEntity(postEntity);
+
+            // 发送请求
+            return execute(httpPost);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public static String post(String url, Map<String, Object> paramMap, String contentType) {
         try {
