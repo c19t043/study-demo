@@ -39,4 +39,15 @@ StringUtils.isEmpty = function isEmpty(obj) {
 
 StringUtils.trim = function trim(x) {
     return x.replace(/^\s+|\s+$/gm, '');
-}
+};
+
+/**
+ * 截取指定长度
+ */
+
+StringUtils.substring = function (content, length) {
+    if (content && content.length > length) {
+        content = content.substring(0, length);
+    }
+    return content;
+};
