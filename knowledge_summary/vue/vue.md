@@ -989,6 +989,136 @@ this.$route.param // {id:'1'}
 
 ```
 
+## vue 属性监听
+
+### `watch`
+
++ 监视属性
+
+使用这个属性可以监视data中指定数据的变化，
+然后出发这个watch中对应function处理函数
+
+```javascript
+new Vue({
+    data:{
+        firstName:'',
+        lastName:'',
+        fullName:''
+    },
+    watch:{
+        'firstName':function(newVal,oldVal) {
+          this.fullName = newVal+ "-" + this.lastName;
+        },
+        lastName:function(newVal) {
+          this.fullName = this.firstName + newVal;
+        }
+    }
+});
+```
+
++ 监视路由地址
+
+```javascript
+new Vue({
+    watch:{
+        // this.$route.path
+        // 监听非dom属性变化
+        '$route.path':function(newVal,oldVal) {
+          if(newVal === '/login'){
+              
+          }else if(newVal === '/register'){
+              
+          }
+        }
+    }
+});
+```
+
+## 计算属性
+
+### `computed`
+
+在computed中，可以定义一些属性，这些属性，叫做**计算属性**，
+计算属性的本质，就是一个方法，只不过，我们在使用这些计算属性的时候，
+是把他们的名称，直接当做属性来使用，并不会把计算属性，当做方法来调用
+
+```html
+<input type="text" v-model="firstName">+
+<input type="text" v-model="lastName">=
+<input type="text" v-model="fullName">
+```
+```javascript
+new Vue({
+    data:{
+        firstName:'',
+        lastName:'',
+    },
+    watch:{
+        'fullName':function() {
+          return this.firstName+ "-" + this.lastName;
+        }
+    }
+});
+```
+
+注意：计算属性在引用的时候，一定不要加()调用，
+直接把它当做普通属性去使用就好
+
+只要计算属性，这个function内部所用的到任何data中的数据发送了变化，
+就会立即重新计算这个计算属性的值
+
+计算属性的求值结果，会被缓存起来，方便下次直接使用，
+如果计算属性方法中，所以来的任何数据，都没有发送变化，
+则不会重新对计算属性求值
+
+## watch、computed和methods之间对比
+
+1、`computed`属性的结果会被缓存，除非依赖的响应式属性变化才会重新计算，主要当作属性来使用
+
+2、`methods`方法表示一个具体的操作，主要书写业务逻辑
+
+3、`watch`一个对象，键是需要观察的表达式，值是对应回调函数。
+主要用来监听某些特定数据的变化，从而进行某些具体的业务逻辑操作；
+可以看做是`computed`和`methods`的结合体
+
+## 组件渲染
+
+### `render`
+
+```html
+  <div id="app">
+    <p>444444</p>
+  </div>
+
+  <script>
+
+    var login = {
+      template: '<h1>这是登录组件</h1>'
+    }
+
+    // 创建 Vue 实例，得到 ViewModel
+    var vm = new Vue({
+      el: '#app',
+      data: {},
+      methods: {},
+      render: function (createElements) { // createElements 是一个 方法，调用它，能够把 指定的 组件模板，渲染为 html 结构
+        return createElements(login)
+        // 注意：这里 return 的结果，会 替换页面中 el 指定的那个 容器
+      }
+    });
+  </script>
+```
+### 基本组件component使用，和render区别
+
++ `component` 相当于插值表达式，只替换 组件标签对应的部分
+
++ `render` 替换页面中 el 指定的那个 容器
+
+render 会把 el 指定的容器中，所有的内容都清空覆盖，所以 不要 把 路由的 router-view 和 router-link 直接写到 el 所控制的元素中
+
+注意： App 这个组件，是通过 VM 实例的 render 函数，渲染出来的， render 函数如果要渲染 组件， 渲染出来的组件，只能放到 el: '#app' 所指定的 元素中；
+Account 和 GoodsList 组件， 是通过 路由匹配监听到的，所以， 这两个组件，只能展示到 属于 路由的 <router-view></router-view> 中去；
+
 ## 注意事项
 
 ### 绑定属性中表达式 'xx'  与 xx 的区别
