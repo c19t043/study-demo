@@ -6,15 +6,12 @@
     <packaging>pom</packaging>
     <version>0.1-SNAPSHOT</version>
     <modules>
-        <module>springboot-2.x-demo</module>
-        <module>springboot-ok2-demo</module>
-        <module>springboot-ok2-starter-demo</module>
-        <module>springcloud-2-demo</module>
-        <module>springcloud-ok2-demo</module>
+        <module>springboot-1.x-demo</module>
+        <module>springcloud-1.x-demo</module>
     </modules>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>springboot-2.x</artifactId>
+    <artifactId>springboot-1.x</artifactId>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

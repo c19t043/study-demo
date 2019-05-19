@@ -9,6 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <modules>
+        <module>springboot-1.x</module>
+        <module>springboot-2.x</module>
+        <module>springboot-security-demo</module>
+    </modules>
+
     <artifactId>springboot-demo</artifactId>
     <packaging>jar</packaging>
     <properties>
