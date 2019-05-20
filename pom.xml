@@ -24,20 +24,17 @@
         <module>mockit-demo</module>
         <module>rxjava-demo</module>
         <module>spring-security-demo</module>
-        <module>springboot-security4-demo</module>
         <module>data-model-design-demo</module>
         <module>shiro-demo</module>
         <module>js-demo</module>
         <module>platform-demo</module>
         <module>java-util</module>
         <module>knowledge_summary</module>
-        <module>shiro-demo2</module>
-        <module>shiro-demo3</module>
         <module>education-demo</module>
-        <module>base-service</module>
         <module>pay-demo</module>
         <module>wx-demo</module>
         <module>web-demo</module>
+        <module>project-color</module>
     </modules>
 
     <dependencyManagement>

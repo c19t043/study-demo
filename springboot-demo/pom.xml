@@ -12,6 +12,7 @@
     <modules>
         <module>springboot-1.x</module>
         <module>springboot-2.x</module>
+        <module>springboot-security4-demo</module>
         <module>springboot-security-demo</module>
     </modules>
 
