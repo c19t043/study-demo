@@ -35,6 +35,7 @@
         <module>wx-demo</module>
         <module>web-demo</module>
         <module>project-color</module>
+        <module>project-common</module>
     </modules>
 
     <dependencyManagement>
